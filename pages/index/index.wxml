@@ -1,13 +1,19 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class='product-number'>
+  <text>当前共4款产品在销售</text>
+</view>
+<view class='product-item'>
+  <view class='img-wrapper'>
+  <image class='product-img' src='../devImg/home-shop.png' mode='scaleToFill'></image>
+  <view class='time-down'>采集倒计时：</view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class='product-price'>
+    <text class='c-price'>￥188</text>
+    <text class='m-price'>市价 ￥200</text> 
   </view>
+  <view class='product-name'>这是一个粽子这是一个粽子这是一个粽子这是一个粽子</view>
+  <view class='product-order'>
+    <text space='true' decode='true'>营业部起订量:200盒&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量:200盒</text>
+  </view>
+  <image class='go-cart' src='../img/go-cart.png' bindtap='addCart'></image>
 </view>

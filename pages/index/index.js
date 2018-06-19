@@ -8,7 +8,24 @@ Page({
   },
   onLoad() {
   },
+  goShopDetail() {
+    wx.navigateTo({
+      url: '../shop-detail/shop-detail'
+    })
+  },
   addCart() {
-    console.log(1)
+    wx.showLoading({
+      title: '正在加入购物车',
+      mask: true
+    })
+
+    setTimeout(function(){
+      wx.hideLoading()
+      wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        duration: 2000
+      })
+    },2000)
   }
 })

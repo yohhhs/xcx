@@ -1,2 +1,16 @@
 <!--pages/distribute/distribute.wxml-->
-<text>pages/distribute/distribute.wxml</text>
+<view class='gift-title' style='background-image: url("../img/gift-top.png")'>
+  我的礼品库
+</view>
+<view class='gift-item'>
+  <image class='gift-img' src='../devImg/home-shop.png' mode='scaleToFill'></image>
+  <view class='gift-name'>这是一个粽子这是一个粽子这是一个粽子这是一个粽子</view>
+  <view class='gift-number'>
+    剩余数量：<text class='number'>111</text>盒
+  </view>
+  <view class='gift-active'>
+    关联活动：打发斯蒂芬斯蒂芬
+  </view>
+  <button class='send-btn' bindtap='sendGift'>发送礼品</button>
+</view>
+

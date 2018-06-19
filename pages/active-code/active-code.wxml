@@ -1,0 +1,7 @@
+<!--pages/active-code/active-code.wxml-->
+<view class='shop-name'>端午的粽子端午的粽子端午的粽子端午的粽子端午的粽子端午的粽子端午的粽子端午的粽子端午的粽子</view>
+<view class='shop-number'>本次赠送后剩余的数量：<text class='number'>23</text>个</view>
+<view class='active-tip'>端午节赛龙舟游戏二维码活动界面</view>
+<image class='code-img' src='../devImg/code.png'></image>
+<view class='join-tip'>扫描二维码</view>
+<view class='join-tip'>参与活动并领取礼物</view>

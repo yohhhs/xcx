@@ -1,1 +1,54 @@
 /* pages/distribute/distribute.wxss */
+.gift-title {
+  margin-bottom: 20rpx;
+  padding-left: 78rpx;
+  height: 73rpx;
+  line-height: 73rpx;
+  font-size: 30rpx;
+  color: #666;
+  background-repeat: no-repeat;
+  background-size: 31rpx 33rpx;
+  background-position: 30rpx center; 
+  background-color: #fff;
+}
+.gift-item {
+  position: relative;
+  margin-bottom: 20rpx;
+  padding: 30rpx 28.5rpx 31rpx;
+  background-color: #fff;
+}
+.gift-img {
+  margin-bottom: 20rpx;
+  width: 100%;
+  height: 370rpx;
+}
+.gift-name {
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+.gift-number, .gift-active {
+  font-size: 26rpx;
+  color: #333;
+}
+.gift-number {
+  margin-bottom: 12rpx;
+}
+.number {
+  color: #ec9934;
+}
+.send-btn {
+  position: absolute;
+  bottom: 31rpx;
+  right: 28.5rpx;
+  width: 214rpx;
+  height: 71rpx;
+  line-height: 71rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff; 
+  background-image: linear-gradient(-90deg, 
+		#ec8541 0%, 
+		#edae27 100%);
+	border-radius: 30rpx;
+}

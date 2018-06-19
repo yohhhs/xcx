@@ -1,0 +1,33 @@
+/* pages/active-code/active-code.wxss */
+.shop-name, .shop-number {
+  text-align: center;
+  line-height: 34rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.shop-name {
+  margin: 43rpx 55rpx 40rpx;
+}
+.shop-number {
+  margin-bottom: 110rpx;
+}
+.number {
+  color: #ec9934;
+}
+.active-tip {
+  margin-bottom: 61rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+}
+.code-img {
+  margin: 0 auto 90rpx;
+  display: block;
+  width: 527rpx;
+  height: 527rpx;
+}
+.join-tip {
+  text-align: center;
+  font-size: 42rpx;
+  color: #333;
+}

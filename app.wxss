@@ -2,3 +2,6 @@
 page {
   background-color: #f2f2f2;
 } 
+button:after {
+  border: none;
+}

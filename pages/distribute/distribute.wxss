@@ -1,15 +1,19 @@
 /* pages/distribute/distribute.wxss */
 .gift-title {
+  display: flex;
+  align-items: center;
   margin-bottom: 20rpx;
-  padding-left: 78rpx;
+  padding-left: 30rpx;
   height: 73rpx;
   line-height: 73rpx;
   font-size: 30rpx;
   color: #666;
-  background-repeat: no-repeat;
-  background-size: 31rpx 33rpx;
-  background-position: 30rpx center; 
   background-color: #fff;
+}
+.gift-top-icon {
+  margin-right: 13rpx;
+  width: 31rpx;
+  height: 33rpx;
 }
 .gift-item {
   position: relative;

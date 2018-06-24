@@ -1,1 +1,75 @@
 /* pages/shop-detail/shop-detail.wxss */
+.cover-wrapper {
+  position: relative;
+}
+.cover-wrapper, .shopping-img {
+  width: 100%;
+  height: 402rpx;
+}
+.down-time {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 74rpx;
+  line-height: 74rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: rgba(0,0,0,0.5)
+}
+.shopping-desc {
+  padding: 28rpx 38rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+.shopping-name {
+  margin-bottom: 32rpx;
+  font-size: 32rpx;
+  color: #353535;
+}
+.price-type {
+  margin-bottom: 29rpx;
+}
+.c-price {
+  font-size: 34rpx;
+  color: #e84646;
+}
+.m-price, .g-price {
+  font-size: 24rpx;
+}
+.m-price {
+  margin: 0 32rpx 0 21rpx;
+  color: #c1bfbf;
+  text-decoration: line-through;
+}
+.g-price {
+  color: #989797;
+}
+.order-number {
+  font-size: 24rpx;
+  color: #999;
+}
+.handler-order, .active {
+  padding-left: 38rpx;
+  height: 107rpx;
+  line-height: 107rpx;
+  font-size: 28rpx;
+  color: #666;
+  background-color: #fff;
+}
+.active-name {
+  color: #ec9934;
+}
+.shopping-info {
+  margin-top: 20rpx;
+  padding-left: 38rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+}
+.shopping-detail-img {
+  width: 100%;
+}

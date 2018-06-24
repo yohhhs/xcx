@@ -1,5 +1,6 @@
 <!--pages/distribute/distribute.wxml-->
-<view class='gift-title' style='background-image: url("../img/gift-top.png")'>
+<view class='gift-title'>
+  <image class="gift-top-icon" src='../img/gift-top.png'></image>
   我的礼品库
 </view>
 <view class='gift-item'>

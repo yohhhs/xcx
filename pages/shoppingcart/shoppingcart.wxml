@@ -1,2 +1,33 @@
 <!--pages/shoppingcart/shoppingcart.wxml-->
-<text>pages/shoppingcart/shoppingcart.wxml</text>
+<checkbox-group bindchange="checkboxChange">
+<view class='shopping-item' wx:for="{{items}}" wx:key="item.name">
+  <view class="item-header">
+    <label>
+        <checkbox value="{{item.name}}" checked="{{item.checked}}"/>
+    </label>
+    <text class="end-time">采集结束时间：2018年6月20日16：00</text>
+    <image class='del-icon' src='../img/delete.png'></image>
+  </view>
+  <view class="item-content">
+    <image class="item-img" src='../devImg/home-shop.png'></image>
+    <view class="item-desc">
+      <view class="shopping-name">五芳斋粽子礼盒端午节嘉兴粽子端
+午大礼包 福 满五芳礼品粽1280g</view>
+      <view class="shopping-price">
+        <text class="price">¥128.60</text>
+      </view>
+    </view>
+  </view>
+</view>
+</checkbox-group>
+<view class='all-select'>
+<label>
+    <checkbox />
+    全选
+</label>
+<text class='shopping-count'>当前商品合计 <text class='count-number'>324</text> 件</text>
+</view>
+<view class='balance'>
+  <text class='count-price'>合计金额： <text class='price-number'>89798</text></text>
+  <button class='balance-btn'>立即结算</button>
+</view>

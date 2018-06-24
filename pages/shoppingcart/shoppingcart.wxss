@@ -1,1 +1,128 @@
 /* pages/shoppingcart/shoppingcart.wxss */
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+page {
+  background-color: #fff;
+}
+checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 34rpx; /* 背景的宽 */
+   height: 34rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border-color: #f79d1d;
+   background: #f79d1d;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 34rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 34rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 34rpx;
+   text-align: center;
+   font-size:25rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+.shopping-item {
+  margin: 0 24rpx;
+  padding-bottom: 29rpx; 
+  border-bottom: 1px solid #ddd;
+}
+.item-header {
+  height: 72rpx;
+}
+.end-time {
+  margin-left: 13rpx;
+  line-height: 65rpx;  
+  color: #999;
+  font-size: 23rpx;
+}
+.del-icon {
+  float: right;
+  margin-top: 20rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+.item-content {
+  position: relative;
+  padding-left: 309rpx;
+  height: 156rpx;
+}
+.item-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 291rpx;
+  height: 156rpx;
+}
+.item-desc {
+  position: relative;
+  height: 156rpx;
+}
+.shopping-name {
+  font-size: 26rpx;
+  color: #333;
+}
+.shopping-price {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+.price {
+  font-size: 28rpx;
+  color: #e84646;
+}
+.all-select {
+  position: absolute;
+  padding-left: 24rpx;
+  width: 100%;
+  bottom: 100rpx;
+  left: 0;
+  font-size: 24rpx;
+}
+.shopping-count {
+  margin-left: 25rpx;
+  color: #999
+}
+.all-select, .count-number {
+  color: #666;
+}
+.balance {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-left: 24rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.count-price {
+  height: 100rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.price-number {
+  font-size: 48rpx;
+  color: #e84646;
+}
+.balance-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 279rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  background-image: linear-gradient(-90deg, 
+		#ec8541 0%, 
+		#edae27 100%);
+  border-radius: 0;
+}

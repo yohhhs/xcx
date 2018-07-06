@@ -14,20 +14,20 @@
       <view class="shopping-name">五芳斋粽子礼盒端午节嘉兴粽子端
 午大礼包 福 满五芳礼品粽1280g</view>
       <view class="shopping-price">
-        <text class="price">¥128.60</text>
+        <text class="price">¥{{item.price}}</text>
       </view>
     </view>
   </view>
 </view>
 </checkbox-group>
 <view class='all-select'>
-<label>
-    <checkbox />
+<label bindtap='selectAll'>
+    <checkbox checked="{{isSelectAll}}"/>
     全选
 </label>
-<text class='shopping-count'>当前商品合计 <text class='count-number'>324</text> 件</text>
+<text class='shopping-count'>当前商品合计 <text class='count-number'>{{shoppingNumber}}</text> 件</text>
 </view>
 <view class='balance'>
-  <text class='count-price'>合计金额： <text class='price-number'>89798</text></text>
-  <button class='balance-btn'>立即结算</button>
+  <text class='count-price'>合计金额： <text class='price-number'>{{countPrice}}</text></text>
+  <button class='balance-btn' bindtap='balanceNow'>立即结算</button>
 </view>

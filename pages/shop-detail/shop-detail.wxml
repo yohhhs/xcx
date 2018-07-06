@@ -1,4 +1,5 @@
 <!--pages/shop-detail/shop-detail.wxml-->
+<view class='detail-container'>
 <view class='cover-wrapper'>
   <image class='shopping-img' src='../devImg/home-shop.png'></image>
   <view class='down-time'>集采倒计时：2天12时35分44秒</view>
@@ -18,3 +19,5 @@
 <view class='active'>配置活动: <text class='active-name'>端午节活动</text></view>
 <view class='shopping-info'>商品信息</view>
 <image class='shopping-detail-img' src='../devImg/detail.png' mode="widthFix"></image>
+</view>
+<view class='join-cart' bindtap='joinCart'>加入购物车</view>

@@ -7,20 +7,28 @@ Page({
 
   },
   onLoad() {
-    wx.request({
-      url: 'https://www.topasst.com/web/sms/send', //仅为示例，并非真实的接口地址
-      data: {
-        mobile: '18482130206',
-        smsType: 2
-      },
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log(res.data)
-      }
-    })
+    let token = wx.getStorageSync('token')
+    if (token) {
+
+    } else {
+      wx.navigateTo({
+        url: '../login/login'
+      })
+    }
+    // wx.request({
+    //   url: 'https://www.topasst.com/web/sms/send', //仅为示例，并非真实的接口地址
+    //   data: {
+    //     mobile: '18482130206',
+    //     smsType: 2
+    //   },
+    //   method: 'POST',
+    //   header: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //   }
+    // })
   },
   goShopDetail() {
     wx.navigateTo({

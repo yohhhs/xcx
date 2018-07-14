@@ -1,0 +1,71 @@
+/* pages/login/login.wxss */
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: no-repeat center / cover #fff;
+}
+.logo-bg {
+  width: 100%;
+  height: 100%;
+}
+.logo-wrapper {
+  display: block;
+  margin: 207rpx auto 125rpx;
+  width: 272rpx;
+  height: 122rpx;
+}
+.login-logo {
+  width: 100%;
+  height: 100%;
+}
+.input-wrapper {
+  margin: 0 auto 40rpx;
+  width: 624rpx;
+	height: 88rpx;
+  font-size: 28rpx;
+	border-radius: 10rpx;
+	border: solid 1px rgba(150, 150, 150, 0.7);
+	opacity: 0.7;
+}
+.input-item {
+  padding-left: 40rpx;
+  height: 88rpx;
+}
+.vali-wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 624rpx;
+}
+.code-input {
+  margin: 0;
+  width: 393rpx;
+}
+.getvali-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 215rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  color: #ec9934;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  border: solid 1px #ec9934;
+  background: #fff;
+}
+.next-btn {
+  margin-top: 80rpx;
+  width: 623rpx;
+	height: 87rpx;
+  line-height: 87rpx;
+  text-align: center;
+  color: #fff;
+	background-image: linear-gradient(130deg, 
+		#edae27 0%, 
+		#ec883f 100%);
+	border-radius: 10rpx;
+}

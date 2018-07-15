@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<open-data type="userAvatarUrl"></open-data>
 <view class='product-number'>
   <text>当前共4款产品在销售</text>
 </view>

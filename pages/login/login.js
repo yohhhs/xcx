@@ -7,18 +7,24 @@ Page({
    */
   data: {
     mobile: '',
+    code: '',
     verifyCodeTime: '获取验证码',
     buttonDisable: false
   },
-  mobileInputEvent: function (e) {
+  mobileInputEvent (e) {
     this.setData({
       mobile: e.detail.value
     })
   },
-  verifyCodeEvent: function (e) {
+  codeInputEvent (e) {
+    this.setData({
+      code: e.detail.value
+    })
+  },
+  verifyCodeEvent (e) {
     if (this.data.buttonDisable) return false;
     let mobile = this.data.mobile;
-    var regMobile = /^1\d{10}$/;
+    let regMobile = /^1\d{10}$/;
     if (!regMobile.test(mobile)) {
       wx.showToast({
         icon: 'none',
@@ -48,7 +54,43 @@ Page({
         smsType: 2
       },
       success () {
-        console.log(1)
+        wx.showToast({
+          icon: 'success',
+          title: '发送成功，请注意查收'
+        })
+      }
+    })
+  },
+  goNext () {
+    // wx.navigateTo({
+    //   url: '../select-company/select-company'
+    // })
+    // return
+    let mobile = this.data.mobile;
+    let regMobile = /^1\d{10}$/;
+    let smsCode = this.data.code;
+    
+    if (!regMobile.test(mobile)) {
+      wx.showToast({
+        icon: 'none',
+        title: '手机号有误！'
+      })
+      return false;
+    }
+    if (smsCode === '') {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入验证码'
+      })
+      return false;
+    }
+    network.POST('/sms/checkSmsCode', {
+      params: {
+        mobile,
+        smsCode
+      },
+      success(res) {
+        
       }
     })
   },

@@ -1,2 +1,25 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class='user-info'>
+  <image class='avatar'></image>
+  <text class='user-name'>张先生</text>
+  <text class='sale-name'></text>
+  <text class='user-tel'></text>
+  <image class='user-bg' src='../img/user-bg.png'></image>
+</view>
+<view>
+<view>
+  <view>
+    <text>123</text>
+    <image src='../img/giftnumber.png'></image>
+  </view>
+  <text>已派发礼物数</text>
+</view>
+<view>
+  <text>21</text>
+  <text>待派发礼物数</text>
+</view>
+</view>
+<view>我的订单</view>
+<view>
+  
+</view>

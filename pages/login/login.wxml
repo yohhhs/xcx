@@ -1,4 +1,4 @@
-<view class='container' style="background-image:url('../img/login-bg.png')">
+<view class='bg-container' style="background-image:url('../img/login-bg.png')">
 <view class='logo-wrapper'>
 <image class='login-logo' mode='scaleToFill' src='../img/login-logo.png'></image>
 </view>
@@ -7,9 +7,9 @@
 </view>
 <view class='vali-wrapper'>
   <view class='input-wrapper code-input'>
-    <input class='input-item' placeholder='请输入短信验证码'></input>
+    <input class='input-item' bindinput="codeInputEvent" placeholder='请输入短信验证码'></input>
   </view>
   <button class='getvali-btn' bindtap="verifyCodeEvent" disabled="{{buttonDisable}}" >{{verifyCodeTime}}</button>
 </view>
-<button class='next-btn'>下一步</button>
+<button class='next-btn' bindtap='goNext'>下一步</button>
 </view>

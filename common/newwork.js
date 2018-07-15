@@ -7,15 +7,14 @@ var requestHandler = {
   fail: function () {
   },
 }
-
-function GET(url, requestHandler) {
+const GET = (url, requestHandler) => {
   request('GET', url, requestHandler)
 }
-function POST(url, requestHandler) {
+const POST = (url, requestHandler) => {
   request('POST', url, requestHandler)
 }
 
-function request(method, url, requestHandler) {
+const request = (method, url, requestHandler) => {
   var params = requestHandler.params;
 
   wx.request({
@@ -25,13 +24,13 @@ function request(method, url, requestHandler) {
     header: {
       'Content-Type': method == 'POST' ? 'application/x-www-form-urlencoded' : 'application/json'
     },
-    success: function (res) {
-      requestHandler.success(res)
+    success (res) {
+      requestHandler.success(res.data)
     },
-    fail: function () {
+    fail () {
       requestHandler.fail()
     },
-    complete: function () {
+    complete () {
       // complete
     }
   })

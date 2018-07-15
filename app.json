@@ -8,7 +8,8 @@
     "pages/shop-detail/shop-detail",
     "pages/active-code/active-code",
     "pages/customer-list/customer-list",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/select-company/select-company"
   ],
   "window": {
     "backgroundTextStyle": "light",

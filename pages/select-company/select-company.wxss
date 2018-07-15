@@ -1,0 +1,15 @@
+/* pages/select-company/select-company.wxss */
+.protol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+}
+.check-icon {
+  margin-right: 13rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.right {
+  height: 30rpx;
+}

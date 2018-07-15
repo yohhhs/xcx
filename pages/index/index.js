@@ -4,24 +4,27 @@ const app = getApp()
 const network = require('../../common/newwork.js')
 Page({
   data: {
-
+    giftList: [],
+    isRequest: false
   },
   onLoad() {
-    wx.login({
-      success: function (res) {
-        wx.setClipboardData({
-          data: res.code,
-          success: function (res) {
-            console.log(1)
-          }
-        })
-        console.log(res)
-      }
-    });
+    // wx.login({
+    //   success: function (res) {
+    //     wx.setClipboardData({
+    //       data: res.code,
+    //       success: function (res) {
+    //         console.log(1)
+    //       }
+    //     })
+    //     console.log(res)
+    //   }
+    // });
     return;
     let token = wx.getStorageSync('token')
     if (token) {
-
+      if (!isRequest) {
+        this.getGiftList()
+      }
     } else {
       wx.navigateTo({
         url: '../login/login'
@@ -36,6 +39,17 @@ Page({
     //     console.log(1)
     //   }
     // })
+  },
+  onShow () {
+    return
+    let token = wx.getStorageSync('token')
+    if (token) {
+
+    } else {
+      wx.navigateTo({
+        url: '../login/login'
+      })
+    }
   },
   goShopDetail() {
     wx.navigateTo({
@@ -60,5 +74,20 @@ Page({
   getuser(e) {
     console.log(e)
   },
-  getGiftList () {}
+  getGiftList () {
+    let self = this
+    network.POST('/giftRecord/getGiftRecordList', {
+      params: {
+        pageNo,
+        pageSize,
+        agentMemberId
+      },
+      success(res) {
+        self.setData({
+          giftList: res.list,
+          isRequest: true
+        })        
+      }
+    })
+  }
 })

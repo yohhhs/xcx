@@ -1,12 +1,24 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const network = require('../../common/newwork.js')
 Page({
   data: {
 
   },
   onLoad() {
+    wx.login({
+      success: function (res) {
+        wx.setClipboardData({
+          data: res.code,
+          success: function (res) {
+            console.log(1)
+          }
+        })
+        console.log(res)
+      }
+    });
+    return;
     let token = wx.getStorageSync('token')
     if (token) {
 
@@ -15,18 +27,13 @@ Page({
         url: '../login/login'
       })
     }
-    // wx.request({
-    //   url: 'https://www.topasst.com/web/sms/send', //仅为示例，并非真实的接口地址
-    //   data: {
+    // network.POST('/sms/send', {
+    //   params: {
     //     mobile: '18482130206',
     //     smsType: 2
     //   },
-    //   method: 'POST',
-    //   header: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data)
+    //   success () {
+    //     console.log(1)
     //   }
     // })
   },
@@ -52,5 +59,6 @@ Page({
   },
   getuser(e) {
     console.log(e)
-  }
+  },
+  getGiftList () {}
 })

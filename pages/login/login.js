@@ -1,4 +1,5 @@
 // pages/login/login.js
+const network = require('../../common/newwork.js')
 Page({
 
   /**
@@ -41,7 +42,15 @@ Page({
         })
       }
     }, 1000)
-    // app.sendVerifyCode(function () { }, mobile);//获取短信验证码接口
+    network.POST('/sms/send', {
+      params: {
+        mobile,
+        smsType: 2
+      },
+      success () {
+        console.log(1)
+      }
+    })
   },
   getCode () {
     console.log(this.data)

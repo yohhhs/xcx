@@ -1,23 +1,26 @@
 <!--index.wxml-->
-<open-data type="userAvatarUrl"></open-data>
+<!-- <open-data type="userAvatarUrl"></open-data> -->
 <view class='product-number'>
-  <text>当前共4款产品在销售</text>
+  <text>当前共{{giftList.length}}款产品在销售</text>
 </view>
-<view class='product-item'>
-  <view class='img-wrapper'>
-  <image class='product-img' src='../devImg/home-shop.png' mode='scaleToFill'></image>
-  <view class='time-down'>采集倒计时：</view>
+<block wx:for='{{giftList}}' wx:key='{{item.purchaseGoodsId}}'>
+  <view class='product-item'>
+    <view class='img-wrapper'>
+    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill'></image>
+    <view class='time-down'>结束时间：{{item.purchaseEndTime}}</view>
+    </view>
+    <view class='product-price'>
+      <text class='c-price'>￥{{item.salePrice}}</text>
+      <text class='m-price'>市价 ￥{{item.marketPrice}}</text> 
+    </view>
+    <view class='product-name' data-id='{{item.purchaseGoodsId}}' bindtap='goShopDetail'>{{item.goodsName}}</view>
+    <view class='product-order'>
+      <text space='true' decode='true'>营业部起订量:{{item.purchaseMinCount}}盒&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量:{{item.saleCount}}盒</text>
+    </view>
+    <image class='go-cart' src='../img/go-cart.png' data-id='{{item.purchaseGoodsId}}' bindtap='addCart'></image>
   </view>
-  <view class='product-price'>
-    <text class='c-price'>￥188</text>
-    <text class='m-price'>市价 ￥200</text> 
-  </view>
-  <view class='product-name' bindtap='goShopDetail'>这是一个粽子这是一个粽子这是一个粽子这是一个粽子</view>
-  <view class='product-order'>
-    <text space='true' decode='true'>营业部起订量:200盒&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量:200盒</text>
-  </view>
-  <image class='go-cart' src='../img/go-cart.png' bindtap='addCart'></image>
-</view>
+</block>
+
 <view class='product-item'>
   <view class='img-wrapper'>
   <image class='product-img' src='../devImg/home-shop.png' mode='scaleToFill'></image>

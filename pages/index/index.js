@@ -4,47 +4,24 @@ const app = getApp()
 const network = require('../../common/newwork.js')
 Page({
   data: {
-    giftList: [],
-    isRequest: false
+    giftList: null,
+    isRequest: false,
+    token: ''
   },
   onLoad() {
-    // wx.login({
-    //   success: function (res) {
-    //     wx.setClipboardData({
-    //       data: res.code,
-    //       success: function (res) {
-    //         console.log(1)
-    //       }
-    //     })
-    //     console.log(res)
-    //   }
-    // });
-    return;
-    let token = wx.getStorageSync('token')
-    if (token) {
-      if (!isRequest) {
-        this.getGiftList()
-      }
-    } else {
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    }
-    // network.POST('/sms/send', {
-    //   params: {
-    //     mobile: '18482130206',
-    //     smsType: 2
-    //   },
-    //   success () {
-    //     console.log(1)
-    //   }
-    // })
   },
   onShow () {
-    return
     let token = wx.getStorageSync('token')
-    if (token) {
+    let isBingding = wx.getStorageSync('isBinding')
+    let isRequest = this.data.isRequest
 
+    if (token && isBingding) {
+      this.setData({
+        token
+      })
+      if (!isRequest) {
+        this.getGiftList()
+      } 
     } else {
       wx.navigateTo({
         url: '../login/login'
@@ -56,35 +33,44 @@ Page({
       url: '../shop-detail/shop-detail'
     })
   },
-  addCart() {
+  addCart(event) {
+    let purchaseGoodsId = event.currentTarget.dataset.id
+    let agentMemberId = this.data.token
+
     wx.showLoading({
       title: '正在加入购物车',
       mask: true
     })
-
-    setTimeout(function(){
-      wx.hideLoading()
-      wx.showToast({
-        title: '加入成功',
-        icon: 'success',
-        duration: 2000
-      })
-    },2000)
+    network.POST('/shoppingCart/addShoppingCart', {
+      params: {
+        agentMemberId,
+        purchaseGoodsId,
+        count: 1
+      },
+      success(res) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '加入成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
   },
-  getuser(e) {
+  getUser(e) {
     console.log(e)
   },
   getGiftList () {
     let self = this
-    network.POST('/giftRecord/getGiftRecordList', {
+    let agentMemberId = self.data.token
+
+    network.POST('/purchaseGoods/getPurchaseGoodsList', {
       params: {
-        pageNo,
-        pageSize,
         agentMemberId
       },
       success(res) {
         self.setData({
-          giftList: res.list,
+          giftList: res.data,
           isRequest: true
         })        
       }

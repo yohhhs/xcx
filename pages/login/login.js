@@ -51,7 +51,7 @@ Page({
     network.POST('/sms/send', {
       params: {
         mobile,
-        smsType: 2
+        smsType: 1
       },
       success () {
         wx.showToast({
@@ -84,13 +84,19 @@ Page({
       })
       return false;
     }
-    network.POST('/sms/checkSmsCode', {
+    network.POST('/agentMember/login', {
       params: {
         mobile,
         smsCode
       },
       success(res) {
-        
+        wx.setStorageSync('token', res.data)
+        if (res.msg === '') {
+          wx.setStorageSync('isBinding', true)
+          wx.navigateBack()
+        } else {
+          wx.setStorageSync('isBinding', false)
+        }
       }
     })
   },

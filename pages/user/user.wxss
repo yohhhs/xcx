@@ -1,1 +1,143 @@
-/* pages/user/user.wxss */
+page {
+  background-color: #fff;
+}
+.user-bg {
+  width: 100%;
+  height: 370rpx;
+}
+.user-info {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 340rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.avatar {
+  margin: 23rpx 0;
+  width: 121rpx;
+  height: 121rpx;
+  border-radius: 50%;
+}
+.user-name {
+  margin-bottom: 18rpx;
+  font-size: 32rpx;
+}
+.sale-name {
+  margin-bottom: 40rpx;
+  font-size: 26rpx;
+}
+.user-tel {
+  font-size: 28rpx;
+}
+.gift-info-wrapper {
+  display: flex;
+  justify-content: space-around
+}
+.gift-info-item {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.gift-number {
+  margin-bottom: 10rpx;
+  text-align: center;
+  font-size: 45rpx;
+}
+.number-lh {
+  margin-right: 10rpx;
+  color: #ec9934;
+}
+.number-normal {
+  color: #666;
+}
+.gift-info-icon {
+  width: 31rpx;
+  height: 29rpx; 
+}
+.type-name {
+  font-size: 25rpx;
+  color: #999;
+}
+.my-order {
+  padding: 39rpx 0 19rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #999;
+}
+.order-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15rpx 0 35rpx;
+}
+.order-menu-item {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.order-number {
+  position: absolute;
+  width: 34rpx;
+  height: 34rpx;
+  top: -20rpx;
+  right: -20rpx;
+  line-height: 29rpx;
+  text-align: center;
+  font-size: 18rpx;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #e84646;
+}
+.order-icon {
+  margin-bottom: 20rpx;
+  width: 58rpx;
+  height: 58rpx;
+}
+.order-type {
+  font-size: 23rpx;
+  color: #666;
+}
+.change-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 94rpx 0 113rpx;
+  height: 110rpx;
+}
+.change-type {
+ font-size: 28rpx;
+ color: #666; 
+}
+.change-content {
+  font-size: 26rpx;
+  color: #999;
+}
+.change-icon1, .change-icon2 {
+  position: absolute;
+  top: 40rpx;
+  border: 1rpx solid #f0f0f0;
+}
+.change-icon1 {
+  left: 38rpx;
+  width: 42rpx;
+  height: 31rpx;
+}
+.change-icon2 {
+  left: 42rpx;
+  width: 33rpx;
+  height: 35rpx;
+}
+.right-icon {
+  position: absolute;
+  top: 43rpx;
+  right: 31rpx;
+  width: 15rpx;
+  height: 26rpx;
+}

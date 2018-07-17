@@ -74,6 +74,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   left: 0;
   bottom: 0;
 }
+.number-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 .price {
   font-size: 28rpx;
   color: #e84646;
@@ -125,4 +130,10 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
 		#ec8541 0%, 
 		#edae27 100%);
   border-radius: 0;
+}
+
+.confirm-content {
+  padding: 10rpx 0;
+  display: flex;
+  justify-content: center;
 }

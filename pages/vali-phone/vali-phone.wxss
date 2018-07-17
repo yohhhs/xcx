@@ -1,0 +1,10 @@
+.tip {
+  padding-left: 24rpx;
+  height: 87rpx;
+  line-height: 87rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+.tel {
+  color: #666;
+}

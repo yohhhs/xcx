@@ -1,0 +1,43 @@
+<view class='address-wrapper'>
+  <image class='address-icon' src='../img/address.png'></image>
+  <view class='receive-people'>
+  <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}}</text>
+  </view>
+  <view class='recevie-address'>
+  <text>收货地址：{{orderDetal.receiveAddress}}</text>
+  </view>
+</view>
+<block wx:for='{{orderDetal.orderList}}' wx:key='{{item.purchaseOrderId}}'>
+<view class='order-shopping-item'>
+  <view class="order-item-content">
+    <image class="order-item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
+    <view class="order-item-desc">
+      <view class="order-shopping-name">{{item.goodsName}}</view>
+      <view class="order-shopping-price">
+        <text class="order-price">￥{{item.salePrice}}</text>
+        <text class='order-item-count'>x{{item.goodsCount}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+<view class='order-count'>
+  共计 <text class='order-count-number'>{{orderDetail.totalGoods}}</text> 件商品
+</view>
+<view class='price-detail'>
+  <view class='goods-count-price'>
+    <text class='price-type-name'>商品总价：</text>
+    <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
+  </view>
+  <view class='other-price'>
+    <text class='price-type-name'>运费及其他：</text>
+    <text class='price-detail-number'>+￥0.00</text>
+  </view>
+</view>
+<view class='pay-type'>
+<text class='pay-type-text'>支付方式</text>
+<view class='wx-sign'>
+<image class='wx-icon' src='../img/weixin.png'></image>
+<text class='wx-pay-text'>微信支付</text>
+</view>
+</view>

@@ -1,39 +1,30 @@
 var API_URL = 'https://www.topasst.com/web'
 
-var requestHandler = {
-  params: {},
-  success: function (res) {
-  },
-  fail: function () {
-  },
+const GET = (url, params) => {
+  return request('GET', url, params)
 }
-const GET = (url, requestHandler) => {
-  request('GET', url, requestHandler)
-}
-const POST = (url, requestHandler) => {
-  request('POST', url, requestHandler)
+const POST = (url, params) => {
+  return request('POST', url, params)
 }
 
-const request = (method, url, requestHandler) => {
-  var params = requestHandler.params;
-
-  wx.request({
-    url: API_URL + url,
-    data: params,
-    method: method,
-    header: {
-      'Content-Type': method == 'POST' ? 'application/x-www-form-urlencoded' : 'application/json'
-    },
-    success (res) {
-      requestHandler.success(res.data)
-    },
-    fail () {
-      requestHandler.fail()
-    },
-    complete () {
-      // complete
-    }
+const request = (method, url, params) => {
+  let promise = new Promise((resolve, reject) => {
+    wx.request({
+      url: API_URL + url,
+      data: params || {},
+      method: method,
+      header: {
+        'Content-Type': method == 'POST' ? 'application/x-www-form-urlencoded' : 'application/json'
+      },
+      success(res) {
+        resolve(res.data)
+      },
+      fail() {
+        reject()
+      }
+    })
   })
+  return promise
 }
 
 module.exports = {

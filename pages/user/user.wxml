@@ -1,25 +1,59 @@
 <!--pages/user/user.wxml-->
+<image class='user-bg' src='../img/user-bg.png'></image>
 <view class='user-info'>
-  <image class='avatar'></image>
+  <open-data class='avatar' type="userAvatarUrl"></open-data>
   <text class='user-name'>张先生</text>
-  <text class='sale-name'></text>
-  <text class='user-tel'></text>
-  <image class='user-bg' src='../img/user-bg.png'></image>
+  <text class='sale-name'>发生的故事的</text>
+  <text class='user-tel'>234234234</text>
 </view>
-<view>
-<view>
-  <view>
-    <text>123</text>
-    <image src='../img/giftnumber.png'></image>
+<view class='gift-info-wrapper'>
+  <view class='gift-info-item'>
+    <view class='gift-number'>
+      <text class='number-lh'>123</text>
+      <image class='gift-info-icon' src='../img/giftnumber.png'></image>
+    </view>
+    <text class='type-name'>已派发礼物数</text>
   </view>
-  <text>已派发礼物数</text>
+  <view class='gift-info-item'>
+    <view class='gift-number'>
+      <text class='number-normal'>123</text>
+    </view>
+    <text class='type-name'>待派送礼物数</text>
+  </view>
 </view>
-<view>
-  <text>21</text>
-  <text>待派发礼物数</text>
+<view class='my-order'>我的订单</view>
+<view class='order-menu'>
+  <view class='order-menu-item'>
+    <view class='order-number'>2</view>
+    <image class='order-icon' src='../img/waitpay.png'></image>
+    <view class='order-type'>待付款</view>
+  </view>
+  <view class='order-menu-item'>
+    <image class='order-icon' src='../img/wait.png'></image>
+    <view class='order-type'>待发货</view>
+  </view>
+  <view class='order-menu-item'>
+    <image class='order-icon' src='../img/waitre.png'></image>
+    <view class='order-type'>待收货</view>
+  </view>
+  <view class='order-menu-item'>
+    <image class='order-icon' src='../img/allorder.png'></image>
+    <view class='order-type'>全部</view>
+  </view>
+  <view class='order-menu-item'>
+    <image class='order-icon' src='../img/cancel.png'></image>
+    <view class='order-type'>已取消</view>
+  </view>
 </view>
+<view class='change-item' bindtap='changeTel'>
+  <text class='change-type'>修改手机号</text>
+  <text class='change-content'>23423</text>
+  <image class='change-icon1' src='../img/change-tel-icon.png'></image>
+  <image class='right-icon' src='../img/arrow-right.png'></image>
 </view>
-<view>我的订单</view>
-<view>
-  
+<view class='change-item' bindlongtap='changeSale'>
+  <text class='change-type'>更换营业部</text>
+  <text class='change-content'>阿萨德发</text>
+  <image class='change-icon2' src='../img/changecompany.png'></image>
+  <image class='right-icon' src='../img/arrow-right.png'></image>
 </view>

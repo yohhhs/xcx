@@ -1,18 +1,20 @@
-// pages/customer/customer.js
+const network = require('../../common/newwork.js')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    customerList: null
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    network.POST('/giftRecord/getGiftSendRecordList', {
+      pageNo: 1,
+      pageSize: 10,
+      agentMemberId: wx.getStorageSync('token')
+    }).then(res => {
+      if (res.statusCode === 200) {
+        this.setData({
+          customerList: res.data.list
+        })
+      }
+    })
   },
   lookCustomerList() {
     wx.navigateTo({

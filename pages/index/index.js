@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 const app = getApp()
 const network = require('../../common/newwork.js')
 Page({
@@ -28,9 +26,10 @@ Page({
       })
     }
   },
-  goShopDetail() {
+  goShopDetail(event) {
+    let purchaseGoodsId = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../shop-detail/shop-detail'
+      url: '../shop-detail/shop-detail?purchaseGoodsId=' + purchaseGoodsId
     })
   },
   addCart(event) {
@@ -42,38 +41,30 @@ Page({
       mask: true
     })
     network.POST('/shoppingCart/addShoppingCart', {
-      params: {
-        agentMemberId,
-        purchaseGoodsId,
-        count: 1
-      },
-      success(res) {
-        wx.hideLoading()
-        wx.showToast({
-          title: '加入成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }
+      agentMemberId,
+      purchaseGoodsId,
+      count: 1
+    }).then(data => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        duration: 2000
+      })
     })
   },
   getUser(e) {
     console.log(e)
   },
   getGiftList () {
-    let self = this
-    let agentMemberId = self.data.token
-
+    let agentMemberId = this.data.token
     network.POST('/purchaseGoods/getPurchaseGoodsList', {
-      params: {
-        agentMemberId
-      },
-      success(res) {
-        self.setData({
-          giftList: res.data,
-          isRequest: true
-        })        
-      }
+      agentMemberId
+    }).then(res => {
+      this.setData({
+        giftList: res.data,
+        isRequest: true
+      })
     })
   }
 })

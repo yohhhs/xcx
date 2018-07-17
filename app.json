@@ -9,7 +9,11 @@
     "pages/active-code/active-code",
     "pages/customer-list/customer-list",
     "pages/login/login",
-    "pages/select-company/select-company"
+    "pages/select-company/select-company",
+    "pages/order-detail/order-detail",
+    "pages/vali-phone/vali-phone",
+    "pages/change-phone/change-phone",
+    "pages/change-sale/change-sale"
   ],
   "window": {
     "backgroundTextStyle": "light",

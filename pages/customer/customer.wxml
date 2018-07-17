@@ -1,8 +1,9 @@
-<!--pages/customer/customer.wxml-->
-<view class='customer-item'>
-  <image class='shop-img' src='../devImg/home-shop.png'></image>
-  <view class='shop-name'>五芳斋粽子礼盒端午节嘉兴粽子端午满五芳礼品粽1280g</view>
-  <view class='customer-number'>领取客户 <text class='number'>78</text> 个</view>
-  <view class='customer-number'>转介绍客户 <text class='number'>78</text> 个</view>
-  <button class='look-btn' bindtap='lookCustomerList'>查看客户列表</button>
-</view>
+<block wx:for='{{customerList}}' wx:key='{{index}}'>
+  <view class='customer-item'>
+    <image class='shop-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
+    <view class='shop-name'>五芳斋粽子礼盒端午节嘉兴粽子端午满五芳礼品粽1280g</view>
+    <view class='customer-number'>领取客户 <text class='number'>78</text> 个</view>
+    <view class='customer-number'>转介绍客户 <text class='number'>78</text> 个</view>
+    <button class='look-btn' bindtap='lookCustomerList'>查看客户列表</button>
+  </view>
+</block>

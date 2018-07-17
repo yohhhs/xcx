@@ -1,23 +1,30 @@
 <!--pages/shop-detail/shop-detail.wxml-->
-<view class='detail-container'>
-<view class='cover-wrapper'>
-  <image class='shopping-img' src='../devImg/home-shop.png'></image>
-  <view class='down-time'>集采倒计时：2天12时35分44秒</view>
-</view>
-<view class='shopping-desc'>
-  <view class='shopping-name'>五芳斋粽子礼盒 端午节嘉兴粽子 端午大礼包 福满五芳礼品粽1280g</view>
-  <view class='price-type'>
-    <text class='c-price'>¥128.60 </text>
-    <text class='m-price'>市价¥299.00</text>
-    <text class='g-price'>包含送货费用</text>
+<view wx:if='{{detail !== null}}' class='detail-container'>
+  <view class='cover-wrapper'>
+    <image class='shopping-img' src='{{"https://www.topasst.com/images/" + detail.indexImage}}'></image>
+    <view class='down-time'>集采结束时间：{{detail.purchaseEndTime}}</view>
   </view>
-  <view class='order-number'>
-    <text space='true' decode='true'>营业部起订量：200盒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量：280盒</text>
+  <view class='shopping-desc'>
+    <view class='shopping-name'>{{detail.goodsName}}</view>
+    <view class='price-type'>
+      <text class='c-price'>¥1{{detai.salePrice}}</text>
+      <text class='m-price'>市价¥{{detail.marketPrice}}</text>
+      <text class='g-price'>包含送货费用</text>
+    </view>
+    <view class='order-number'>
+      <text space='true' decode='true'>营业部起订量：{{detail.purchaseMinCount}}盒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量：{{detail.saleCount}}盒</text>
+    </view>
   </view>
-</view>
-<view class='handler-order'>订购数量</view>
-<view class='active'>配置活动: <text class='active-name'>端午节活动</text></view>
-<view class='shopping-info'>商品信息</view>
-<image class='shopping-detail-img' src='../devImg/detail.png' mode="widthFix"></image>
+  <view class='handler-order'>
+    <text style='margin-right：28rpx;'>订购数量：</text> 
+    <view class='number-handle'>
+      <text class='del-btn' bindtap='numberDel'>-</text>
+      <input class='number-input' value='{{giftNumber}}' type='number' bindchange='giftNumberChange'/>
+      <text class='add-btn' bindtap='numberAdd'>+</text>
+    </view>
+  </view>
+  <view class='active'>配置活动: <text class='active-name'>{{detail.activityName}}</text></view>
+  <view class='shopping-info'>商品信息</view>
+  <image class='shopping-detail-img' src='{{"https://www.topasst.com/images/" + detail.description}}' mode="widthFix"></image>
 </view>
 <view class='join-cart' bindtap='joinCart'>加入购物车</view>

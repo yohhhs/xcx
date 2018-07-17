@@ -1,0 +1,8 @@
+<view class='tip'>
+我们将发送验证码到您的注册手机：<text class='tel'>234234234</text>
+</view>
+<view class='change-item-wrapper'>
+<input class='change-item-input' type='number' placeholder='请输入验证码' />
+<button class='change-item-button'>获取验证码</button>
+</view>
+<button class='next-btn' bindtap='goNext'>下一步</button>

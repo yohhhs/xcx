@@ -1,10 +1,5 @@
-// pages/login/login.js
 const network = require('../../common/newwork.js')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     mobile: '',
     code: '',
@@ -49,23 +44,16 @@ Page({
       }
     }, 1000)
     network.POST('/sms/send', {
-      params: {
-        mobile,
-        smsType: 1
-      },
-      success () {
-        wx.showToast({
-          icon: 'success',
-          title: '发送成功，请注意查收'
-        })
-      }
+      mobile,
+      smsType: 1
+    }).then(res => {
+      wx.showToast({
+        icon: 'success',
+        title: '发送成功'
+      })
     })
   },
   goNext () {
-    // wx.navigateTo({
-    //   url: '../select-company/select-company'
-    // })
-    // return
     let mobile = this.data.mobile;
     let regMobile = /^1\d{10}$/;
     let smsCode = this.data.code;
@@ -85,18 +73,15 @@ Page({
       return false;
     }
     network.POST('/agentMember/login', {
-      params: {
-        mobile,
-        smsCode
-      },
-      success(res) {
-        wx.setStorageSync('token', res.data)
-        if (res.msg === '') {
-          wx.setStorageSync('isBinding', true)
-          wx.navigateBack()
-        } else {
-          wx.setStorageSync('isBinding', false)
-        }
+      mobile,
+      smsCode
+    }).then(res => {
+      wx.setStorageSync('token', res.data)
+      if (res.msg === '') {
+        wx.setStorageSync('isBinding', true)
+        wx.navigateBack()
+      } else {
+        wx.setStorageSync('isBinding', false)
       }
     })
   },

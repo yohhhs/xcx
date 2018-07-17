@@ -5,7 +5,7 @@ page {
 button:after {
   border: none;
 }
-
+/* 登陆 */
 .bg-container {
   position: absolute;
   top: 0;
@@ -48,4 +48,159 @@ button:after {
 		#edae27 0%, 
 		#ec883f 100%);
 	border-radius: 10rpx;
+}
+/* 数字输入框 */
+.number-handle {
+  position: relative;
+  padding: 0 71rpx;
+  width: 92rpx;
+  height: 56rpx;
+  font-size: 26rpx;
+  border: 1rpx solid #999;
+}
+.del-btn, .add-btn {
+  position: absolute;
+  top: 0;
+  width: 71rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+}
+.del-btn {
+  left: 0;
+  border-right: 1rpx solid #999;
+}
+.add-btn {
+  right: 0;
+  border-left: 1rpx solid #999;
+}
+.number-input {
+  text-align: center;  
+  width: 92rpx;
+  height: 56rpx;
+}
+/* 订单详情 */
+.address-wrapper {
+  margin-bottom: 20rpx;
+  position: relative;
+  padding-left: 105rpx;
+  height: 183rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+.address-icon {
+  position: absolute;
+  left: 24rpx;
+  top: 63rpx;
+  width: 40rpx;
+  height: 52rpx;
+}
+.receive-people, .recevie-address {
+  font-size: 27rpx;
+  color: #666;
+}
+.receive-people {
+  margin-top: 40rpx;
+}
+.recevie-address {
+  margin-top: 13rpx;
+}
+
+.order-shopping-item {
+  padding: 35rpx 24rpx 0 24rpx; 
+  background: #fff;
+}
+.order-item-content {
+  position: relative;
+  padding: 0 0 35rpx 315rpx;
+  height: 156rpx;
+  border-bottom: 1px solid #ddd;
+}
+.order-item-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 291rpx;
+  height: 156rpx;
+}
+.order-item-desc {
+  position: relative;
+  height: 156rpx;
+}
+.order-shopping-name {
+  font-size: 26rpx;
+  color: #333;
+}
+.order-shopping-price {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+.order-price {
+  margin-right: 9rpx;
+  font-size: 28rpx;
+  color: #e84646;
+}
+.order-item-count {
+  font-size: 24rpx;
+  color: #666;
+}
+.order-count {
+  margin-bottom: 20rpx;
+  padding-left: 24rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  font-size: 23rpx;
+  color: #666;
+  background-color: #fff;
+}
+.order-count-number {
+  margin: 0 5rpx;
+  color: #333;
+}
+.price-detail {
+  padding: 32rpx 24rpx;
+  background-color: #fff;
+}
+.goods-count-price, .other-price {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.goods-count-price {
+  margin-bottom: 16rpx;
+}
+.price-type-name {
+  font-size: 26rpx;
+  color: #666;
+}
+.price-detail-number {
+  font-size: 28rpx;
+  color: #e84646;
+}
+/* 修改input */
+.change-item-wrapper {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 24rpx;
+  height: 116rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.change-item-input {
+  font-size: 29rpx;
+  width: 500rpx;
+}
+.change-item-button {
+  width: 175rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  text-align: center;
+  color: #4eb3e4;
+  font-size: 22rpx;
+  border-radius: 10rpx;
+	border: solid 1rpx #4eb3e4;
+  background-color: #fff;
 }

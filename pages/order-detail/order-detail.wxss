@@ -1,0 +1,25 @@
+
+
+.pay-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 29rpx 24rpx; 
+  font-size: 28rpx;
+  background-color: #fff;
+}
+.pay-type-text {
+  color: #666;
+}
+.wx-sign {
+  display: inline-flex;
+  align-items: center;
+}
+.wx-icon {
+  margin-right: 12rpx;
+  width: 48rpx;
+  height: 40rpx;
+}
+.wx-pay-text {
+  color: #149e2b;
+}

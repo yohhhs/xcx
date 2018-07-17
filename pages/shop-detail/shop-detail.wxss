@@ -24,7 +24,7 @@
 .shopping-desc {
   padding: 28rpx 38rpx;
   background-color: #fff;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1rpx solid #f0f0f0;
 }
 .shopping-name {
   margin-bottom: 32rpx;
@@ -52,6 +52,11 @@
 .order-number {
   font-size: 24rpx;
   color: #999;
+}
+.handler-order {
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #f0f0f0;
 }
 .handler-order, .active {
   padding-left: 38rpx;
@@ -89,4 +94,32 @@
 	background-image: linear-gradient(0deg, 
 		#edae27 0%, 
 		#ec8541 100%);
+}
+.number-handle {
+  position: relative;
+  padding: 0 71rpx;
+  width: 92rpx;
+  height: 56rpx;
+  border: 1rpx solid #999;
+}
+.del-btn, .add-btn {
+  position: absolute;
+  top: 0;
+  width: 71rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+}
+.del-btn {
+  left: 0;
+  border-right: 1rpx solid #999;
+}
+.add-btn {
+  right: 0;
+  border-left: 1rpx solid #999;
+}
+.number-input {
+  text-align: center;  
+  width: 92rpx;
+  height: 56rpx;
 }

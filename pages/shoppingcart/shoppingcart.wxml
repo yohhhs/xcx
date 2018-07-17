@@ -1,24 +1,33 @@
 <!--pages/shoppingcart/shoppingcart.wxml-->
 <checkbox-group bindchange="checkboxChange">
-<view class='shopping-item' wx:for="{{items}}" wx:key="item.name">
+<block wx:for='{{cartList}}' wx:key='{{item.shoppingCartId}}'>
+<view class='shopping-item'>
   <view class="item-header">
     <label>
-        <checkbox value="{{item.name}}" checked="{{item.checked}}"/>
+        <checkbox value="{{item.shoppingCartId}}" checked="{{item.checked}}" disabled='{{item.canBuy === 0}}'/>
     </label>
-    <text class="end-time">采集结束时间：2018年6月20日16：00</text>
-    <image class='del-icon' src='../img/delete.png'></image>
+    <text class="end-time">采集结束时间：{{item.purchaseEndTime}}</text>
+    <image class='del-icon' src='../img/delete.png' data-index='{{index}}' bindtap='deleteCart'></image>
   </view>
   <view class="item-content">
-    <image class="item-img" src='../devImg/home-shop.png'></image>
+    <image class="item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
     <view class="item-desc">
-      <view class="shopping-name">五芳斋粽子礼盒端午节嘉兴粽子端
-午大礼包 福 满五芳礼品粽1280g</view>
+      <view class="shopping-name">{{item.goodsName}}</view>
       <view class="shopping-price">
-        <text class="price">¥{{item.price}}</text>
+        <text class="price">¥{{item.salePrice}}</text>
+      </view>
+      <view class='number-wrapper'>
+        <view class='number-handle'>
+          <text class='del-btn' data-index='{{index}}' bindtap='numberDel'>-</text>
+          <input class='number-input' data-index='{{index}}' value='{{item.count}}' type='number' bindchange='giftNumberChange' disabled='true' bindtap='changeNumber'/>
+          <text class='add-btn' data-index='{{index}}' bindtap='numberAdd'>+</text>
+        </view>
       </view>
     </view>
   </view>
 </view>
+</block>
+
 </checkbox-group>
 <view class='all-select'>
 <label bindtap='selectAll'>
@@ -29,5 +38,14 @@
 </view>
 <view class='balance'>
   <text class='count-price'>合计金额： <text class='price-number'>{{countPrice}}</text></text>
-  <button class='balance-btn' bindtap='balanceNow'>立即结算</button>
+  <button class='balance-btn' bindtap='balanceNow' bindtap='goPay'>立即结算</button>
 </view>
+<modal hidden="{{confirmHidden}}" title="修改数量" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+  <view class='confirm-content'>
+    <view class='number-handle'>
+      <text class='del-btn' bindtap='modalNumberDel'>-</text>
+      <input class='number-input' value='{{currentCount}}' type='number' bindchange='giftNumberChange'/>
+      <text class='add-btn' bindtap='modalNumberAdd'>+</text>
+    </view>
+  </view>
+</modal>

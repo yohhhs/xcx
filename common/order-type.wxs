@@ -1,0 +1,35 @@
+function orderType (state) {
+  var statusJson = {};
+  var name = "";
+  var color = "";
+
+  switch (state) {
+    case 1:
+      name = "待付款";
+      color = "#e84646";
+      break;
+    case 2:
+      name = "待发货";
+      color = "#B2B2B2";
+      break;
+    case 3:
+      name = "待收货";
+      color = "#ec8541";
+      break;
+    case 4:
+      name = "已完成";
+      color = "#81cff5";
+      break;
+    case 9:
+      name = "已取消";
+      color = "#0ba45e";
+      break;
+  }
+  statusJson.name = name;
+  statusJson.color = color;
+  return statusJson;
+}
+
+module.exports = {
+  status: orderType
+}

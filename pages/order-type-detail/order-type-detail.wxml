@@ -1,0 +1,61 @@
+<wxs src='../../common/order-type.wxs' module='filters' />
+<view class='order-header' style='background-color: {{filters.status(orderDetail.orderState).color}}'>
+  <view class='order-status'>
+    <image wx:if='{{orderDetail.orderState == 1}}' class='order-status-icon' src='../img/wp.png'></image>
+    <image wx:if='{{orderDetail.orderState == 3}}' class='order-status-icon' src='../img/ds.png'></image>
+    <image wx:if='{{orderDetail.orderState == 2 || orderDetail.orderState == 4}}' class='order-status-icon' src='../img/wc.png'></image>
+    <image wx:if='{{orderDetail.orderState == 9}}' class='order-status-icon' src='../img/qx.png'></image>
+    <text class='order-status-name'>{{filters.status(orderDetail.orderState).name}}</text>
+  </view>
+  <view class='order-pay-time'>集采结束时间：{{orderDetail.purchaseEndTime}}</view>
+</view>
+<view class='address-wrapper'>
+  <image class='address-icon' src='../img/address.png'></image>
+  <view class='receive-people'>
+  <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}})</text>
+  </view>
+  <view class='recevie-address'>
+  <text>收货地址：{{orderDetail.receiveAddress}}</text>
+  </view>
+</view>
+<view class='order-shopping-item'>
+  <view class="order-item-content">
+    <image class="order-item-img" src='{{"https://www.topasst.com/images/" + orderDetail.indexImage}}'></image>
+    <view class="order-item-desc">
+      <view class="order-shopping-name">{{orderDetail.goodsName}}</view>
+      <view class="order-shopping-price">
+        <text class="order-price">￥{{orderDetail.salePrice}}</text>
+        <text class='order-item-count'>x{{orderDetail.goodsCount}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='order-count'>
+  共计 <text class='order-count-number'>{{orderDetail.totalGoods}}</text> 件商品
+</view>
+<view class='order-info'>
+  <view class='order-info-item'>订单编号：{{orderDetail.purchaseOrderNumber}}</view>
+  <view class='order-info-item'>下单时间：{{orderDetail.createTimeStr}}</view>
+</view>
+<view class='order-info' style='margin-bottom: 20rpx;'>
+< view class='order-info-item'>支付方式：微信支付</view>
+  <view class='order-info-item'>配送方式：物流运输</view>
+</view>
+<view class='price-detail'>
+  <view class='goods-count-price'>
+    <text class='price-type-name'>商品总价：</text>
+    <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
+  </view>
+  <view class='other-price'>
+    <text class='price-type-name'>运费及其他：</text>
+    <text class='price-detail-number'>+￥0.00</text>
+  </view>
+</view>
+<view class='final-price'>
+  <text class='price-type-name'>合计</text>
+  <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
+</view>
+<view class='btn-wrapper'>
+  <button class='order-cancel-btn'>取消订单</button>
+  <button class='order-pay-btn'>立即支付</button>
+</view>

@@ -12,6 +12,13 @@ Page({
   },
   onShow () {
     this.getCartList()
+    this.setData({
+      isSelectAll: false,
+      orderList: [],
+      cartList: [],
+      shoppingNumber: 0,
+      countPrice: 0
+    })
   },
   getCartList () {
     network.POST('/shoppingCart/getShoppingCartList', {
@@ -20,7 +27,6 @@ Page({
       this.setData({
         cartList: res.data
       })
-      console.log(this.data.orderList)
     })
   },
   checkboxChange (e) {
@@ -220,7 +226,7 @@ Page({
         if (res.statusCode === 200) {
           let orderData = JSON.stringify(res.data)
           wx.navigateTo({
-            url: '../order-detail/order-detail?data=' + orderData
+            url: '../order-detail/order-detail?orderData=' + orderData
           })
         } else {
           wx.showToast({

@@ -13,7 +13,9 @@
     "pages/order-detail/order-detail",
     "pages/vali-phone/vali-phone",
     "pages/change-phone/change-phone",
-    "pages/change-sale/change-sale"
+    "pages/change-sale/change-sale",
+    "pages/order-list/order-list",
+    "pages/order-type-detail/order-type-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -2,21 +2,21 @@
 <image class='user-bg' src='../img/user-bg.png'></image>
 <view class='user-info'>
   <open-data class='avatar' type="userAvatarUrl"></open-data>
-  <text class='user-name'>张先生</text>
-  <text class='sale-name'>发生的故事的</text>
-  <text class='user-tel'>234234234</text>
+  <text class='user-name'>{{userDetail.agentMemberName}}</text>
+  <text class='sale-name'>{{userDetail.saleDepartmentName }}</text>
+  <text class='user-tel'>{{userDetail.mobile}}</text>
 </view>
 <view class='gift-info-wrapper'>
   <view class='gift-info-item'>
     <view class='gift-number'>
-      <text class='number-lh'>123</text>
+      <text class='number-lh'>{{userDetail.sendCount}}</text>
       <image class='gift-info-icon' src='../img/giftnumber.png'></image>
     </view>
     <text class='type-name'>已派发礼物数</text>
   </view>
   <view class='gift-info-item'>
     <view class='gift-number'>
-      <text class='number-normal'>123</text>
+      <text class='number-normal'>{{userDetail.notsendCount}}</text>
     </view>
     <text class='type-name'>待派送礼物数</text>
   </view>
@@ -24,7 +24,7 @@
 <view class='my-order'>我的订单</view>
 <view class='order-menu'>
   <view class='order-menu-item'>
-    <view class='order-number'>2</view>
+    <view wx:if='{{userDetail.notPayOrder > 0}}' class='order-number'>{{userDetail.notPayOrder}}</view>
     <image class='order-icon' src='../img/waitpay.png'></image>
     <view class='order-type'>待付款</view>
   </view>
@@ -47,13 +47,13 @@
 </view>
 <view class='change-item' bindtap='changeTel'>
   <text class='change-type'>修改手机号</text>
-  <text class='change-content'>23423</text>
+  <text class='change-content'>{{userDetail.mobile}}</text>
   <image class='change-icon1' src='../img/change-tel-icon.png'></image>
   <image class='right-icon' src='../img/arrow-right.png'></image>
 </view>
 <view class='change-item' bindlongtap='changeSale'>
   <text class='change-type'>更换营业部</text>
-  <text class='change-content'>阿萨德发</text>
+  <text class='change-content'>{{userDetail.saleDepartmentName}}</text>
   <image class='change-icon2' src='../img/changecompany.png'></image>
   <image class='right-icon' src='../img/arrow-right.png'></image>
 </view>

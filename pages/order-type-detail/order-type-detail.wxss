@@ -1,0 +1,77 @@
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+	height: 120rpx;
+	background-color: #edad27;
+}
+.order-status {
+  display: inline-flex;
+  align-items: center;
+}
+.order-status-icon {
+  margin-right: 20rpx;
+  width: 57rpx;
+  height: 57rpx;
+}
+.order-status-name {
+  font-size: 30rpx;
+  color: #fff;
+}
+.order-pay-time {
+  font-size: 23rpx;
+  color: #fff;
+}
+.order-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 24rpx;
+  height: 110rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.order-info-item {
+  font-size: 28rpx;
+  color: #666;
+}
+.final-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  background-color: #fff;
+}
+.price-type-name, .price-detail-number {
+  font-size: 24rpx;
+  color: #e84646;
+}
+.btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 80rpx;
+  height: 110rpx;
+  background-color: #fff;
+}
+.order-cancel-btn, .order-pay-btn {
+  width: 220rpx;
+	height: 74rpx;
+  font-size: 34rpx;
+	border-radius: 10rpx;
+	border: solid 1rpx #555;
+  outline: none;
+}
+.order-cancel-btn {
+  color: #555;
+  background-color: #fff;
+}
+.order-pay-btn {
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(0deg, 
+		#edae27 0%, 
+		#ec8641 100%);
+}

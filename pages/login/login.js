@@ -84,17 +84,5 @@ Page({
         wx.setStorageSync('isBinding', false)
       }
     })
-  },
-  getCode () {
-    console.log(this.data)
-    if (this.data.phone === '') {
-      wx.showToast({
-        title: '加入成功',
-        icon: 'success',
-        duration: 2000
-      })
-      return false
-    }
-    
   }
 })

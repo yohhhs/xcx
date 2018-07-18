@@ -2,6 +2,6 @@
 <view class='shop-name'>{{codeDetal.goodsName}}</view>
 <view class='shop-number'>本次赠送后剩余的数量：<text class='number'>{{codeDetail.count}}</text>个</view>
 <view class='active-tip'>{{codeDetail.activeName}}</view>
-<image class='code-img' src='../devImg/code.png'></image>
+<image class='code-img' src='{{"https://www.topasst.com/images/" + item.img}}'></image>
 <view class='join-tip'>扫描二维码</view>
 <view class='join-tip'>参与活动并领取礼物</view>

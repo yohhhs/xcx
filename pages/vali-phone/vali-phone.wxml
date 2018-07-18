@@ -1,8 +1,8 @@
 <view class='tip'>
-我们将发送验证码到您的注册手机：<text class='tel'>234234234</text>
+我们将发送验证码到您的注册手机：<text class='tel'>{{mobile}}</text>
 </view>
 <view class='change-item-wrapper'>
-<input class='change-item-input' type='number' placeholder='请输入验证码' />
-<button class='change-item-button'>获取验证码</button>
+<input class='change-item-input' type='number' bindinput="codeInputEvent" placeholder='请输入验证码' />
+<button class='change-item-button' bindtap="verifyCodeEvent" disabled="{{buttonDisable}}">{{verifyCodeTime}}</button>
 </view>
 <button class='next-btn' bindtap='goNext'>下一步</button>

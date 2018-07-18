@@ -5,7 +5,7 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      orderDetail: JSON.parse(option.orderData)
+      orderDetail: JSON.parse(options.orderData)
     })
   }
 })

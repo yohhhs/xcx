@@ -107,12 +107,12 @@ button:after {
 }
 
 .order-shopping-item {
-  padding: 35rpx 24rpx 0 24rpx; 
+  padding: 0 24rpx; 
   background: #fff;
 }
 .order-item-content {
   position: relative;
-  padding: 0 0 35rpx 315rpx;
+  padding: 35rpx 0 35rpx 315rpx;
   height: 156rpx;
   border-bottom: 1px solid #ddd;
 }

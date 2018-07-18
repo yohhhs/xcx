@@ -3,7 +3,7 @@ Page({
   data: {
     disList: []
   },
-  onLoad () {
+  onShow () {
     network.POST('/giftRecord/getGiftRecordList', {
       pageNo: 1,
       pageSize: 10,

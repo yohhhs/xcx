@@ -1,66 +1,90 @@
-// pages/change-phone/change-phone.js
+const network = require('../../common/newwork.js')
 Page({
+    data: {
+        mobile: '',
+        code: '',
+        verifyCodeTime: '获取验证码',
+        buttonDisable: false
+    },
+    mobileInputEvent (e) {
+        this.setData({
+            mobile: e.detail.value
+        })
+    },
+    codeInputEvent (e) {
+        this.setData({
+            code: e.detail.value
+        })
+    },
+    verifyCodeEvent (e) {
+        if (this.data.buttonDisable) return false;
+        let mobile = this.data.mobile;
+        let regMobile = /^1\d{10}$/;
+        if (!regMobile.test(mobile)) {
+            wx.showToast({
+                icon: 'none',
+                title: '手机号有误！'
+            })
+            return false;
+        }
+        let that = this;
+        let c = 60;
+        let intervalId = setInterval(function () {
+            c = c - 1;
+            that.setData({
+                verifyCodeTime: c + 's后重发',
+                buttonDisable: true
+            })
+            if (c == 0) {
+                clearInterval(intervalId);
+                that.setData({
+                    verifyCodeTime: '获取验证码',
+                    buttonDisable: false
+                })
+            }
+        }, 1000)
+        network.POST('/sms/send', {
+            mobile,
+            smsType: 3
+        }).then(res => {
+            wx.showToast({
+                icon: 'success',
+                title: '发送成功'
+            })
+        })
+    },
+    confirmChange () {
+        let mobile = this.data.mobile;
+        let regMobile = /^1\d{10}$/;
+        let smsCode = this.data.code;
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+        if (!regMobile.test(mobile)) {
+            wx.showToast({
+                icon: 'none',
+                title: '手机号有误！'
+            })
+            return false;
+        }
+        if (smsCode === '') {
+            wx.showToast({
+                icon: 'none',
+                title: '请输入验证码'
+            })
+            return false;
+        }
+        network.POST('/sms/checkSmsCode', {
+            mobile,
+            smsCode
+        }).then(res => {
+            wx.showToast({
+                icon: 'success',
+                title: '更新成功'
+            })
+            setTimeout(() => {
+                wx.switchTab({
+                    url: '/pages/user/user'
+                })
+            }, 2000)
+        })
+    }
 })

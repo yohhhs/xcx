@@ -1,13 +1,13 @@
 <view class='address-wrapper'>
   <image class='address-icon' src='../img/address.png'></image>
   <view class='receive-people'>
-  <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}}</text>
+  <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}})</text>
   </view>
   <view class='recevie-address'>
-  <text>收货地址：{{orderDetal.receiveAddress}}</text>
+  <text>收货地址：{{orderDetail.receiveAddress}}</text>
   </view>
 </view>
-<block wx:for='{{orderDetal.orderList}}' wx:key='{{item.purchaseOrderId}}'>
+<block wx:for='{{orderDetail.orderList}}' wx:key='{{item.purchaseOrderId}}'>
 <view class='order-shopping-item'>
   <view class="order-item-content">
     <image class="order-item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>

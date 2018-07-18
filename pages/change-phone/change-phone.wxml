@@ -1,8 +1,8 @@
 <view class='change-item-wrapper' style='margin-top: 30rpx;'>
-<input class='change-item-input' type='number' placeholder='请输入新的手机号码' />
+<input class='change-item-input' type='number' placeholder='请输入新的手机号码' bindinput="mobileInputEvent"/>
 </view>
 <view class='change-item-wrapper'>
-<input class='change-item-input' type='number' placeholder='请输入验证码' />
-<button class='change-item-button'>获取验证码</button>
+<input class='change-item-input' type='number' placeholder='请输入验证码' bindinput="codeInputEvent"/>
+<button class='change-item-button' bindtap="verifyCodeEvent" disabled="{{buttonDisable}}">{{verifyCodeTime}}</button>
 </view>
-<button class='next-btn' bindtap='goNext'>确认</button>
+<button class='next-btn' bindtap='confirmChange'>确认</button>

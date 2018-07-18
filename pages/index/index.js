@@ -9,6 +9,10 @@ Page({
   onLoad() {
   },
   onShow () {
+    wx.navigateTo({
+      url: '../order-list/order-list'
+    })
+    return
     let token = wx.getStorageSync('token')
     let isBingding = wx.getStorageSync('isBinding')
     let isRequest = this.data.isRequest

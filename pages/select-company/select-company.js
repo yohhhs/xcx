@@ -1,115 +1,220 @@
-// pages/select-company/select-company.js
 const network = require('../../common/newwork.js')
-
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    multiArray: [],  // 三维数组数据
-    multiIndex: [0, 0, 0], // 默认的下标
-    step: 0, // 默认显示请选择
+    multiArray: [],
+    multiIndex: [0, 0, 0, 0],
+    step: 0,
+    mobile: '',
+    name: ''
   },
   onLoad: function (options) {
-    this.getProvince()  // 页面加载后就调用函数 获取省级数据
+    this.setData({
+      mobile: options.mobile
+    })
+    this.getOrganize()
   },
-  getProvince() { // 获取省
+  getOrganize() {
     network.POST('/organize/getOrganizeList').then(res => {
+      if (res.data.length === 0) {
+        return
+      }
       let data = res.data
-      var provinceList = [...data] // 放在一个数组里面
-      var provinceArr = data.map((item) => { return item.infoValue }) // 获取数据里面的value值，就是只用数据的名称 
+      let organizeList = [...data]
+      let organizeValues = data.map((item) => { return item.infoValue })
       this.setData({
-        multiArray: [provinceArr, [], []], // 更新三维数组 更新后长这样 [['江苏省', '福建省'],[],[]]
-        provinceList,   // 省级原始数据
-        provinceArr    // 省级所有的名称
+        multiArray: [organizeValues, [], []],
+        organizeList,
+        organizeValues
       })
-      var defaultCode = this.data.provinceList[0].infoId  // 使用第一项当作参数获取市级数据
+      let defaultCode = this.data.organizeList[0].infoId
       if (defaultCode) {
-        this.setData({
-          currnetProvinceKey: defaultCode  // 保存在当前的省级key
-        })
-        this.getCity(defaultCode)  // 获取市级数据
+
+        this.getOneCompany(defaultCode)
       }
     })
   },
-  getCity(code) { // 获取市级数据
+  getOneCompany(code) {
     this.setData({
-      currnetProvinceKey: code  // 保存当前选择的市级code
+      currnetOrganizeKey: code
     })
     network.POST('/company/getCompanyList', {
       parentId: 0,
       organizeId: code
     }).then(res => {
+      if (res.data.length === 0) {
+        return
+      }
       let data = res.data
-      var cityArr = data.map((item) => { return item.infoValue })
-      var cityList = [...data]
+      let oneCompanyList = [...data]
+      let oneCompanyValues = data.map((item) => { return item.infoValue })
       this.setData({
-        multiArray: [this.data.provinceArr, cityArr, []],  // 更新三维数组 更新后长这样 [['江苏省', '福建省'], ['徐州市'], []]
-        cityList,  // 保存下市级原始数据
-        cityArr  // 市级所有的名称
+        multiArray: [this.data.organizeValues, oneCompanyValues, []],
+        oneCompanyList,
+        oneCompanyValues
       })
-      var defaultCode = this.data.cityList[0].infoId  // 用第一个获取门店数据
+      var defaultCode = this.data.oneCompanyList[0].infoId
       if (defaultCode) {
-        this.setData({
-          currnetCityKey: defaultCode  // 存下当前选择的城市key
-        })
-        this.getStore(defaultCode) // 获取门店数据
+
+        this.getTwoCompany(defaultCode)
       }
     })
   },
-  getStore(code) {
+  getTwoCompany(code) {
     this.setData({
-      currnetCityKey: code // 更新当前选择的市级key
+      currnetOneCompanyKey: code
+    })
+    network.POST('/company/getCompanyList', {
+      parentId: code,
+      organizeId: this.data.currnetOrganizeKey
+    }).then(res => {
+      if (res.data.length === 0) {
+        return
+      }
+      let data = res.data
+      let twoCompanyList = [...data]
+      let twoCompanyValues = data.map((item) => { return item.infoValue })
+
+      this.setData({
+        multiArray: [this.data.organizeValues, this.data.oneCompanyValues, twoCompanyValues, []],
+        twoCompanyList,
+        twoCompanyValues
+      })
+      var defaultCode = this.data.twoCompanyList[0].infoId
+      if (defaultCode) {
+        this.getSale(defaultCode)
+      }
+    })
+  },
+  getSale(code) {
+    this.setData({
+      currnetTwoCompanyKey: code
     })
     network.POST('/saleDepartment/getSaleDepartmentList', {
       companyId: code
     }).then(res => {
+      if (res.data.length === 0) {
+        return
+      }
       let data = res.data
-      var storeList = [...data]
-      var storeArr = data.map((item) => { return item.infoValue })
+      let saleList = [...data]
+      let saleValues = data.map((item) => { return item.infoValue })
       this.setData({
-        multiArray: [this.data.provinceArr, this.data.cityArr, storeArr],
-        storeList,  // 保存下门店原始数据
-        storeArr    // 保存下门店名称，可以不保存
+        multiArray: [this.data.organizeValues, this.data.oneCompanyValues, this.data.twoCompanyValues, saleValues],
+        saleList,
+        saleValues
       })
     })
   },
-  columnchange(e) {  // 滚动选择器 触发的事件
-    var column = e.detail.column  // 当前改变的列
+  columnchange(e) {
+    var column = e.detail.column
     var data = {
       multiIndex: JSON.parse(JSON.stringify(this.data.multiIndex)),
       multiArray: JSON.parse(JSON.stringify(this.data.multiArray))
     }
-    data.multiIndex[column] = e.detail.value;  // 第几列改变了就是对应multiIndex的第几个，更新它
-    switch (column) { // 处理不同的逻辑
-      case 0:   // 第一列更改 就是省级的更改
-        var currentProvinceKey = this.data.provinceList[e.detail.value].infoId
-        if (currentProvinceKey != this.data.currnetProvinceKey) {  // 判断当前的key是不是真正的更新了
-          this.getCity(currentProvinceKey)  // 获取当前key下面的市级数据
+    data.multiIndex[column] = e.detail.value
+    switch (column) {
+      case 0:
+        let currentOrganizeKey = this.data.organizeList[e.detail.value].infoId
+        if (currentOrganizeKey != this.data.currentOrganizeKey) {
+          this.getOneCompany(currentOrganizeKey)
         }
 
-        data.multiIndex[1] = 0  // 将市默认选择第一个
+        data.multiIndex[1] = 0
         break;
 
-      case 1:  // 市发生变化
-        var currentCitykey = this.data.cityList[e.detail.value].infoId
-        if (currentCitykey != this.data.currnetCityKey) {  // 同样判断
-          this.getStore(currentCitykey)   // 获取门店
+      case 1:
+        let currnetOneCompanyKey = this.data.oneCompanyList[e.detail.value].infoId
+        if (currnetOneCompanyKey != this.data.currnetOneCompanyKey) {
+          this.getTwoCompany(currnetOneCompanyKey)
         }
-        data.multiIndex[2] = 0  // 门店默认为第一个
+        data.multiIndex[2] = 0
+        break;
+      case 2:
+        let currnetTwoCompanyKey = this.data.twoCompanyList[e.detail.value].infoId
+        if (currnetTwoCompanyKey != this.data.currnetTwoCompanyKey) {
+          this.getSale(currnetTwoCompanyKey)
+        }
+        data.multiIndex[3] = 0
         break;
     }
-    this.setData(data)  // 更新数据
+    this.setData(data)
   },
   pickchange(e) {
+    if (this.data.saleList && this.data.saleList.length > 0) {
+      this.setData({
+        step: 1,
+        multiIndex: e.detail.value
+      })
+    }
+  },
+  mobileInputEvent(e) {
     this.setData({
-      step: 1,  // 更新，用来选择用户选中的门店
-      multiIndex: e.detail.value  // 更新下标字段
+      mobile: e.detail.value
     })
   },
-
-  submit() {  // 保存的时候 获取当前选择门店的key 丢给后端开发即可
-    var storeCode = this.data.storeList[this.data.multiIndex.length - 1].key
+  nameInputEvent (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  confirmChange() {
+    var storeCode = this.data.saleList[this.data.multiIndex.length - 1].infoId
+  },
+  register () {
+    if (this.data.name === '') {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none'
+      })
+      return
+    }
+    if (this.data.saleList && this.data.saleList.length > 0 && this.data.step === 1) {
+      wx.login({
+        success: (res) => {
+          network.POST('/wechat/getOpenIdByCode', {
+            loginCode: res.code
+          }).then(res => {
+            if (res.statusCode === 200) {
+              let returnData = res.data.split(',')
+              return network.POST('/agentMember/bindSaleDepartment', {
+                openId: returnData[0],
+                sessionKey: returnData[1],
+                mobile: this.data.mobile,
+                agentMemberName: this.data.name,
+                saleDepartmentId: this.data.saleList[this.data.multiIndex[3]].infoId
+              })
+            } else {
+              wx.showToast({
+                title: res.msg,
+              })
+            }
+          }).then(res => {
+            if (res.status !== 200) {
+              wx.setStorageSync('isBinding', true)
+              wx.setStorageSync('token', res.data)
+              wx.showToast({
+                title: '注册成功'
+              })
+              setTimeout(() => {
+                wx.switchTab({
+                  url: '/pages/index/index',
+                })
+              }, 2000)
+            } else {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none'
+              })
+            }
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请选择营业部',
+        icon: 'none'
+      })
+    }
+  
   }
 })

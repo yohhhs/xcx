@@ -3,24 +3,22 @@
 <image class='login-logo' mode='scaleToFill' src='../img/login-logo.png'></image>
 </view>
 <view class='input-wrapper'>
-  <input class='input-item' bindinput="mobileInputEvent"  type='number' placeholder='请输入手机号码'></input>
+  <input class='input-item' bindinput="mobileInputEvent" value='{{mobile}}' disabled='true'  type='number' placeholder='请输入手机号码'></input>
 </view>
 <view class='input-wrapper'>
-  <input class='input-item' bindinput="mobileInputEvent"  type='number' placeholder='请选择公司及营业部'></input>
+  <input class='input-item' bindinput="nameInputEvent"  type='number' placeholder='请输入姓名'></input>
 </view>
+<picker mode="multiSelector" range="{{multiArray}}" bindcolumnchange="columnchange" value="{{multiIndex}}" bindchange='pickchange'>
+  <view wx:if="{{!(multiArray[3][multiIndex[3]] && step == 1)}}" class='input-wrapper'>
+    <input class='input-item'  type='number' placeholder='请选择公司及营业部'></input>
+  </view>
+
+  <view wx:if="{{multiArray[3][multiIndex[3]] && step == 1}}" class='input-wrapper'>
+    <input class='input-item'  type='number' value='{{multiArray[3][multiIndex[3]]}}' placeholder='请选择公司及营业部'></input>
+  </view>
+</picker>
 <view class='protol'>
 <image class='check-icon' src='../img/checked.png' mode='scaleToFill'></image>
-我已仔细阅读并同意《汇客平台使用协议及规章》</view>
-<button class='next-btn' bindtap='goNext'>完成</button>
-<picker mode="multiSelector" range="{{multiArray}}" bindcolumnchange="columnchange" value="{{multiIndex}}" bindchange='pickchange'>
-  <view class="picker">
-      品牌
-  </view>
-  <view class='right' wx:if="{{multiArray[2][multiIndex[2]] && step == 0}}">
-        <text>请选择</text>
-      </view>
-      <view class="picker" wx:if="{{multiArray[2][multiIndex[2]] && step == 1}}">
-        <text>{{multiArray[2][multiIndex[2]]}}</text>
-      </view>
-</picker>
+我已仔细阅读并同意 <text style='color:#ec9934;text-decoration: underline;'>《汇客平台使用协议及规章》</text></view>
+<button class='next-btn' bindtap='register'>完成</button>
 </view>

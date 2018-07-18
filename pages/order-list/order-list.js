@@ -5,7 +5,9 @@ Page({
     orderList: []
   },
   onLoad (options) {
-  
+    this.setData({
+      currentType: options.type
+    })
   },
   onShow: function () {
     this.getOrderList()

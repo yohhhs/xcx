@@ -57,7 +57,6 @@ Page({
     let mobile = this.data.mobile;
     let regMobile = /^1\d{10}$/;
     let smsCode = this.data.code;
-    
     if (!regMobile.test(mobile)) {
       wx.showToast({
         icon: 'none',
@@ -76,12 +75,22 @@ Page({
       mobile,
       smsCode
     }).then(res => {
-      wx.setStorageSync('token', res.data)
       if (res.msg === '') {
         wx.setStorageSync('isBinding', true)
+        wx.setStorageSync('token', res.data)
         wx.navigateBack()
-      } else {
+      } else if (res.msg == '账号不存在') {
         wx.setStorageSync('isBinding', false)
+        wx.navigateTo({
+          url: '../select-company/select-company?mobile=' + this.data.mobile
+        })
+      } else if (res.msg == '未绑定openid') {
+        wx.setStorageSync('isBinding', false)
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
       }
     })
   }

@@ -23,24 +23,24 @@
 </view>
 <view class='my-order'>我的订单</view>
 <view class='order-menu'>
-  <view class='order-menu-item'>
+  <view class='order-menu-item' data-type='1' bindtap='goOrderList'>
     <view wx:if='{{userDetail.notPayOrder > 0}}' class='order-number'>{{userDetail.notPayOrder}}</view>
     <image class='order-icon' src='../img/waitpay.png'></image>
     <view class='order-type'>待付款</view>
   </view>
-  <view class='order-menu-item'>
+  <view class='order-menu-item' data-type='2' bindtap='goOrderList'>
     <image class='order-icon' src='../img/wait.png'></image>
     <view class='order-type'>待发货</view>
   </view>
-  <view class='order-menu-item'>
+  <view class='order-menu-item' data-type='3' bindtap='goOrderList'>
     <image class='order-icon' src='../img/waitre.png'></image>
     <view class='order-type'>待收货</view>
   </view>
-  <view class='order-menu-item'>
+  <view class='order-menu-item' data-type='' bindtap='goOrderList'>
     <image class='order-icon' src='../img/allorder.png'></image>
     <view class='order-type'>全部</view>
   </view>
-  <view class='order-menu-item'>
+  <view class='order-menu-item' data-type='9' bindtap='goOrderList'>
     <image class='order-icon' src='../img/cancel.png'></image>
     <view class='order-type'>已取消</view>
   </view>
@@ -51,7 +51,7 @@
   <image class='change-icon1' src='../img/change-tel-icon.png'></image>
   <image class='right-icon' src='../img/arrow-right.png'></image>
 </view>
-<view class='change-item' bindlongtap='changeSale'>
+<view class='change-item' bindtap='changeSale'>
   <text class='change-type'>更换营业部</text>
   <text class='change-content'>{{userDetail.saleDepartmentName}}</text>
   <image class='change-icon2' src='../img/changecompany.png'></image>

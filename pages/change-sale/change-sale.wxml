@@ -1,2 +1,10 @@
-<!--pages/change-sale/change-sale.wxml-->
-<text>pages/change-sale/change-sale.wxml</text>
+
+<picker mode="multiSelector" range="{{multiArray}}" bindcolumnchange="columnchange" value="{{multiIndex}}" bindchange='pickchange'>
+  <view wx:if="{{!(multiArray[3][multiIndex[3]] && step == 1)}}" class='change-item-wrapper' style='font-size:28rpx;color:#666;'>
+    {{saleDepartmentName}}
+  </view>
+  <view class='change-item-wrapper' style='font-size:28rpx;color:#666;' wx:if="{{multiArray[3][multiIndex[3]] && step == 1}}">
+    <text>{{multiArray[3][multiIndex[3]]}}</text>
+  </view>
+</picker>
+<button class='next-btn' bindtap='confirmChange'>确认</button>

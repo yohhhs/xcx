@@ -4,7 +4,7 @@ Page({
     customerList: null
   },
   onLoad: function (options) {
-    network.POST('/giftRecord/getGiftSendRecordList', {
+    network.POST('/giftRecord/getGiftRecordList', {
       pageNo: 1,
       pageSize: 10,
       agentMemberId: wx.getStorageSync('token')

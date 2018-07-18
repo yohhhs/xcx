@@ -7,7 +7,9 @@
     <image wx:if='{{orderDetail.orderState == 9}}' class='order-status-icon' src='../img/qx.png'></image>
     <text class='order-status-name'>{{filters.status(orderDetail.orderState).name}}</text>
   </view>
-  <view class='order-pay-time'>集采结束时间：{{orderDetail.purchaseEndTime}}</view>
+  <view wx:if='{{orderDetail.orderState == 1}}' class='order-pay-time'>集采结束时间：{{orderDetail.purchaseEndTime}}</view>
+  <view wx:if='{{orderDetail.orderState == 4}}' class='order-pay-time'>收货时间：{{orderDetail.receiveTimeStr}}</view>
+  <view wx:if='{{orderDetail.orderState == 9}}' class='order-pay-time'>取消时间：{{orderDetail.cancelTime}}</view>
 </view>
 <view class='address-wrapper'>
   <image class='address-icon' src='../img/address.png'></image>
@@ -36,10 +38,12 @@
 <view class='order-info'>
   <view class='order-info-item'>订单编号：{{orderDetail.purchaseOrderNumber}}</view>
   <view class='order-info-item'>下单时间：{{orderDetail.createTimeStr}}</view>
+  <view wx:if='{{orderDetail.orderState == 2 || orderDetail.orderState == 3 || orderDetail.orderState == 4}}' class='order-info-item'>支付时间：{{orderDetail.payTime}}</view>
 </view>
 <view class='order-info' style='margin-bottom: 20rpx;'>
-< view class='order-info-item'>支付方式：微信支付</view>
+  <view class='order-info-item'>支付方式：微信支付</view>
   <view class='order-info-item'>配送方式：物流运输</view>
+  <view wx:if='{{orderDetail.orderState == 3 || orderDetail.orderState == 4}}' class='order-info-item'>发货时间：{{orderDetail.sendTime}}</view>
 </view>
 <view class='price-detail'>
   <view class='goods-count-price'>
@@ -55,7 +59,7 @@
   <text class='price-type-name'>合计</text>
   <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
 </view>
-<view class='btn-wrapper'>
+<view class='btn-wrapper' wx:if='{{orderDetail.orderState == 1 || orderDetail.orderState == 2}}'>
   <button class='order-cancel-btn'>取消订单</button>
-  <button class='order-pay-btn'>立即支付</button>
+  <button wx:if='{{orderDetail.orderState == 1}}' class='order-pay-btn'>立即支付</button>
 </view>

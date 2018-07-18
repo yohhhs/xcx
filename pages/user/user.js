@@ -18,5 +18,15 @@ Page({
       url: '../vali-phone/vali-phone?mobile=' + this.data.userDetail.mobile
     })
   },
-  changeSale () {}
+  changeSale () {
+    wx.navigateTo({
+      url: '../change-sale/change-sale?saleDepartmentName=' + this.data.userDetail.saleDepartmentName
+    })
+  },
+  goOrderList (e) {
+    let type = e.currentTarget.dataset.type
+    wx.navigateTo({
+      url: '../order-list/order-list?type=' + type
+    })
+  }
 })

@@ -41,3 +41,7 @@
 <text class='wx-pay-text'>微信支付</text>
 </view>
 </view>
+<view class='order-detail-footer'>
+  <text>￥{{orderDetail.totalMoney}}</text>
+  <button class='confirm-pay-btn' bindtap='confirmPay' disabled='{{isPay}}'>确认支付</button>
+</view>

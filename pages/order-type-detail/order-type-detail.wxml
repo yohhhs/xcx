@@ -14,7 +14,7 @@
 <view class='address-wrapper'>
   <image class='address-icon' src='../img/address.png'></image>
   <view class='receive-people'>
-  <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}})</text>
+  <text>收货人：{{orderDetail.receiveMemberName}}({{orderDetail.receiveMobile}})</text>
   </view>
   <view class='recevie-address'>
   <text>收货地址：{{orderDetail.receiveAddress}}</text>
@@ -61,5 +61,5 @@
 </view>
 <view class='btn-wrapper' wx:if='{{orderDetail.orderState == 1 || orderDetail.orderState == 2}}'>
   <button class='order-cancel-btn'>取消订单</button>
-  <button wx:if='{{orderDetail.orderState == 1}}' class='order-pay-btn'>立即支付</button>
+  <button wx:if='{{orderDetail.orderState == 1}}' disabled='{{isPay}}' class='order-pay-btn' bindtap='confirmPay'>立即支付</button>
 </view>

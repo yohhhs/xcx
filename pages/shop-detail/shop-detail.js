@@ -65,7 +65,10 @@ Page({
       wx.showToast({
         title: '加入成功',
         icon: 'success',
-        duration: 2000
+        duration: 200
+      })
+      wx.switchTab({
+        url: '/pages/shoppingcart/shoppingcart',
       })
     })
   }

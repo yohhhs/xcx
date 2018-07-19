@@ -7,7 +7,7 @@
   <view class='shopping-desc'>
     <view class='shopping-name'>{{detail.goodsName}}</view>
     <view class='price-type'>
-      <text class='c-price'>¥1{{detai.salePrice}}</text>
+      <text class='c-price'>¥{{detail.salePrice}}</text>
       <text class='m-price'>市价¥{{detail.marketPrice}}</text>
       <text class='g-price'>包含送货费用</text>
     </view>
@@ -25,6 +25,6 @@
   </view>
   <view class='active'>配置活动: <text class='active-name'>{{detail.activityName}}</text></view>
   <view class='shopping-info'>商品信息</view>
-  <image class='shopping-detail-img' src='{{"https://www.topasst.com/images/" + detail.description}}' mode="widthFix"></image>
+  <image class='shopping-detail-img' src='{{detail.description}}' mode="widthFix"></image>
 </view>
 <view class='join-cart' bindtap='joinCart'>加入购物车</view>

@@ -15,9 +15,9 @@ Page({
   },
   getOrganize() {
     network.POST('/organize/getOrganizeList').then(res => {
-      if (res.data.length === 0) {
-        return
-      }
+      // if (res.data.length === 0) {
+      //   return
+      // }
       let data = res.data
       let organizeList = [...data]
       let organizeValues = data.map((item) => { return item.infoValue })
@@ -28,7 +28,6 @@ Page({
       })
       let defaultCode = this.data.organizeList[0].infoId
       if (defaultCode) {
-
         this.getOneCompany(defaultCode)
       }
     })
@@ -41,9 +40,9 @@ Page({
       parentId: 0,
       organizeId: code
     }).then(res => {
-      if (res.data.length === 0) {
-        return
-      }
+      // if (res.data.length === 0) {
+      //   return
+      // }
       let data = res.data
       let oneCompanyList = [...data]
       let oneCompanyValues = data.map((item) => { return item.infoValue })
@@ -67,9 +66,9 @@ Page({
       parentId: code,
       organizeId: this.data.currnetOrganizeKey
     }).then(res => {
-      if (res.data.length === 0) {
-        return
-      }
+      // if (res.data.length === 0) {
+      //   return
+      // }
       let data = res.data
       let twoCompanyList = [...data]
       let twoCompanyValues = data.map((item) => { return item.infoValue })
@@ -92,9 +91,9 @@ Page({
     network.POST('/saleDepartment/getSaleDepartmentList', {
       companyId: code
     }).then(res => {
-      if (res.data.length === 0) {
-        return
-      }
+      // if (res.data.length === 0) {
+      //   return
+      // }
       let data = res.data
       let saleList = [...data]
       let saleValues = data.map((item) => { return item.infoValue })
@@ -169,11 +168,16 @@ Page({
       return
     }
     if (this.data.saleList && this.data.saleList.length > 0 && this.data.step === 1) {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
+      })
       wx.login({
         success: (res) => {
           network.POST('/wechat/getOpenIdByCode', {
             loginCode: res.code
           }).then(res => {
+            wx.hideLoading()
             if (res.statusCode === 200) {
               let returnData = res.data.split(',')
               return network.POST('/agentMember/bindSaleDepartment', {
@@ -189,7 +193,8 @@ Page({
               })
             }
           }).then(res => {
-            if (res.status !== 200) {
+            wx.hideLoading()
+            if (res.statusCode == 200) {
               wx.setStorageSync('isBinding', true)
               wx.setStorageSync('token', res.data)
               wx.showToast({
@@ -198,6 +203,9 @@ Page({
               setTimeout(() => {
                 wx.switchTab({
                   url: '/pages/index/index',
+                  fail: (err) => {
+                    console.log(err)
+                  }
                 })
               }, 2000)
             } else {
@@ -206,15 +214,17 @@ Page({
                 icon: 'none'
               })
             }
+          }).catch(err => {
+            wx.hideLoading()
           })
         }
       })
     } else {
+      wx.hideLoading()
       wx.showToast({
         title: '请选择营业部',
         icon: 'none'
       })
     }
-  
   }
 })

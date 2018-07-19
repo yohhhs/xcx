@@ -6,15 +6,15 @@
   <input class='input-item' bindinput="mobileInputEvent" value='{{mobile}}' disabled='true'  type='number' placeholder='请输入手机号码'></input>
 </view>
 <view class='input-wrapper'>
-  <input class='input-item' bindinput="nameInputEvent"  type='number' placeholder='请输入姓名'></input>
+  <input class='input-item' bindinput="nameInputEvent"  type='text' placeholder='请输入姓名'></input>
 </view>
 <picker mode="multiSelector" range="{{multiArray}}" bindcolumnchange="columnchange" value="{{multiIndex}}" bindchange='pickchange'>
-  <view wx:if="{{!(multiArray[3][multiIndex[3]] && step == 1)}}" class='input-wrapper'>
-    <input class='input-item'  type='number' placeholder='请选择公司及营业部'></input>
+  <view wx:if="{{!(multiArray[3][multiIndex[3]] && step == 1)}}" class='pick-wrapper'>
+    请选择公司及营业部
   </view>
 
-  <view wx:if="{{multiArray[3][multiIndex[3]] && step == 1}}" class='input-wrapper'>
-    <input class='input-item'  type='number' value='{{multiArray[3][multiIndex[3]]}}' placeholder='请选择公司及营业部'></input>
+  <view wx:if="{{multiArray[3][multiIndex[3]] && step == 1}}" class='pick-wrapper'>
+    {{multiArray[3][multiIndex[3]]}}
   </view>
 </picker>
 <view class='protol'>

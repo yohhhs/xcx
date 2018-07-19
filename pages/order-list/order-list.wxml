@@ -30,7 +30,7 @@
       </view>
       <view class='btn-wrapper'>
         <button wx:if='{{item.orderState == 1 || item.orderState == 2}}' class='order-cancel-btn'>取消订单</button>
-        <button wx:if='{{item.orderState == 1}}' class='order-pay-btn'>付款</button>
+        <button wx:if='{{item.orderState == 1}}' class='order-pay-btn' data-index='{{index}}' bindtap='confirmPay'>付款</button>
       </view>
     </view>
   </view>

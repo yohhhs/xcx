@@ -160,6 +160,7 @@ Page({
     let shoppingCartId = this.data.cartList[this.data.currentIndex].shoppingCartId 
     let count = this.data.currentCount
     wx.showLoading({
+      title: 'loading',
       mask: true
     })
     network.POST('/shoppingCart/updateShoppingCart', {
@@ -194,6 +195,7 @@ Page({
       success: res => {
         if (res.confirm) {
           wx.showLoading({
+            title: 'loading',
             mask: true
           })
           network.POST('/shoppingCart/deleteShoppingCart', {
@@ -219,10 +221,15 @@ Page({
         duration: 2000
       })
     } else {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
+      })
       network.POST('/purchaseOrder/addPurchaseOrder', {
         agentMemberId: wx.getStorageSync('token'),
         shoppingCartIds: this.data.orderList.toString()
       }).then(res => {
+        wx.hideLoading()
         if (res.statusCode === 200) {
           let orderData = JSON.stringify(res.data)
           wx.navigateTo({
@@ -235,6 +242,8 @@ Page({
             duration: 2000
           })
         }
+      }).catch(err => {
+        wx.hideLoading()
       })
     }
   }

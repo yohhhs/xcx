@@ -13,9 +13,6 @@ Page({
     this.getOrganize()
   },
   getOrganize() {
-    if (res.data.length === 0) {
-      return
-    }
     network.POST('/organize/getOrganizeList').then(res => {
       let data = res.data
       let organizeList = [...data]
@@ -33,9 +30,6 @@ Page({
     })
   },
   getOneCompany(code) {
-    if (res.data.length === 0) {
-      return
-    }
     this.setData({
       currnetOrganizeKey: code
     })
@@ -59,9 +53,6 @@ Page({
     })
   },
   getTwoCompany(code) {
-    if (res.data.length === 0) {
-      return
-    }
     this.setData({
       currnetOneCompanyKey: code
     })
@@ -85,9 +76,6 @@ Page({
     })
   },
   getSale(code) {
-    if (res.data.length === 0) {
-      return
-    }
     this.setData({
       currnetTwoCompanyKey: code
     })
@@ -158,13 +146,17 @@ Page({
           })
           setTimeout(() => {
             wx.navigateBack()
-          }, 2000)
+          }, 1000)
         } else {
           wx.showToast({
             title: res.msg,
             icon: 'none'
           })
         }
+      })
+    } else {
+      setTimeout(() => {
+        wx.navigateBack()
       })
     }
   }

@@ -7,7 +7,6 @@ Page({
       network.POST('/agentMember/getAgentMember', {
           agentMemberId: wx.getStorageSync('token')
       }).then(res => {
-        console.log(res)
           this.setData({
               userDetail: res.data
           })

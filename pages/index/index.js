@@ -9,6 +9,10 @@ Page({
   onLoad() {
   },
   onShow () {
+    // wx.navigateTo({
+    //   url: '../select-company/select-company',
+    // })
+    // return
     let token = wx.getStorageSync('token')
     let isBingding = wx.getStorageSync('isBinding')
     let isRequest = this.data.isRequest

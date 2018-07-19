@@ -71,27 +71,61 @@ Page({
       })
       return false;
     }
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
     network.POST('/agentMember/login', {
       mobile,
       smsCode
     }).then(res => {
+      wx.hideLoading()
       if (res.msg === '') {
         wx.setStorageSync('isBinding', true)
         wx.setStorageSync('token', res.data)
         wx.navigateBack()
-      } else if (res.msg == '账号不存在') {
+      } else if (res.msg == '帐号不存在') {
         wx.setStorageSync('isBinding', false)
         wx.navigateTo({
           url: '../select-company/select-company?mobile=' + this.data.mobile
         })
       } else if (res.msg == '未绑定openid') {
         wx.setStorageSync('isBinding', false)
+        wx.setStorageSync('token', res.data)
+        wx.login({
+          success: (res) => {
+            network.POST('/wechat/getOpenIdByCode', {
+              loginCode: res.code
+            }).then(res => {
+              if (res.statusCode === 200) {
+                let returnData = res.data.split(',')
+                return network.POST('/agentMember/bindOpenId', {
+                  openId: returnData[0],
+                  sessionKey: returnData[1],
+                  agentMemberId: wx.getStorageSync('token')
+                })
+              }
+            }).then(res => {
+              if (res.statusCode == 200) {
+                wx.setStorageSync('isBinding', true)
+                wx.navigateBack()
+              } else {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none'
+                })
+              }
+            })
+          }
+        })
       } else {
         wx.showToast({
           title: res.msg,
           icon: 'none'
         })
       }
+    }).catch(err => {
+      wx.hideLoading()
     })
   }
 })

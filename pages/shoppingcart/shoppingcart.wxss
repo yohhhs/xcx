@@ -1,28 +1,24 @@
-/* pages/shoppingcart/shoppingcart.wxss */
-/*  重写 checkbox 样式  */
-/* 未选中的 背景样式 */
+
 page {
   background-color: #fff;
 }
 checkbox .wx-checkbox-input{
-   border-radius: 50%;/* 圆角 */
-   width: 34rpx; /* 背景的宽 */
-   height: 34rpx; /* 背景的高 */
+   border-radius: 50%;
+   width: 34rpx;
+   height: 34rpx;
 }
-/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
 checkbox .wx-checkbox-input.wx-checkbox-input-checked{
    border-color: #f79d1d;
    background: #f79d1d;
 }
-/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
 checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
-   border-radius: 50%;/* 圆角 */
-   width: 34rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
-   height: 34rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   border-radius: 50%;
+   width: 34rpx;
+   height: 34rpx;
    line-height: 34rpx;
    text-align: center;
-   font-size:25rpx; /* 对勾大小 30rpx */
-   color:#fff; /* 对勾颜色 白色 */
+   font-size:25rpx; 
+   color:#fff; 
    background: transparent;
    transform:translate(-50%, -50%) scale(1);
    -webkit-transform:translate(-50%, -50%) scale(1);

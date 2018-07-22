@@ -10,7 +10,7 @@ Page({
   },
   onShow () {
     // wx.navigateTo({
-    //   url: '../select-company/select-company',
+    //   url: '../send-gift/send-gift',
     // })
     // return
     let token = wx.getStorageSync('token')

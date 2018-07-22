@@ -27,5 +27,10 @@ Page({
     wx.navigateTo({
       url: '../order-list/order-list?type=' + type
     })
+  },
+  goSendGift () {
+    wx.navigateTo({
+      url: '../send-gift/send-gift',
+    })
   }
 })

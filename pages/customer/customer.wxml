@@ -4,6 +4,6 @@
     <view class='shop-name'>{{item.goodsName}}</view>
     <view class='customer-number'>领取客户 <text class='number'>{{item.sendGoodsCount}}</text> 个</view>
     <view class='customer-number'>转介绍客户 <text class='number'>{{item.transferCount}}</text> 个</view>
-    <button class='look-btn' data-id='{{item.giftRecordId}}' bindtap='lookCustomerList'>查看客户列表</button>
+    <button class='look-btn' data-item='{{item}}' bindtap='lookCustomerList'>查看客户列表</button>
   </view>
 </block>

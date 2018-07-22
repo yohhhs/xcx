@@ -16,9 +16,10 @@ Page({
       }
     })
   },
-  lookCustomerList() {
+  lookCustomerList(e) {
+    let data = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '../customer-list/customer-list'
+      url: '../customer-list/customer-list?customer=' + JSON.stringify(data)
     })
   }
 })

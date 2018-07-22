@@ -1,66 +1,64 @@
-// pages/customer-list/customer-list.js
+const network = require('../../common/newwork.js')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    customerDetail: '',
+    cusList: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad (options) {
+    this.setData({
+      customerDetail: JSON.parse(options.customer)
+    })
+    this.getCustomerList()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  openExtend (e) {
+    let index = e.currentTarget.dataset.index
+    let current = this.data.cusList[index]
+    if (!current.isOpen) {
+      if (!current.isRequest) {
+        this.getMemberList(current.memberId, index)
+      }
+    }
+    let isOpen = `cusList[${index}].isOpen`
+    this.setData({
+      [isOpen]: !current.isOpen
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  getCustomerList () {
+    network.POST('/member/getMemberList', {
+      agentMemberId: wx.getStorageSync('token'),
+      memberType: 1,
+      giftId: this.data.customerDetail.giftRecordId
+    }).then(res => {
+      let cusList = res.data
+      cusList.forEach(item => {
+        item.isOpen = false
+        item.isRequest = false
+        item.children = []
+      })
+      this.setData({
+        cusList
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  getMemberList(parentId, index) {
+    network.POST('/member/getMemberList', {
+      agentMemberId: wx.getStorageSync('token'),
+      memberType: 2,
+      giftId: this.data.customerDetail.giftRecordId,
+      parentId
+    }).then(res => {
+      let children = `cusList[${index}].children`
+      let isRequest = `cusList[${index}].isRequest`
+      this.setData({
+        [children]: res.data,
+        [isRequest]: true
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  callUser (e) {
+    let tel = e.currentTarget.dataset.tel
+    wx.makePhoneCall({
+      phoneNumber: tel
+    })
   }
 })

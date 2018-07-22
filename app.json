@@ -15,7 +15,8 @@
     "pages/change-phone/change-phone",
     "pages/change-sale/change-sale",
     "pages/order-list/order-list",
-    "pages/order-type-detail/order-type-detail"
+    "pages/order-type-detail/order-type-detail",
+    "pages/send-gift/send-gift"
   ],
   "window": {
     "backgroundTextStyle": "light",

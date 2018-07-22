@@ -36,6 +36,34 @@ Page({
       url: '../order-type-detail/order-type-detail?purchaseOrderId=' + this.data.orderList[index].purchaseOrderId
     })
   },
+  confirmCancel (e) {
+    let index = e.currentTarget.dataset.index
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
+    network.POST('/purchaseOrder/cancelPurchaseOrder', {
+      agentMemberId: wx.getStorageSync('token'),
+      purchaseOrderId: this.data.orderList[index].purchaseOrderId
+    }).then(res => {
+      wx.hideLoading()
+      if (res.statusCode === 200) {
+        wx.showToast({
+          title: '取消成功',
+          duration: 1000
+        })
+        this.getOrderList()
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    }).catch(err => {
+      wx.hideLoading()
+    })
+  },
   confirmPay(e) {
     let index = e.currentTarget.dataset.index
     wx.showLoading({

@@ -1,17 +1,31 @@
 const network = require('../../common/newwork.js')
 Page({
   data: {
-    disList: []
+    disList: [],
+    pageNo: 1,
+    noMore: false
   },
   onShow () {
+    this.getGiftList()
+  },
+  getGiftList () {
     network.POST('/giftRecord/getGiftRecordList', {
-      pageNo: 1,
-      pageSize: 10,
+      pageNo: this.data.pageNo,
+      pageSize: 20,
       agentMemberId: wx.getStorageSync('token')
     }).then(res => {
+      wx.hideLoading()
       if (res.statusCode === 200) {
+        let list = this.data.disList
+        if (res.data.list.length === 0) {
+          this.setData({
+            noMore: true
+          })
+          return
+        }
+        list.push(...res.data.list)
         this.setData({
-          disList: res.data.list
+          disList: list
         })
       }
     })
@@ -21,7 +35,8 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确认后将会呈现活动二维码，并且从剩余数量中扣除1份礼品',
-      success: function (res) {
+      success: res => {
+        let currentGift = this.data.disList[index]
         if (currentGift.totalGoodsCount === currentGift.sendGoodsCount) {
           wx.showToast({
             title: '数量不足',
@@ -30,7 +45,6 @@ Page({
           })
           return
         }
-        let currentGift = this.data.disList[index]
         if (res.confirm) {
           let sendCount = 'disList[' + index + '].sendGoodsCount'
           let codeData = {
@@ -48,5 +62,17 @@ Page({
         }
       }
     })
+  },
+  onReachBottom() {
+    if (this.data.noMore) {
+      return
+    }
+    wx.showLoading({
+      title: '玩命加载中'
+    })
+    this.setData({
+      pageNo: this.data.pageNo + 1
+    })
+    this.getGiftList()
   }
 })

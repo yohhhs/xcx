@@ -20,3 +20,7 @@
     <image class='go-cart' src='../img/go-cart.png' data-id='{{item.purchaseGoodsId}}' bindtap='addCart'></image>
   </view>
 </block>
+<view wx:if='{{giftList.length === 0}}' class='nothing'>
+  <image class='no-icon' src='../img/carno.png'></image>
+  <text>没有相关产品</text>
+</view>

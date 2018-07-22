@@ -27,7 +27,10 @@
   </view>
 </view>
 </block>
-
+<view wx:if='{{cartList.length === 0}}' class='nothing'>
+  <image class='no-icon' src='../img/carno.png'></image>
+  <text>购物车什么也没有</text>
+</view>
 </checkbox-group>
 <view class='all-select'>
 <label bindtap='selectAll'>

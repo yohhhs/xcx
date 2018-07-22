@@ -118,7 +118,7 @@ button:after {
 }
 .order-item-img {
   position: absolute;
-  top: 0;
+  top: 35rpx;
   left: 0;
   width: 291rpx;
   height: 156rpx;
@@ -203,4 +203,23 @@ button:after {
   border-radius: 10rpx;
 	border: solid 1rpx #4eb3e4;
   background-color: #fff;
+}
+.refresh {
+  height: 60rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+.nothing {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #999;
+}
+.no-icon {
+  width: 180rpx;
+  height: 180rpx;
 }

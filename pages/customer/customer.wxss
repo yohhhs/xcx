@@ -3,6 +3,7 @@
   position: relative;
   margin: 0 21rpx;
   padding: 31rpx 0 31rpx 282rpx;
+  height: 159rpx;
   background-color: #fff;
   border-bottom: 1px solid #f0f0f0;
 }

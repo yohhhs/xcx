@@ -7,7 +7,7 @@
   <text class='user-tel'>{{userDetail.mobile}}</text>
 </view>
 <view class='gift-info-wrapper'>
-  <view class='gift-info-item'>
+  <view class='gift-info-item' bindtap='goSendGift'>
     <view class='gift-number'>
       <text class='number-lh'>{{userDetail.sendCount}}</text>
       <image class='gift-info-icon' src='../img/giftnumber.png'></image>

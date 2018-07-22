@@ -1,0 +1,15 @@
+<block wx:for='{{renderSendGift}}' wx:key='{{item.name}}'>
+  <view class='send-item'>
+    <view class='send-item-header'>{{item.name}}(派送{{item.len}})</view>
+    <view class='gift-list'>
+      <view class='gift-list-item' wx:for='{{item.children}}' wx:for-item='child' wx:key='{{child.memberId}}'>
+        <view class='gift-name'>{{child.goodsName }}</view>
+        <view class='gift-person'>领取人：{{child.memberName}}（{{child.mobile}}）</view>
+      </view>
+    </view>
+  </view>
+</block>
+<view wx:if='{{renderSendGift.length == 0}}' class='no-send'>没有派送信息</view>
+<view wx:if='{{noMore}}' class='refresh'>
+  <text>没有更多了</text>
+</view>

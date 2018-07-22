@@ -74,3 +74,10 @@
 .order-shopping-item {
   margin-bottom: 20rpx;
 }
+.no-order {
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999;
+}

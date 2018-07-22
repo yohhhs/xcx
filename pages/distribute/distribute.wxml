@@ -16,5 +16,11 @@
     <button class='send-btn' data-index='{{index}}' bindtap='sendGift'>发送礼品</button>
   </view>
 </block>
-
+<view wx:if='{{disList.length===0}}' class='nothing'>
+  <image class='no-icon' src='../img/carno.png'></image>
+  <text>没有相关礼品</text>
+</view>
+<view wx:if='{{noMore}}' class='refresh'>
+  <text>没有更多了</text>
+</view>
 

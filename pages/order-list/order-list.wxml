@@ -1,4 +1,4 @@
-<wxs src='./order-type.wxs' module='filters' />
+<wxs src='../../common/order-type.wxs' module='filters' />
 <view class='menu'>
   <view class='menu-item {{currentType == "" ? "active" : ""}}' data-type='' bindtap='changeOrderType'>全部</view>
   <view class='menu-item {{currentType == 1 ? "active" : ""}}' data-type='1' bindtap='changeOrderType'>待付款</view>
@@ -29,9 +29,10 @@
         <text class='footer-count-number'>({{item.goodsCount}}件商品)</text>
       </view>
       <view class='btn-wrapper'>
-        <button wx:if='{{item.orderState == 1 || item.orderState == 2}}' class='order-cancel-btn'>取消订单</button>
+        <button wx:if='{{item.orderState == 1 || item.orderState == 2}}' class='order-cancel-btn' data-index='{{index}}' bindtap='confirmCancel'>取消订单</button>
         <button wx:if='{{item.orderState == 1}}' class='order-pay-btn' data-index='{{index}}' bindtap='confirmPay'>付款</button>
       </view>
     </view>
   </view>
 </block>
+<view wx:if='{{orderList.length === 0}}' class='no-order'>没有相关订单</view>

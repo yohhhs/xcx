@@ -16,7 +16,36 @@ Page({
       }
     })
   },
-  confirmPay() {
+  confirmCancel () {
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
+    network.POST('/purchaseOrder/cancelPurchaseOrder', {
+      agentMemberId: wx.getStorageSync('token'),
+      purchaseOrderId: this.data.orderDetail.purchaseOrderId
+    }).then(res => {
+      wx.hideLoading()
+      if (res.statusCode === 200) {
+        wx.showToast({
+          title: '取消成功',
+          duration: 1000
+        })
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1000)
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    }).catch(err => {
+      wx.hideLoading()
+    })
+  },
+  confirmPay () {
     this.setData({
       isPay: true
     })

@@ -6,7 +6,7 @@
 <block wx:for='{{giftList}}' wx:key='{{item.purchaseGoodsId}}'>
   <view class='product-item'>
     <view class='img-wrapper'>
-    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill'></image>
+    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill' data-id='{{item.purchaseGoodsId}}' bindtap='addCart'></image>
     <view class='time-down'>结束时间：{{item.purchaseEndTime}}</view>
     </view>
     <view class='product-price'>

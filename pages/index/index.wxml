@@ -6,18 +6,18 @@
 <block wx:for='{{giftList}}' wx:key='{{item.purchaseGoodsId}}'>
   <view class='product-item'>
     <view class='img-wrapper'>
-    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill' data-id='{{item.purchaseGoodsId}}' bindtap='addCart'></image>
+    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill' data-id='{{item.purchaseGoodsId}}'  bindtap='goShopDetail'></image>
     <view class='time-down'>结束时间：{{item.purchaseEndTime}}</view>
     </view>
     <view class='product-price'>
       <text class='c-price'>￥{{item.salePrice}}</text>
       <text class='m-price'>市价 ￥{{item.marketPrice}}</text> 
     </view>
-    <view class='product-name' data-id='{{item.purchaseGoodsId}}' bindtap='goShopDetail'>{{item.goodsName}}</view>
+    <view class='product-name'>{{item.goodsName}}</view>
     <view class='product-order'>
       <text space='true' decode='true'>营业部起订量:{{item.purchaseMinCount}}盒&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量:{{item.saleCount}}盒</text>
     </view>
-    <image class='go-cart' src='../img/go-cart.png' data-id='{{item.purchaseGoodsId}}' bindtap='addCart'></image>
+    <image class='go-cart' src='../img/go-cart.png' data-id='{{item.purchaseGoodsId}}' catchtap='addCart'></image>
   </view>
 </block>
 <view wx:if='{{giftList.length === 0}}' class='nothing'>

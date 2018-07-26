@@ -27,6 +27,7 @@ Page({
       this.setData({
         cartList: res.data
       })
+      this.selectAll()
     })
   },
   checkboxChange (e) {
@@ -83,7 +84,7 @@ Page({
         return item.shoppingCartId === selectItem
       })
       shoppingNumber += items.count * 1
-      countPrice += items.salePrice * items.count
+      countPrice = (countPrice * 100 + items.salePrice * items.count * 100) / 100
     })
     this.setData({
       shoppingNumber,

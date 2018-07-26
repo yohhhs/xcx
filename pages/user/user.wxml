@@ -28,11 +28,13 @@
     <image class='order-icon' src='../img/waitpay.png'></image>
     <view class='order-type'>待付款</view>
   </view>
-  <view class='order-menu-item' data-type='2' bindtap='goOrderList'>
+   <view class='order-menu-item' data-type='2' bindtap='goOrderList'>
+  <view wx:if='{{userDetail.notSendOrder > 0}}' class='order-number'>{{userDetail.notSendOrder}}</view>
     <image class='order-icon' src='../img/wait.png'></image>
     <view class='order-type'>待发货</view>
   </view>
   <view class='order-menu-item' data-type='3' bindtap='goOrderList'>
+  <view wx:if='{{userDetail.notReceiveOrder > 0}}' class='order-number'>{{userDetail.notReceiveOrder}}</view>
     <image class='order-icon' src='../img/waitre.png'></image>
     <view class='order-type'>待收货</view>
   </view>

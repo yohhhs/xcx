@@ -53,9 +53,6 @@ Page({
             goodsName: currentGift.goodsName,
             count: currentGift.totalGoodsCount - currentGift.sendGoodsCount - 1
           }
-          this.setData({
-            [sendCount]: currentGift.sendGoodsCount - 1
-          })
           wx.navigateTo({
             url: '../active-code/active-code?codeData=' + JSON.stringify(codeData),
           })

@@ -3,8 +3,7 @@ const network = require('../../common/newwork.js')
 Page({
   data: {
     giftList: null,
-    isRequest: false,
-    token: ''
+    isRequest: false
   },
   onLoad() {
   },
@@ -18,12 +17,7 @@ Page({
     let isRequest = this.data.isRequest
 
     if (token && isBingding) {
-      this.setData({
-        token
-      })
-      if (!isRequest) {
-        this.getGiftList()
-      } 
+      this.getGiftList()
     } else {
       wx.navigateTo({
         url: '../login/login'
@@ -38,14 +32,13 @@ Page({
   },
   addCart(event) {
     let purchaseGoodsId = event.currentTarget.dataset.id
-    let agentMemberId = this.data.token
 
     wx.showLoading({
       title: '正在加入购物车',
       mask: true
     })
     network.POST('/shoppingCart/addShoppingCart', {
-      agentMemberId,
+      agentMemberId: wx.getStorageSync('token'),
       purchaseGoodsId,
       count: 1
     }).then(data => {
@@ -61,9 +54,8 @@ Page({
     console.log(e)
   },
   getGiftList () {
-    let agentMemberId = this.data.token
     network.POST('/purchaseGoods/getPurchaseGoodsList', {
-      agentMemberId
+      agentMemberId: wx.getStorageSync('token')
     }).then(res => {
       this.setData({
         giftList: res.data,

@@ -2,13 +2,13 @@
 .gift-title {
   display: flex;
   align-items: center;
-  margin-bottom: 20rpx;
   padding-left: 30rpx;
   height: 73rpx;
   line-height: 73rpx;
   font-size: 30rpx;
   color: #666;
   background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
 }
 .gift-top-icon {
   margin-right: 13rpx;
@@ -55,4 +55,50 @@
 		#ec8541 0%, 
 		#edae27 100%);
 	border-radius: 30rpx;
+}
+/* pages/customer/customer.wxss */
+.customer-item {
+  position: relative;
+  margin: 0 21rpx;
+  padding: 31rpx 0 31rpx 282rpx;
+  height: 159rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+.shop-img {
+  position: absolute;
+  width: 261rpx;
+  height: 156rpx;
+  top: 31rpx;
+  left: 0;
+}
+page {
+  background-color: #fff;
+}
+.shop-name {
+  margin-bottom: 23rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+.customer-number {
+  font-size: 23rpx;
+  color: #999;
+}
+.number {
+  color: #666;
+}
+.look-btn {
+  position: absolute;
+  right: 0;
+  bottom: 31rpx;
+  width: 180rpx;
+	height: 54rpx;
+  line-height: 54rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 20rpx;
+	background-image: linear-gradient(-90deg, 
+		#ec8541 0%, 
+		#edae27 100%);
+	border-radius: 24px;
 }

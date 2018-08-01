@@ -6,6 +6,10 @@ Page({
     noMore: false
   },
   onShow () {
+    this.setData({
+      disList: [],
+      pageNo: 1
+    })
     this.getGiftList()
   },
   getGiftList () {

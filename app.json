@@ -33,7 +33,7 @@
         "pagePath": "pages/index/index",
         "text": "商城",
         "iconPath": "pages/img/home-icon.png",
-        "selectedIconPath": "pages/img/home-icon.png"
+        "selectedIconPath": "pages/img/home-icon1.png"
       },
       {
         "pagePath": "pages/distribute/distribute",
@@ -57,7 +57,7 @@
         "pagePath": "pages/user/user",
         "text": "个人",
         "iconPath": "pages/img/user-icon.png",
-        "selectedIconPath": "pages/img/user-icon.png"
+        "selectedIconPath": "pages/img/user-icon1.png"
       }
     ]
   }

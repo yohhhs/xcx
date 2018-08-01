@@ -4,7 +4,14 @@
   我的礼品库
 </view>
 <block wx:for='{{disList}}' wx:key='{{item.giftRecordId}}'>
-  <view class='gift-item'>
+ <view class='customer-item'>
+    <image class='shop-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
+    <view class='shop-name'>{{item.goodsName}}</view>
+    <view class='customer-number'>剩余数量： <text class='number'>{{item.totalGoodsCount - item.sendGoodsCount}}</text> 盒</view>
+    <view class='customer-number'>关联活动： {{item.activityName}}</view>
+    <button class='look-btn' data-index='{{index}}' bindtap='sendGift'>发送礼品</button>
+  </view>
+  <!-- <view class='gift-item'>
     <image class='gift-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill'></image>
     <view class='gift-name'>{{item.goodsName}}</view>
     <view class='gift-number'>
@@ -14,13 +21,13 @@
       关联活动：{{item.activityName}}
     </view>
     <button class='send-btn' data-index='{{index}}' bindtap='sendGift'>发送礼品</button>
-  </view>
+  </view> -->
 </block>
 <view wx:if='{{disList.length===0}}' class='nothing'>
   <image class='no-icon' src='../img/carno.png'></image>
   <text>没有相关礼品</text>
 </view>
-<view wx:if='{{noMore}}' class='refresh'>
+<view wx:if='{{noMore && disList.length > 0}}' class='refresh'>
   <text>没有更多了</text>
 </view>
 

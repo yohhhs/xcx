@@ -16,7 +16,7 @@
   </view>
   <view class='gift-info-item'>
     <view class='gift-number'>
-      <text class='number-normal'>{{userDetail.notsendCount}}</text>
+      <text class='number-normal'>{{userDetail.notSendCount}}</text>
     </view>
     <text class='type-name'>待派送礼物数</text>
   </view>

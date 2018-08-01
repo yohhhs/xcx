@@ -2,7 +2,9 @@ const network = require('../../common/newwork.js')
 Page({
   data: {
     currentType: '',
-    orderList: []
+    orderList: [],
+    noMore: false,
+    pageNo: 1
   },
   onLoad (options) {
     this.setData({
@@ -15,18 +17,32 @@ Page({
   getOrderList () {
     network.POST('/purchaseOrder/getPurchaseOrderList', {
       agentMemberId: wx.getStorageSync('token'),
-      orderState: this.data.currentType
+      orderState: this.data.currentType,
+      pageNo: this.data.pageNo,
+      pageSize: 10
     }).then(res => {
+      wx.hideLoading()
       if (res.statusCode === 200) {
+        if (res.data.list.length === 0) {
+          this.setData({
+            noMore: true
+          })
+          return
+        }
+        let list = this.data.orderList
+        list.push(...res.data.list)
         this.setData({
-          orderList: res.data
+          orderList: list
         })
       }
     })
   },
   changeOrderType (e) {
     this.setData({
-      currentType: e.currentTarget.dataset.type
+      currentType: e.currentTarget.dataset.type,
+      pageNo: 1,
+      noMore: false,
+      orderList: []
     })
     this.getOrderList()
   },
@@ -134,5 +150,17 @@ Page({
     }).catch(err => {
       wx.hideLoading()
     })
+  },
+  onReachBottom() {
+    if (this.data.noMore) {
+      return
+    }
+    wx.showLoading({
+      title: '玩命加载中'
+    })
+    this.setData({
+      pageNo: this.data.pageNo + 1
+    })
+    this.getOrderList()
   }
 })

@@ -7,3 +7,10 @@
     <button class='look-btn' data-item='{{item}}' bindtap='lookCustomerList'>查看客户列表</button>
   </view>
 </block>
+<view wx:if='{{customerList.length===0}}' class='nothing'>
+  <image class='no-icon' src='../img/carno.png'></image>
+  <text>没有相关客户</text>
+</view>
+<view wx:if='{{noMore && customerList.length > 0}}' class='refresh'>
+  <text>没有更多了</text>
+</view>

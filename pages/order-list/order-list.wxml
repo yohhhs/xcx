@@ -36,3 +36,6 @@
   </view>
 </block>
 <view wx:if='{{orderList.length === 0}}' class='no-order'>没有相关订单</view>
+<view wx:if='{{noMore && orderList.length > 0}}' class='refresh'>
+  <text>没有更多了</text>
+</view>

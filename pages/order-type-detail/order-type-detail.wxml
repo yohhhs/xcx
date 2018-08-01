@@ -24,7 +24,7 @@
   <view class="order-item-content">
     <image wx:if='{{orderDetail.indexImage}}' class="order-item-img" src='{{"https://www.topasst.com/images/" + orderDetail.indexImage}}'></image>
     <view class="order-item-desc">
-      <view class="order-shopping-name">{{orderDetail.goodsName}}</view>
+      <view class="order-shopping-name clamp3">{{orderDetail.goodsName}}</view>
       <view class="order-shopping-price">
         <text class="order-price">￥{{orderDetail.salePrice}}</text>
         <text class='order-item-count'>x{{orderDetail.goodsCount}}</text>

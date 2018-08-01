@@ -12,7 +12,7 @@
   <view class="order-item-content">
     <image class="order-item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
     <view class="order-item-desc">
-      <view class="order-shopping-name">{{item.goodsName}}</view>
+      <view class="order-shopping-name clamp3">{{item.goodsName}}</view>
       <view class="order-shopping-price">
         <text class="order-price">￥{{item.salePrice}}</text>
         <text class='order-item-count'>x{{item.goodsCount}}</text>

@@ -12,6 +12,10 @@ Page({
     })
   },
   onShow: function () {
+    this.setData({
+      pageNo: 1,
+      orderList: []
+    })
     this.getOrderList()
   },
   getOrderList () {

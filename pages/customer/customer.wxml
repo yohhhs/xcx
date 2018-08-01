@@ -1,7 +1,7 @@
 <block wx:for='{{customerList}}' wx:key='{{index}}'>
   <view class='customer-item'>
     <image class='shop-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
-    <view class='shop-name'>{{item.goodsName}}</view>
+    <view class='shop-name clamp2'>{{item.goodsName}}</view>
     <view class='customer-number'>领取客户 <text class='number'>{{item.sendGoodsCount}}</text> 个</view>
     <view class='customer-number'>转介绍客户 <text class='number'>{{item.transferCount}}</text> 个</view>
     <button class='look-btn' data-item='{{item}}' bindtap='lookCustomerList'>查看客户列表</button>

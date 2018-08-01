@@ -13,7 +13,7 @@
       <text class='c-price'>￥{{item.salePrice}}</text>
       <text class='m-price'>市价 ￥{{item.marketPrice}}</text> 
     </view>
-    <view class='product-name'>{{item.goodsName}}</view>
+    <view class='product-name clamp2'>{{item.goodsName}}</view>
     <view class='product-order'>
       <text space='true' decode='true'>营业部起订量:{{item.purchaseMinCount}}盒&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量:{{item.saleCount}}盒</text>
     </view>

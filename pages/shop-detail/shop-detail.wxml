@@ -5,7 +5,7 @@
     <view class='down-time'>集采结束时间：{{detail.purchaseEndTime}}</view>
   </view>
   <view class='shopping-desc'>
-    <view class='shopping-name'>{{detail.goodsName}}</view>
+    <view class='shopping-name clamp2'>{{detail.goodsName}}</view>
     <view class='price-type'>
       <text class='c-price'>¥{{detail.salePrice}}</text>
       <text class='m-price'>市价¥{{detail.marketPrice}}</text>

@@ -6,7 +6,7 @@
 <block wx:for='{{disList}}' wx:key='{{item.giftRecordId}}'>
  <view class='customer-item'>
     <image class='shop-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
-    <view class='shop-name'>{{item.goodsName}}</view>
+    <view class='shop-name clamp2'>{{item.goodsName}}</view>
     <view class='customer-number'>剩余数量： <text class='number'>{{item.totalGoodsCount - item.sendGoodsCount}}</text> 盒</view>
     <view class='customer-number'>关联活动： {{item.activityName}}</view>
     <button class='look-btn' data-index='{{index}}' bindtap='sendGift'>发送礼品</button>

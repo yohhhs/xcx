@@ -10,6 +10,6 @@
   </view>
 </block>
 <view wx:if='{{renderSendGift.length == 0}}' class='no-send'>没有派送信息</view>
-<view wx:if='{{noMore}}' class='refresh'>
+<view wx:if='{{noMore && renderSendGift.length > 0}}' class='refresh'>
   <text>没有更多了</text>
 </view>

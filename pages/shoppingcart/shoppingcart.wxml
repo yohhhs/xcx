@@ -12,7 +12,7 @@
   <view class="item-content">
     <image class="item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
     <view class="item-desc">
-      <view class="shopping-name">{{item.goodsName}}</view>
+      <view class="shopping-name clamp2">{{item.goodsName}}</view>
       <view class="shopping-price">
         <text class="price">¥{{item.salePrice}}</text>
       </view>

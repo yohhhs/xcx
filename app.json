@@ -16,7 +16,8 @@
     "pages/change-sale/change-sale",
     "pages/order-list/order-list",
     "pages/order-type-detail/order-type-detail",
-    "pages/send-gift/send-gift"
+    "pages/send-gift/send-gift",
+    "pages/give-auth/give-auth"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,22 +37,10 @@
         "selectedIconPath": "pages/img/home-icon1.png"
       },
       {
-        "pagePath": "pages/distribute/distribute",
-        "text": "派发",
-        "iconPath": "pages/img/gift-icon.png",
-        "selectedIconPath": "pages/img/gift-icon1.png"
-      },
-      {
         "pagePath": "pages/shoppingcart/shoppingcart",
         "text": "购物车",
         "iconPath": "pages/img/cart-icon.png",
         "selectedIconPath": "pages/img/cart-icon1.png"
-      },
-      {
-        "pagePath": "pages/customer/customer",
-        "text": "客户",
-        "iconPath": "pages/img/cus-icon.png",
-        "selectedIconPath": "pages/img/cus-icon1.png"
       },
       {
         "pagePath": "pages/user/user",

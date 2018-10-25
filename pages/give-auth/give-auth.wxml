@@ -1,0 +1,4 @@
+<!--pages/give-auth/give-auth.wxml-->
+<image class='app-logo' src='../img/waitpay.png'></image>
+<view class='tips'>需要使用你的微信昵称和头像</view>
+<button class='auth-btn' open-type="getUserInfo" bindgetuserinfo='getUserInfo'>点击授权</button>

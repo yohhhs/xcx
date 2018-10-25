@@ -1,8 +1,20 @@
 <!--index.wxml-->
 <!-- <open-data type="userAvatarUrl"></open-data> -->
-<view class='product-number'>
-  <text>当前共{{giftList.length}}款产品在销售</text>
-</view>
+<block wx:if='{{item.goodsList.length !== 0}}' wx:for='{{specialList}}' wx:key='{{item.goodsSpecialId}}'>
+  <view class='type-title'>{{item.goodsSpecialName}}</view>
+  <scroll-view class="type-list" scroll-x='true'>
+    <block wx:for='{{item.goodsList}}' wx:key='{{item.goodsSpecialId}}' wx:for-item="goodsItem">
+      <view class="type-list-item">
+        <image class='type-list-item-img' src='{{"https://www.topasst.com/images/" + goodsItem.indexImage}}' mode='aspectFill'></image>
+        <view class='type-list-item-name'>{{goodsItem.goodsName}}</view>
+        <view class='price-item'>
+          <text>￥{{goodsItem.salePrice}}</text>
+          <text class='p12'>{{goodsItem.salePrice}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</block>
 <block wx:for='{{giftList}}' wx:key='{{item.purchaseGoodsId}}'>
   <view class='product-item'>
     <view class='img-wrapper'>
@@ -15,12 +27,15 @@
     </view>
     <view class='product-name clamp2'>{{item.goodsName}}</view>
     <view class='product-order'>
-      <text space='true' decode='true'>营业部起订量:{{item.purchaseMinCount}}盒&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量:{{item.saleCount}}盒</text>
+      <text space='true' decode='true'>起订量:{{item.purchaseMinCount}}</text>
     </view>
     <image class='go-cart' src='../img/go-cart.png' data-id='{{item.purchaseGoodsId}}' catchtap='addCart'></image>
   </view>
 </block>
-<view wx:if='{{giftList.length === 0}}' class='nothing'>
+<view wx:if='{{noMore && giftList.length > 0}}' class='refresh'>
+  <text>没有更多了</text>
+</view>
+<!-- <view wx:if='{{giftList.length === 0}}' class='nothing'>
   <image class='no-icon' src='../img/carno.png'></image>
   <text>没有相关产品</text>
-</view>
+</view> -->

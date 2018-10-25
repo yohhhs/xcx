@@ -2,10 +2,15 @@ const app = getApp()
 const network = require('../../common/newwork.js')
 Page({
   data: {
-    giftList: null,
-    isRequest: false
+    giftList: [],
+    specialList: [],
+    pageNo: 1,
+    noMore: false
   },
   onLoad() {
+    wx.showShareMenu()
+    this.getGoodsSpecialList()
+    this.getGiftList()
   },
   onShow () {
     // wx.navigateTo({
@@ -13,16 +18,80 @@ Page({
     // })
     // return
     let token = wx.getStorageSync('token')
-    let isBingding = wx.getStorageSync('isBinding')
-    let isRequest = this.data.isRequest
-
-    if (token && isBingding) {
-      this.getGiftList()
-    } else {
-      wx.navigateTo({
-        url: '../login/login'
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.redirectTo({
+            url: '../give-auth/give-auth'
+          })
+        }
+      }
+    })
+    if (!token) {
+      wx.login({
+        success: (res) => {
+          if (res.code) {
+            wx.setClipboardData({
+              data: res.code,
+              success(res) {
+              }
+            })
+            network.POST('/wechat/registerByCode', {
+              loginCode: res.code
+            }).then(data => {
+              wx.setStorageSync('token', data.data.memberId)
+            })
+          } else {
+            wx.showToast({
+              title: '登录失败！' + res.errMsg,
+              icon: 'none'
+            })
+          } 
+        }
       })
     }
+  },
+  getGiftList() {
+    network.POST('/goods/getGoodsList', {
+      pageNo: this.data.pageNo,
+      pageSize: 10
+    }).then(res => {
+      wx.hideLoading()
+      if (res.statusCode === 200) {
+        if (res.data.list.length > 0) {
+          let list = this.data.giftList
+          list.push(...res.data.list)
+          this.setData({
+            giftList: list,
+            pageNo: this.data.pageNo + 1
+          })
+        } else {
+          this.setData({
+            noMore: true
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '请求失败~',
+          icon: 'none'
+        })
+      }
+    }).catch(err => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '请求失败~',
+        icon: 'none'
+      })
+    })
+  },
+  getGoodsSpecialList () {
+    network.POST('/goodsSpecial/getGoodsSpecialList').then(data => {
+      if (data.statusCode === 200) {
+        this.setData({
+          specialList: data.data
+        })
+      }
+    })
   },
   goShopDetail(event) {
     let purchaseGoodsId = event.currentTarget.dataset.id
@@ -50,17 +119,13 @@ Page({
       })
     })
   },
-  getUser(e) {
-    console.log(e)
-  },
-  getGiftList () {
-    network.POST('/purchaseGoods/getPurchaseGoodsList', {
-      agentMemberId: wx.getStorageSync('token')
-    }).then(res => {
-      this.setData({
-        giftList: res.data,
-        isRequest: true
-      })
+  onReachBottom() {
+    if (this.data.noMore) {
+      return
+    }
+    wx.showLoading({
+      title: '玩命加载中'
     })
+    this.getGiftList()
   }
 })

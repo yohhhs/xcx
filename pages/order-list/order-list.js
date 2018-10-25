@@ -72,6 +72,11 @@ Page({
           title: '取消成功',
           duration: 1000
         })
+        this.setData({
+          pageNo: 1,
+          orderList: [],
+          noMore: false
+        })
         this.getOrderList()
       } else {
         wx.showToast({
@@ -108,6 +113,11 @@ Page({
             wx.showToast({
               title: '支付成功',
               duration: 1000
+            })
+            this.setData({
+              pageNo: 1,
+              orderList: [],
+              noMore: false
             })
             this.orderList()
           },

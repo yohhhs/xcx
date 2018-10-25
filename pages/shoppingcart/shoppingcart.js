@@ -84,7 +84,7 @@ Page({
         return item.shoppingCartId === selectItem
       })
       shoppingNumber += items.count * 1
-      countPrice = (countPrice * 100 + items.salePrice * items.count * 100) / 100
+      countPrice = (countPrice * 100 + items.salePrice * 100 * items.count) / 100
     })
     this.setData({
       shoppingNumber,

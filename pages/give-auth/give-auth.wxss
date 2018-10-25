@@ -1,0 +1,24 @@
+/* pages/give-auth/give-auth.wxss */
+.app-logo {
+  display: block;
+  margin: 150rpx auto 30rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.tips {
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+}
+.auth-btn {
+  margin-top: 300rpx;
+  width: 360rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  border-radius: 2rpx;
+  background-color: #ed9934;
+}

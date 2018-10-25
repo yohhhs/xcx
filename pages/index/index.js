@@ -100,16 +100,16 @@ Page({
     })
   },
   addCart(event) {
-    let purchaseGoodsId = event.currentTarget.dataset.id
-
+    let goodsId = event.currentTarget.dataset.id
+    let count = event.currentTarget.dataset.count
     wx.showLoading({
       title: '正在加入购物车',
       mask: true
     })
     network.POST('/shoppingCart/addShoppingCart', {
-      agentMemberId: wx.getStorageSync('token'),
-      purchaseGoodsId,
-      count: 1
+      memberId: wx.getStorageSync('token'),
+      goodsId,
+      count
     }).then(data => {
       wx.hideLoading()
       wx.showToast({

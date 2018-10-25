@@ -9,9 +9,8 @@ Page({
     this.setData({
       purchaseGoodsId: options.purchaseGoodsId
     })
-    network.POST('/purchaseGoods/getPurchaseGoodsDetail', {
-      purchaseGoodsId: options.purchaseGoodsId,
-      agentMemberId: wx.getStorageSync('token')
+    network.POST('/goods/getGoodsDetail', {
+      goodsId: options.purchaseGoodsId
     }).then(res => {
       this.setData({
         detail: res.data

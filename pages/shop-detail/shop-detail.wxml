@@ -1,18 +1,21 @@
 <!--pages/shop-detail/shop-detail.wxml-->
 <view wx:if='{{detail !== null}}' class='detail-container'>
-  <view class='cover-wrapper'>
-    <image class='shopping-img' src='{{"https://www.topasst.com/images/" + detail.indexImage}}'></image>
-    <view class='down-time'>集采结束时间：{{detail.purchaseEndTime}}</view>
-  </view>
+  <swiper indicator-dots="true" autoplay="true" interval="3000">
+    <block wx:for="{{detail.imagesList}}">
+      <swiper-item>
+        <image src='{{"https://www.topasst.com/images/" + item.imageName}}' class='shopping-img' mode='aspectFill'/>
+      </swiper-item>
+    </block>
+  </swiper>
   <view class='shopping-desc'>
     <view class='shopping-name clamp2'>{{detail.goodsName}}</view>
     <view class='price-type'>
       <text class='c-price'>¥{{detail.salePrice}}</text>
-      <text class='m-price'>市价¥{{detail.marketPrice}}</text>
+      <text class='m-price'>¥{{detail.marketPrice}}</text>
       <text class='g-price'>包含送货费用</text>
     </view>
     <view class='order-number'>
-      <text space='true' decode='true'>营业部起订量：{{detail.purchaseMinCount}}盒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;营业部已订量：{{detail.saleCount}}盒</text>
+      <text space='true' decode='true'>起订量：{{detail.purchaseMinCount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;累计销量：{{detail.saleCount}}</text>
     </view>
   </view>
   <view class='handler-order'>
@@ -23,8 +26,8 @@
       <text class='add-btn' bindtap='numberAdd'>+</text>
     </view>
   </view>
-  <view class='active'>配置活动: <text class='active-name'>{{detail.activityName}}</text></view>
-  <view class='shopping-info'>商品信息</view>
+  <view class='active'>商品规格：<text class='active-name'>{{detail.standard}}</text></view>
+  <view class='shopping-info'>商品详细信息</view>
   <image class='shopping-detail-img' src='{{detail.description}}' mode="widthFix"></image>
 </view>
 <view class='join-cart' bindtap='joinCart'>加入购物车</view>

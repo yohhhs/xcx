@@ -2,12 +2,9 @@
 .detail-container {
   padding-bottom: 110rpx;
 }
-.cover-wrapper {
-  position: relative;
-}
-.cover-wrapper, .shopping-img {
+.shopping-img {
   width: 100%;
-  height: 402rpx;
+  height: 600rpx;
 }
 .down-time {
   position: absolute;
@@ -54,6 +51,7 @@
   color: #999;
 }
 .handler-order {
+  margin-top: 20rpx;
   display: flex;
   align-items: center;
   border-bottom: 1rpx solid #f0f0f0;

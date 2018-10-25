@@ -3,33 +3,36 @@
 <block wx:if='{{item.goodsList.length !== 0}}' wx:for='{{specialList}}' wx:key='{{item.goodsSpecialId}}'>
   <view class='type-title'>{{item.goodsSpecialName}}</view>
   <scroll-view class="type-list" scroll-x='true'>
-    <block wx:for='{{item.goodsList}}' wx:key='{{item.goodsSpecialId}}' wx:for-item="goodsItem">
-      <view class="type-list-item">
+    <block wx:for='{{item.goodsList}}' wx:key='{{goodsItem.goodsId}}' wx:for-item="goodsItem">
+      <view class="type-list-item" data-id='{{goodsItem.goodsId}}' bindtap='goShopDetail'>
         <image class='type-list-item-img' src='{{"https://www.topasst.com/images/" + goodsItem.indexImage}}' mode='aspectFill'></image>
         <view class='type-list-item-name'>{{goodsItem.goodsName}}</view>
         <view class='price-item'>
           <text>￥{{goodsItem.salePrice}}</text>
-          <text class='p12'>{{goodsItem.salePrice}}</text>
+          <text class='p12'>{{goodsItem.realPrice}}</text>
         </view>
       </view>
     </block>
   </scroll-view>
 </block>
-<block wx:for='{{giftList}}' wx:key='{{item.purchaseGoodsId}}'>
-  <view class='product-item'>
+<view class='goods-title'><image class='title-icon' src='../img/goods-title-icon.png'></image>热卖商品</view>
+<block wx:for='{{giftList}}' wx:key='{{item.goodsId}}'>
+  <view class='product-item' data-id='{{item.goodsId}}' bindtap='goShopDetail'>
     <view class='img-wrapper'>
-    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='scaleToFill' data-id='{{item.purchaseGoodsId}}'  bindtap='goShopDetail'></image>
-    <view class='time-down'>结束时间：{{item.purchaseEndTime}}</view>
-    </view>
-    <view class='product-price'>
-      <text class='c-price'>￥{{item.salePrice}}</text>
-      <text class='m-price'>市价 ￥{{item.marketPrice}}</text> 
+    <image class='product-img' src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode='aspectFill'></image>
     </view>
     <view class='product-name clamp2'>{{item.goodsName}}</view>
     <view class='product-order'>
-      <text space='true' decode='true'>起订量:{{item.purchaseMinCount}}</text>
+      <text space='true' decode='true'>累计销量：{{item.salesVolume + item.salesVolumeFloat}}</text>
+    </view>   
+    <view class='product-order'>
+      <text space='true' decode='true'>起订量：{{item.minQuantity}}</text>
+    </view>  
+    <view class='product-price'>
+      <text class='c-price'>￥{{item.salePrice}}</text>
+      <text class='m-price'>{{item.realPrice}}</text> 
     </view>
-    <image class='go-cart' src='../img/go-cart.png' data-id='{{item.purchaseGoodsId}}' catchtap='addCart'></image>
+    <image class='go-cart' src='../img/go-cart.png' data-id='{{item.goodsId}}' data-count='{{item.minQuantity}}' catchtap='addCart'></image>
   </view>
 </block>
 <view wx:if='{{noMore && giftList.length > 0}}' class='refresh'>

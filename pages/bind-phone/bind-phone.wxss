@@ -1,0 +1,47 @@
+/* pages/bind-phone/bind-phone.wxss */
+page {
+  background-color: #fff;
+}
+.tips {
+  margin: 60rpx auto;
+  text-align: center;
+  font-size: 32rpx;
+  color: #333;
+}
+.input-box {
+  margin: 0 auto 60rpx;
+  padding: 0 0 5rpx 110rpx;
+  position: relative;
+  width: 90%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f0f0f0;
+}
+.input-label {
+  position: absolute;
+  left: 0;
+  bottom: 12rpx;
+  font-size: 32rpx;
+  color: #666;
+}
+.input-item {
+  width: 200rpx;
+  font-size: 24rpx;
+}
+.input-tip {
+  position: absolute;
+  right: 2rpx;
+  bottom: 12rpx;
+  text-align: right;
+  width: 140rpx;
+  border-left: 1px solid #666;
+  font-size: 24rpx;
+  color: #666;
+}
+.confirm-btn {
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #ed9934;
+}

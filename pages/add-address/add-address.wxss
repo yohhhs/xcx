@@ -1,0 +1,15 @@
+page {
+  background-color: #fff;
+}
+.add-address-item {
+  margin-left: 20rpx;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #ccc;
+}
+.address-input-item {
+  font-size: 28rpx;
+  color: #444;
+}
+.input-placeholder {
+  color: #666;
+}

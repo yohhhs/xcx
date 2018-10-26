@@ -2,25 +2,23 @@
 <checkbox-group bindchange="checkboxChange">
 <block wx:for='{{cartList}}' wx:key='{{item.shoppingCartId}}'>
 <view class='shopping-item'>
-  <view class="item-header">
-    <label>
-        <checkbox value="{{item.shoppingCartId}}" checked="{{item.checked}}" disabled='{{item.canBuy === 0}}'/>
-    </label>
-    <text class="end-time">采集结束时间：{{item.purchaseEndTime}}</text>
-    <image class='del-icon' src='../img/delete.png' data-index='{{index}}' bindtap='deleteCart'></image>
-  </view>
-  <view class="item-content">
-    <image class="item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
+  <label class='item-checked'>
+    <checkbox value="{{item.shoppingCartId}}" checked="{{item.checked}}" disabled='{{item.canBuy === 0}}'/>
+  </label>
+  <image class='del-icon' src='../img/delete.png' data-index='{{index}}' bindtap='deleteCart'></image>
+  <view class="item-content" data-id='{{item.goodsId}}' bindtap='goDetail'>
+    <image class="item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}' mode="aspectFill"></image>
     <view class="item-desc">
       <view class="shopping-name clamp2">{{item.goodsName}}</view>
       <view class="shopping-price">
-        <text class="price">¥{{item.salePrice}}</text>
+        <text class="price">¥ {{item.salePrice}}</text>
+        <text class="min-count">起订量：{{item.minQuantity}}</text>
       </view>
       <view class='number-wrapper'>
         <view class='number-handle'>
-          <text class='del-btn' data-index='{{index}}' bindtap='numberDel'>-</text>
-          <input class='number-input' data-index='{{index}}' value='{{item.count}}' type='number' bindchange='giftNumberChange' disabled='true' bindtap='changeNumber'/>
-          <text class='add-btn' data-index='{{index}}' bindtap='numberAdd'>+</text>
+          <text class='del-btn' data-index='{{index}}' catchtap='numberDel'>-</text>
+          <input class='number-input' data-index='{{index}}' value='{{item.count}}' type='number' bindchange='giftNumberChange' disabled='true' catchtap='changeNumber'/>
+          <text class='add-btn' data-index='{{index}}' catchtap='numberAdd'>+</text>
         </view>
       </view>
     </view>

@@ -1,11 +1,13 @@
 <view class='address-wrapper'>
   <image class='address-icon' src='../img/address.png'></image>
-  <view class='receive-people'>
+  <image class='arrow-icon' src='../img/arrow-right.png' mode='aspectFit' bindtap='goAddressList'></image>
+  <view wx:if="{{addressDetail}}" class='receive-info'>
   <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}})</text>
   </view>
-  <view class='recevie-address'>
+  <view wx:if="{{addressDetail}}" class='receive-info recevie-address'>
   <text>收货地址：{{orderDetail.receiveAddress}}</text>
   </view>
+  <view wx:if="{{!addressDetail}}" class='receive-info'>请添加收货地址</view>
 </view>
 <block wx:for='{{orderDetail}}' wx:key='{{item.purchaseOrderId}}'>
 <view class='order-shopping-item'>
@@ -22,12 +24,12 @@
 </view>
 </block>
 <view class='order-count'>
-  共计 <text class='order-count-number'>{{orderDetail.totalGoods}}</text> 件商品
+  共计 <text class='order-count-number'>{{totalCount}}</text> 件商品
 </view>
 <view class='price-detail'>
   <view class='goods-count-price'>
     <text class='price-type-name'>商品总价：</text>
-    <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
+    <text class='price-detail-number'>￥{{totalMoney}}</text>
   </view>
   <view class='other-price'>
     <text class='price-type-name'>运费及其他：</text>
@@ -42,6 +44,6 @@
 </view>
 </view>
 <view class='order-detail-footer'>
-  <text>￥{{orderDetail.totalMoney}}</text>
-  <button class='confirm-pay-btn' bindtap='confirmPay' disabled='{{isPay}}'>确认支付</button>
+  <text>￥{{totalMoney}}</text>
+  <button class='confirm-pay-btn' bindtap='confirmPay' disabled='{{isPay}}'>确认订单</button>
 </view>

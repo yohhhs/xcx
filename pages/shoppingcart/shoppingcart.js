@@ -22,7 +22,7 @@ Page({
   },
   getCartList () {
     network.POST('/shoppingCart/getShoppingCartList', {
-      agentMemberId: wx.getStorageSync('token')
+      memberId: wx.getStorageSync('token')
     }).then(res => {
       this.setData({
         cartList: res.data
@@ -53,10 +53,8 @@ Page({
     if (this.data.isSelectAll) {
       let orderList = []
       cartList.forEach(item => {
-        if (item.canBuy === 1) {
-          item.checked = true
-          orderList.push(item.shoppingCartId)
-        }
+        item.checked = true
+        orderList.push(item.shoppingCartId)
       })
       this.setData({
         orderList
@@ -102,7 +100,7 @@ Page({
   },
   numberDel(e) {
     let index = e.currentTarget.dataset.index
-    if (this.data.cartList[index].count > 1) {
+    if (this.data.cartList[index].count > this.data.cartList[index].minQuantity) {
       this.setData({
         currentIndex: index,
         currentCount: this.data.cartList[index].count - 1
@@ -129,23 +127,23 @@ Page({
   giftNumberChange(e) {
     let number = e.detail.value * 1
     if (/^\+?[1-9][0-9]*$/.test(number)) {
-      if ((number + '')[0] !== '0') {
+      if ((number + '')[0] !== '0' && number >= this.data.minQuantity) {
         this.setData({
           currentCount: number
         })
       } else {
         this.setData({
-          currentCount: 1
+          currentCount: this.data.cartList[this.data.currentIndex].minQuantity
         })
       }
     } else {
       this.setData({
-        currentCount: 1
+        currentCount: this.data.cartList[this.data.currentIndex].minQuantity
       })
     }
   },
   modalNumberDel () {
-    if (this.data.currentCount > 1) {
+    if (this.data.currentCount > this.data.cartList[this.data.currentIndex].minQuantity) {
       this.setData({
         currentCount: this.data.currentCount - 1
       })
@@ -157,15 +155,15 @@ Page({
     })
   },
   updateCart () {
-    let agentMemberId = wx.getStorageSync('token')
-    let shoppingCartId = this.data.cartList[this.data.currentIndex].shoppingCartId 
+    let memberId = wx.getStorageSync('token')
+    let shoppingCartId = this.data.cartList[this.data.currentIndex].shoppingCartId
     let count = this.data.currentCount
     wx.showLoading({
       title: 'loading',
       mask: true
     })
     network.POST('/shoppingCart/updateShoppingCart', {
-      agentMemberId,
+      memberId,
       shoppingCartId,
       count
     }).then(res => {
@@ -200,7 +198,7 @@ Page({
             mask: true
           })
           network.POST('/shoppingCart/deleteShoppingCart', {
-            agentMemberId: wx.getStorageSync('token'),
+            memberId: wx.getStorageSync('token'),
             shoppingCartId: this.data.cartList[index].shoppingCartId
           }).then(res => {
             let cartList = this.data.cartList
@@ -222,30 +220,36 @@ Page({
         duration: 2000
       })
     } else {
-      wx.showLoading({
-        title: 'loading',
-        mask: true
+      let orderData = JSON.stringify(this.data.cartList)
+      wx.navigateTo({
+        url: '../edit-order/edit-order?orderData=' + orderData
       })
-      network.POST('/purchaseOrder/addPurchaseOrder', {
-        agentMemberId: wx.getStorageSync('token'),
-        shoppingCartIds: this.data.orderList.toString()
-      }).then(res => {
-        wx.hideLoading()
-        if (res.statusCode === 200) {
-          let orderData = JSON.stringify(res.data)
-          wx.navigateTo({
-            url: '../order-detail/order-detail?orderData=' + orderData
-          })
-        } else {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      }).catch(err => {
-        wx.hideLoading()
-      })
+      // network.POST('/purchaseOrder/addPurchaseOrder', {
+      //   agentMemberId: wx.getStorageSync('token'),
+      //   shoppingCartIds: this.data.orderList.toString()
+      // }).then(res => {
+      //   wx.hideLoading()
+      //   if (res.statusCode === 200) {
+      //     let orderData = JSON.stringify(res.data)
+      //     wx.navigateTo({
+      //       url: '../order-detail/order-detail?orderData=' + orderData
+      //     })
+      //   } else {
+      //     wx.showToast({
+      //       title: res.msg,
+      //       icon: 'none',
+      //       duration: 2000
+      //     })
+      //   }
+      // }).catch(err => {
+      //   wx.hideLoading()
+      // })
     }
+  },
+  goDetail(event) {
+    let purchaseGoodsId = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../shop-detail/shop-detail?purchaseGoodsId=' + purchaseGoodsId
+    })
   }
 })

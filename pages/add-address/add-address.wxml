@@ -1,0 +1,12 @@
+<view class='add-address-item'>
+  <input class='address-input-item' focus type='text' placeholder='姓名'></input>
+</view>
+<view class='add-address-item'>
+  <input class='address-input-item' type='text' placeholder='手机号码'></input>
+</view>
+<view class='add-address-item'>
+  <input class='address-input-item' type='number' maxlength='11' placeholder='请输入手机号码'></input>
+</view>
+<view class='add-address-item'>
+  <input class='address-input-item' type='text' placeholder='详细地址，如街道、楼牌号等'></input>
+</view>

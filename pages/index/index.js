@@ -13,10 +13,6 @@ Page({
     this.getGiftList()
   },
   onShow () {
-    // wx.navigateTo({
-    //   url: '../send-gift/send-gift',
-    // })
-    // return
     let token = wx.getStorageSync('token')
     wx.getSetting({
       success: (res) => {
@@ -31,11 +27,6 @@ Page({
       wx.login({
         success: (res) => {
           if (res.code) {
-            wx.setClipboardData({
-              data: res.code,
-              success(res) {
-              }
-            })
             network.POST('/wechat/registerByCode', {
               loginCode: res.code
             }).then(data => {
@@ -100,23 +91,33 @@ Page({
     })
   },
   addCart(event) {
-    let goodsId = event.currentTarget.dataset.id
-    let count = event.currentTarget.dataset.count
-    wx.showLoading({
-      title: '正在加入购物车',
-      mask: true
-    })
-    network.POST('/shoppingCart/addShoppingCart', {
-      memberId: wx.getStorageSync('token'),
-      goodsId,
-      count
-    }).then(data => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加入成功',
-        icon: 'success',
-        duration: 2000
-      })
+    network.POST('/member/checkMobile', {
+      memberId: wx.getStorageSync('token')
+    }).then(res => {
+      if (res.data !== '') {
+        let goodsId = event.currentTarget.dataset.id
+        let count = event.currentTarget.dataset.count
+        wx.showLoading({
+          title: '正在加入购物车',
+          mask: true
+        })
+        network.POST('/shoppingCart/addShoppingCart', {
+          memberId: wx.getStorageSync('token'),
+          goodsId,
+          count
+        }).then(data => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '加入成功',
+            icon: 'success',
+            duration: 2000
+          })
+        })
+      } else {
+        wx.navigateTo({
+          url: '../bind-phone/bind-phone',
+        })
+      }
     })
   },
   onReachBottom() {

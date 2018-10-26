@@ -25,12 +25,15 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
 }
 
 .shopping-item {
-  margin: 0 24rpx;
-  padding-bottom: 29rpx; 
-  border-bottom: 1px solid #ddd;
+  position: relative;
+  padding: 30rpx 80rpx;
+  border-bottom: 1px solid #f0f0f0;
 }
-.item-header {
-  height: 72rpx;
+.item-checked {
+  position: absolute;
+  left: 23rpx;
+  top: 50%;
+  transform: translateY(-50%)
 }
 .end-time {
   margin-left: 13rpx;
@@ -39,26 +42,27 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   font-size: 23rpx;
 }
 .del-icon {
-  float: right;
-  margin-top: 20rpx;
-  width: 28rpx;
-  height: 28rpx;
+  position: absolute;
+  right: 25rpx;
+  top: 105rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 .item-content {
   position: relative;
-  padding-left: 309rpx;
-  height: 156rpx;
+  padding-left: 205rpx;
+  height: 180rpx;
 }
 .item-img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 291rpx;
-  height: 156rpx;
+  width: 180rpx;
+  height: 180rpx;
 }
 .item-desc {
   position: relative;
-  height: 156rpx;
+  height: 180rpx;
 }
 .shopping-name {
   font-size: 26rpx;
@@ -68,12 +72,17 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   position: absolute;
   width: 100%;
   left: 0;
-  bottom: 0;
+  bottom: 65rpx;
+}
+.min-count {
+  margin-left: 40rpx;
+  font-size: 24rpx;
+  color: #666;
 }
 .number-wrapper {
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 0;
 }
 .price {
   font-size: 28rpx;

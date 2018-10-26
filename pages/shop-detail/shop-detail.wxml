@@ -1,21 +1,21 @@
 <!--pages/shop-detail/shop-detail.wxml-->
 <view wx:if='{{detail !== null}}' class='detail-container'>
   <swiper indicator-dots="true" autoplay="true" interval="3000">
-    <block wx:for="{{detail.imagesList}}">
-      <swiper-item>
-        <image src='{{"https://www.topasst.com/images/" + item.imageName}}' class='shopping-img' mode='aspectFill'/>
-      </swiper-item>
-    </block>
+    <swiper-item wx:for="{{detail.imagesList}}" wx:key="item.showIndex">
+      <image src='{{"https://www.topasst.com/images/" + item.imageName}}' class='shopping-img' mode='aspectFill'/>
+    </swiper-item>
   </swiper>
   <view class='shopping-desc'>
+    <image class='share-icon' src='../img/share-icon.png'></image>
+    <button class='share-icon' open-type='share'></button>
     <view class='shopping-name clamp2'>{{detail.goodsName}}</view>
     <view class='price-type'>
       <text class='c-price'>¥{{detail.salePrice}}</text>
-      <text class='m-price'>¥{{detail.marketPrice}}</text>
+      <text class='m-price'>¥{{detail.realPrice}}</text>
       <text class='g-price'>包含送货费用</text>
     </view>
     <view class='order-number'>
-      <text space='true' decode='true'>起订量：{{detail.purchaseMinCount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;累计销量：{{detail.saleCount}}</text>
+      <text space='true' decode='true'>起订量：{{detail.minQuantity}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;累计销量：{{detail.salesVolume + detail.salesVolumeFloat}}</text>
     </view>
   </view>
   <view class='handler-order'>

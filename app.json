@@ -17,7 +17,12 @@
     "pages/order-list/order-list",
     "pages/order-type-detail/order-type-detail",
     "pages/send-gift/send-gift",
-    "pages/give-auth/give-auth"
+    "pages/give-auth/give-auth",
+    "pages/bind-phone/bind-phone",
+    "pages/edit-order/edit-order",
+    "pages/address-list/address-list",
+    "pages/add-address/add-address",
+    "pages/edit-address/edit-address"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -2,7 +2,7 @@
 <view wx:if='{{detail !== null}}' class='detail-container'>
   <swiper indicator-dots="true" autoplay="true" interval="3000">
     <swiper-item wx:for="{{detail.imagesList}}" wx:key="item.showIndex">
-      <image src='{{"https://www.topasst.com/images/" + item.imageName}}' class='shopping-img' mode='aspectFill'/>
+      <image src='{{"https://www.topasst.com/images/" + item.imageName}}' class='shopping-img' mode='aspectFit'/>
     </swiper-item>
   </swiper>
   <view class='shopping-desc'>

@@ -17,7 +17,7 @@ function orderType (state) {
       color = "#ec8541";
       break;
     case 4:
-      name = "已完成";
+      name = "已收货";
       color = "#81cff5";
       break;
     case 9:

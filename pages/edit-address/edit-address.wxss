@@ -1,1 +1,51 @@
-/* pages/edit-address/edit-address.wxss */
+page {
+  background-color: #fff;
+}
+.add-address-item {
+  margin-left: 20rpx;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #ccc;
+}
+.address-input-item {
+  font-size: 28rpx;
+  color: #444;
+}
+.input-placeholder {
+  color: #666;
+}
+.set-default {
+  font-size: 28rpx;
+  color: #666;
+  vertical-align: middle;
+}
+.save-address {
+  margin-top: 40rpx;
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  background-color: #f79d1d;
+  color: #fff;
+}
+checkbox .wx-checkbox-input{
+   border-radius: 50%;
+   width: 34rpx;
+   height: 34rpx;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border-color: #f79d1d;
+   background: #f79d1d;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;
+   width: 34rpx;
+   height: 34rpx;
+   line-height: 34rpx;
+   text-align: center;
+   font-size:25rpx; 
+   color:#fff; 
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}

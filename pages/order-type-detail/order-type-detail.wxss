@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30rpx;
+  padding: 12rpx 30rpx 0;
 	height: 120rpx;
 	background-color: #edad27;
 }
@@ -40,7 +40,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24rpx;
+  padding: 0 24rpx 24rpx;
   border-bottom: 1rpx solid #f0f0f0;
   background-color: #fff;
 }
@@ -62,7 +62,7 @@
   line-height: 74rpx;
   font-size: 34rpx;
 	border-radius: 10rpx;
-	border: solid 1rpx #555;
+	border: solid 1rpx #f0f0f0;
   outline: none;
 }
 .order-cancel-btn {
@@ -72,7 +72,5 @@
 .order-pay-btn {
   color: #fff;
   border: none;
-  background-image: linear-gradient(0deg, 
-		#edae27 0%, 
-		#ec8641 100%);
+  background-color: #edad27;
 }

@@ -4,6 +4,7 @@
   <view class='menu-item {{currentType == 1 ? "active" : ""}}' data-type='1' bindtap='changeOrderType'>待付款</view>
   <view class='menu-item {{currentType == 2 ? "active" : ""}}' data-type='2' bindtap='changeOrderType'>待发货</view>
   <view class='menu-item {{currentType == 3 ? "active" : ""}}' data-type='3' bindtap='changeOrderType'>待收货</view>
+  <view class='menu-item {{currentType == 4 ? "active" : ""}}' data-type='4' bindtap='changeOrderType'>已收货</view>
   <view class='menu-item {{currentType == 9 ? "active" : ""}}' data-type='9' bindtap='changeOrderType'>已取消</view>
 </view>
 
@@ -14,7 +15,7 @@
       <text class='order-status' style='color: {{filters.status(item.orderState).color}}'>{{filters.status(item.orderState).name}}</text>
     </view>
     <view class="order-item-content" data-index='{{index}}' bindtap='goOrderDetail'>
-      <image class="order-item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
+      <image class="order-item-img" mode='aspectFit' src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
       <view class="order-item-desc">
         <view class="order-shopping-name clamp3">{{item.goodsName}}</view>
         <view class="order-shopping-price">
@@ -31,6 +32,7 @@
       <view class='btn-wrapper'>
         <button wx:if='{{item.orderState == 1 || item.orderState == 2}}' class='order-cancel-btn' data-index='{{index}}' bindtap='confirmCancel'>取消订单</button>
         <button wx:if='{{item.orderState == 1}}' class='order-pay-btn' data-index='{{index}}' bindtap='confirmPay'>付款</button>
+        <button wx:if='{{item.orderState == 3}}' class='order-pay-btn' data-index='{{index}}' bindtap='confirmReceive'>确认收货</button>
       </view>
     </view>
   </view>

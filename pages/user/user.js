@@ -1,16 +1,28 @@
 const network = require('../../common/newwork.js')
 Page({
   data: {
-    userDetail: null
+    userDetail: null,
+    userAvatar: '',
+  },
+  onLoad () {
+    this.setData({
+      userAvatar: wx.getStorageSync('avatar'),
+      userName: wx.getStorageSync('nickName')
+    })
   },
   onShow: function () {
-      network.POST('/agentMember/getAgentMember', {
-          agentMemberId: wx.getStorageSync('token')
-      }).then(res => {
-          this.setData({
-              userDetail: res.data
-          })
+    network.POST('/member/getMemberInfo', {
+      memberId: wx.getStorageSync('token')
+    }).then(res => {
+      if (!res.data.mobile) {
+        wx.redirectTo({
+          url: '../bind-phone/bind-phone',
+        })
+      }
+      this.setData({
+          userDetail: res.data
       })
+    })
   },
   changeTel () {
     wx.navigateTo({
@@ -31,6 +43,11 @@ Page({
   goSendGift () {
     wx.navigateTo({
       url: '../send-gift/send-gift',
+    })
+  },
+  goAddressList () {
+    wx.navigateTo({
+      url: '../address-list/address-list',
     })
   }
 })

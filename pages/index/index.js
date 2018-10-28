@@ -8,12 +8,14 @@ Page({
     noMore: false
   },
   onLoad() {
+    // wx.navigateTo({
+    //   url: '../add-address/add-address',
+    // })
     wx.showShareMenu()
     this.getGoodsSpecialList()
     this.getGiftList()
   },
   onShow () {
-    let token = wx.getStorageSync('token')
     wx.getSetting({
       success: (res) => {
         if (!res.authSetting['scope.userInfo']) {
@@ -23,24 +25,29 @@ Page({
         }
       }
     })
-    if (!token) {
-      wx.login({
-        success: (res) => {
-          if (res.code) {
-            network.POST('/wechat/registerByCode', {
-              loginCode: res.code
-            }).then(data => {
-              wx.setStorageSync('token', data.data.memberId)
-            })
-          } else {
-            wx.showToast({
-              title: '登录失败！' + res.errMsg,
-              icon: 'none'
-            })
-          } 
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          network.POST('/wechat/registerByCode', {
+            loginCode: res.code
+          }).then(res => {
+            if (res.statusCode === 200) {
+              wx.setStorageSync('token', res.data.memberId)
+            } else {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none'
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '登录失败！',
+            icon: 'none'
+          })
         }
-      })
-    }
+      }
+    })
   },
   getGiftList() {
     network.POST('/goods/getGoodsList', {
@@ -94,7 +101,7 @@ Page({
     network.POST('/member/checkMobile', {
       memberId: wx.getStorageSync('token')
     }).then(res => {
-      if (res.data !== '') {
+      if (res.statusCode === 200 && res.data) {
         let goodsId = event.currentTarget.dataset.id
         let count = event.currentTarget.dataset.count
         wx.showLoading({
@@ -107,14 +114,21 @@ Page({
           count
         }).then(data => {
           wx.hideLoading()
-          wx.showToast({
-            title: '加入成功',
-            icon: 'success',
-            duration: 2000
-          })
+          if (data.statusCode === 200) {
+            wx.showToast({
+              title: '加入成功',
+              icon: 'success',
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: data.msg,
+              icon: 'none'
+            })
+          }
         })
       } else {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../bind-phone/bind-phone',
         })
       }

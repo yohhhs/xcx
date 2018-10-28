@@ -6,7 +6,7 @@ Page({
   },
   onLoad: function (options) {
     network.POST('/purchaseOrder/getPurchaseOrderDetail', {
-      agentMemberId: wx.getStorageSync('token'),
+      memberId: wx.getStorageSync('token'),
       purchaseOrderId: options.purchaseOrderId
     }).then(res => {
       if (res.statusCode === 200) {
@@ -17,33 +17,42 @@ Page({
     })
   },
   confirmCancel () {
-    wx.showLoading({
-      title: 'loading',
-      mask: true
-    })
-    network.POST('/purchaseOrder/cancelPurchaseOrder', {
-      agentMemberId: wx.getStorageSync('token'),
-      purchaseOrderId: this.data.orderDetail.purchaseOrderId
-    }).then(res => {
-      wx.hideLoading()
-      if (res.statusCode === 200) {
-        wx.showToast({
-          title: '取消成功',
-          duration: 1000
-        })
-        setTimeout(() => {
-          wx.navigateBack()
-        }, 1000)
-      } else {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-          duration: 1000
-        })
+    wx.showModal({
+      title: '取消订单',
+      content: '确定取消订单？',
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            title: 'loading',
+            mask: true
+          })
+          network.POST('/purchaseOrder/cancelPurchaseOrder', {
+            memberId: wx.getStorageSync('token'),
+            purchaseOrderId: this.data.orderDetail.purchaseOrderId
+          }).then(res => {
+            wx.hideLoading()
+            if (res.statusCode === 200) {
+              wx.showToast({
+                title: '取消成功',
+                duration: 1000
+              })
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 1000)
+            } else {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          }).catch(err => {
+            wx.hideLoading()
+          })
+        }
       }
-    }).catch(err => {
-      wx.hideLoading()
     })
+    
   },
   confirmPay () {
     this.setData({
@@ -54,7 +63,7 @@ Page({
       mask: true
     })
     network.POST('/wxPay/wxPay', {
-      agentMemberId: wx.getStorageSync('token'),
+      memberId: wx.getStorageSync('token'),
       purchaseOrderIds: this.data.orderDetail.purchaseOrderId,
       totalMoney: this.data.orderDetail.totalMoney
     }).then(res => {
@@ -115,6 +124,39 @@ Page({
       }
     }).catch(err => {
       wx.hideLoading()
+      wx.showToast({
+        title: '请求失败',
+        icon: 'none'
+      })
+    })
+  },
+  confirmReceive () {
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
+    network.POST('/purchaseOrder/receivePurchaseOrder', {
+      memberId: wx.getStorageSync('token'),
+      purchaseOrderId: this.data.orderDetail.purchaseOrderId
+    }).then(res => {
+      wx.hideLoading()
+      if (res.statusCode === 200) {
+        wx.showToast({
+          title: '确认收货成功'
+        })
+        wx.navigateBack()
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    }).catch(err => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '请求失败',
+        icon: 'none'
+      })
     })
   }
 })

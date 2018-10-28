@@ -1,27 +1,14 @@
 <!--pages/user/user.wxml-->
 <image class='user-bg' src='../img/user-bg.png'></image>
 <view class='user-info'>
-  <open-data class='avatar' type="userAvatarUrl"></open-data>
-  <text class='user-name'>{{userDetail.agentMemberName}}</text>
-  <text class='sale-name'>{{userDetail.saleDepartmentName }}</text>
+  <image class='avatar' src='{{userAvatar}}'></image>
+  <text class='user-name'>{{userName}}</text>
   <text class='user-tel'>{{userDetail.mobile}}</text>
 </view>
-<view class='gift-info-wrapper'>
-  <view class='gift-info-item' bindtap='goSendGift'>
-    <view class='gift-number'>
-      <text class='number-lh'>{{userDetail.sendCount}}</text>
-      <image class='gift-info-icon' src='../img/giftnumber.png'></image>
-    </view>
-    <text class='type-name'>已派发礼物数</text>
-  </view>
-  <view class='gift-info-item'>
-    <view class='gift-number'>
-      <text class='number-normal'>{{userDetail.notSendCount}}</text>
-    </view>
-    <text class='type-name'>待派送礼物数</text>
-  </view>
+<view class='my-order' data-type='' bindtap='goOrderList'>
+我的订单
+<image class='my-order-icon' src='../img/arrow-right.png'></image>
 </view>
-<view class='my-order'>我的订单</view>
 <view class='order-menu'>
   <view class='order-menu-item' data-type='1' bindtap='goOrderList'>
     <view wx:if='{{userDetail.notPayOrder > 0}}' class='order-number'>{{userDetail.notPayOrder}}</view>
@@ -38,16 +25,27 @@
     <image class='order-icon' src='../img/waitre.png'></image>
     <view class='order-type'>待收货</view>
   </view>
-  <view class='order-menu-item' data-type='' bindtap='goOrderList'>
+  <view class='order-menu-item' data-type='4' bindtap='goOrderList'>
     <image class='order-icon' src='../img/allorder.png'></image>
-    <view class='order-type'>全部</view>
+    <view class='order-type'>已收货</view>
   </view>
   <view class='order-menu-item' data-type='9' bindtap='goOrderList'>
     <image class='order-icon' src='../img/cancel.png'></image>
     <view class='order-type'>已取消</view>
   </view>
 </view>
-<view class='change-item' bindtap='changeTel'>
+<view class='change-item' bindtap='goAddressList'>
+  <text class='change-type'>收货地址管理</text>
+  <image class='change-icon1' src='../img/user-address.png'></image>
+  <image class='right-icon' src='../img/arrow-right.png'></image>
+</view>
+<view class='change-item'>
+  <button class='feedback-btn' open-type='feedback'></button>
+  <text class='change-type'>意见反馈</text>
+  <image class='change-icon1' src='../img/user-feedback.png'></image>
+  <image class='right-icon' src='../img/arrow-right.png'></image>
+</view>
+<!-- <view class='change-item' bindtap='changeTel'>
   <text class='change-type'>修改手机号</text>
   <text class='change-content'>{{userDetail.mobile}}</text>
   <image class='change-icon1' src='../img/change-tel-icon.png'></image>
@@ -58,4 +56,4 @@
   <text class='change-content'>{{userDetail.saleDepartmentName}}</text>
   <image class='change-icon2' src='../img/changecompany.png'></image>
   <image class='right-icon' src='../img/arrow-right.png'></image>
-</view>
+</view> -->

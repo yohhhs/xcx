@@ -7,16 +7,16 @@
     <image wx:if='{{orderDetail.orderState == 9}}' class='order-status-icon' src='../img/qx.png'></image>
     <text class='order-status-name'>{{filters.status(orderDetail.orderState).name}}</text>
   </view>
-  <view wx:if='{{orderDetail.orderState == 1}}' class='order-pay-time'>集采结束时间：{{orderDetail.purchaseEndTime}}</view>
+  <!-- <view wx:if='{{orderDetail.orderState == 1}}' class='order-pay-time'>集采结束时间：{{orderDetail.purchaseEndTime}}</view> -->
   <view wx:if='{{orderDetail.orderState == 4}}' class='order-pay-time'>收货时间：{{orderDetail.receiveTimeStr}}</view>
   <view wx:if='{{orderDetail.orderState == 9}}' class='order-pay-time'>取消时间：{{orderDetail.cancelTime}}</view>
 </view>
 <view class='address-wrapper'>
   <image class='address-icon' src='../img/address.png'></image>
-  <view class='receive-people'>
-  <text>收货人：{{orderDetail.receiveMemberName}}({{orderDetail.receiveMobile}})</text>
+  <view class='receive-info'>
+  <text>收货人：{{orderDetail.name}} ({{orderDetail.mobile}})</text>
   </view>
-  <view class='recevie-address'>
+  <view class='receive-info recevie-address'>
   <text>收货地址：{{orderDetail.receiveAddress}}</text>
   </view>
 </view>
@@ -33,7 +33,7 @@
   </view>
 </view>
 <view class='order-count'>
-  共计 <text class='order-count-number'>{{orderDetail.totalGoods}}</text> 件商品
+  共计 <text class='order-count-number'>{{orderDetail.goodsCount}}</text> 件商品
 </view>
 <view class='order-info'>
   <view class='order-info-item'>订单编号：{{orderDetail.purchaseOrderNumber}}</view>
@@ -59,7 +59,8 @@
   <text class='price-type-name'>合计</text>
   <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
 </view>
-<view class='btn-wrapper' wx:if='{{orderDetail.orderState == 1 || orderDetail.orderState == 2}}'>
-  <button class='order-cancel-btn' bindtap='confirmCancel'>取消订单</button>
+<view class='btn-wrapper' wx:if='{{orderDetail.orderState == 1 || orderDetail.orderState == 2 || orderDetail.orderState == 3}}'>
+  <button wx:if='{{orderDetail.orderState !== 3}}' class='order-cancel-btn' bindtap='confirmCancel'>取消订单</button>
   <button wx:if='{{orderDetail.orderState == 1}}' disabled='{{isPay}}' class='order-pay-btn' bindtap='confirmPay'>立即支付</button>
+  <button wx:if='{{orderDetail.orderState == 3}}' disabled='{{isReceve}}' class='order-pay-btn' bindtap='confirmReceive'>确认收货</button>
 </view>

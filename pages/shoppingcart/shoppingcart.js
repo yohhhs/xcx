@@ -24,10 +24,23 @@ Page({
     network.POST('/shoppingCart/getShoppingCartList', {
       memberId: wx.getStorageSync('token')
     }).then(res => {
-      this.setData({
-        cartList: res.data
+      if (res.statusCode === 200) {
+        this.setData({
+          cartList: res.data
+        })
+        this.selectAll()
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+      wx.showToast({
+        title: '请求失败',
+        icon: 'none'
       })
-      this.selectAll()
     })
   },
   checkboxChange (e) {
@@ -81,8 +94,10 @@ Page({
       let items = this.data.cartList.find(item => {
         return item.shoppingCartId === selectItem
       })
-      shoppingNumber += items.count * 1
-      countPrice = (countPrice * 100 + items.salePrice * 100 * items.count) / 100
+      if (items) {
+        shoppingNumber += items.count * 1
+        countPrice = (countPrice * 100 + items.salePrice * 100 * items.count) / 100
+      }
     })
     this.setData({
       shoppingNumber,
@@ -201,11 +216,14 @@ Page({
             memberId: wx.getStorageSync('token'),
             shoppingCartId: this.data.cartList[index].shoppingCartId
           }).then(res => {
-            let cartList = this.data.cartList
-            cartList.splice(index, 1)
-            this.setData({
-              cartList
-            })
+            if (res.statusCode === 200) {
+              let cartList = this.data.cartList
+              cartList.splice(index, 1)
+              this.setData({
+                cartList
+              })
+              this.countNumberAndPrice()
+            }
             wx.hideLoading()
           })
         }
@@ -220,30 +238,18 @@ Page({
         duration: 2000
       })
     } else {
-      let orderData = JSON.stringify(this.data.cartList)
-      wx.navigateTo({
-        url: '../edit-order/edit-order?orderData=' + orderData
+      let orderData = []
+      this.data.orderList.forEach(selectItem => {
+        let items = this.data.cartList.find(item => {
+          return item.shoppingCartId === selectItem
+        })
+        if (items) {
+          orderData.push(items)
+        }
       })
-      // network.POST('/purchaseOrder/addPurchaseOrder', {
-      //   agentMemberId: wx.getStorageSync('token'),
-      //   shoppingCartIds: this.data.orderList.toString()
-      // }).then(res => {
-      //   wx.hideLoading()
-      //   if (res.statusCode === 200) {
-      //     let orderData = JSON.stringify(res.data)
-      //     wx.navigateTo({
-      //       url: '../order-detail/order-detail?orderData=' + orderData
-      //     })
-      //   } else {
-      //     wx.showToast({
-      //       title: res.msg,
-      //       icon: 'none',
-      //       duration: 2000
-      //     })
-      //   }
-      // }).catch(err => {
-      //   wx.hideLoading()
-      // })
+      wx.navigateTo({
+        url: '../edit-order/edit-order?orderData=' + JSON.stringify(orderData)
+      })
     }
   },
   goDetail(event) {

@@ -87,7 +87,7 @@ button:after {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 152rpx;
+  height: 172rpx;
   background-color: #fff;
   overflow: hidden;
 }
@@ -119,7 +119,7 @@ button:after {
 }
 .order-item-content {
   position: relative;
-  padding: 35rpx 0 35rpx 315rpx;
+  padding: 35rpx 0 35rpx 180rpx;
   height: 156rpx;
   border-bottom: 1px solid #ddd;
 }
@@ -127,7 +127,7 @@ button:after {
   position: absolute;
   top: 35rpx;
   left: 0;
-  width: 291rpx;
+  width: 156rpx;
   height: 156rpx;
 }
 .order-item-desc {
@@ -212,10 +212,10 @@ button:after {
   background-color: #fff;
 }
 .refresh {
-  height: 60rpx;
-  line-height: 50rpx;
+  height: 80rpx;
+  line-height: 75rpx;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #999;
 }
 .nothing {

@@ -83,24 +83,34 @@ Page({
     }
   },
   joinCart () {
-    wx.showLoading({
-      title: '正在加入购物车',
-      mask: true
-    })
-    network.POST('/shoppingCart/addShoppingCart', {
-      memberId: wx.getStorageSync('token'),
-      goodsId: this.data.purchaseGoodsId,
-      count: this.data.giftNumber
+    network.POST('/member/checkMobile', {
+      memberId: wx.getStorageSync('token')
     }).then(res => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加入成功',
-        icon: 'success',
-        duration: 200
-      })
-      wx.switchTab({
-        url: '/pages/shoppingcart/shoppingcart',
-      })
+      if (res.statusCode === 200 && res.data) {
+        wx.showLoading({
+          title: '正在加入购物车',
+          mask: true
+        })
+        network.POST('/shoppingCart/addShoppingCart', {
+          memberId: wx.getStorageSync('token'),
+          goodsId: this.data.purchaseGoodsId,
+          count: this.data.giftNumber
+        }).then(res => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '加入成功',
+            icon: 'success',
+            duration: 200
+          })
+          wx.switchTab({
+            url: '/pages/shoppingcart/shoppingcart',
+          })
+        })
+      } else {
+        wx.redirectTo({
+          url: '../bind-phone/bind-phone',
+        })
+      }
     })
   },
   onShareAppMessage (res) {

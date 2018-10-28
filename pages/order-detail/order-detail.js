@@ -23,7 +23,7 @@ Page({
       ids.push(item.purchaseOrderId)
     })
     network.POST('/wxPay/wxPay', {
-      agentMemberId: wx.getStorageSync('token'),
+      memberId: wx.getStorageSync('token'),
       purchaseOrderIds: ids.toString(),
       totalMoney: this.data.orderDetail.totalMoney
     }).then(res => {

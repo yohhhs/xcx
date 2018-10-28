@@ -1,47 +1,26 @@
-<view class='address-wrapper'>
-  <image class='address-icon' src='../img/address.png'></image>
-  <view class='receive-people'>
-  <text>收货人：{{orderDetail.receiveMember}}({{orderDetail.receiveMobile}})</text>
-  </view>
-  <view class='recevie-address'>
-  <text>收货地址：{{orderDetail.receiveAddress}}</text>
-  </view>
+<view class='add-address-item'>
+  <input class='address-input-item' focus value='{{name}}' type='text' placeholder='姓名' bindinput='nameChange'></input>
 </view>
-<block wx:for='{{orderDetail}}' wx:key='{{item.purchaseOrderId}}'>
-<view class='order-shopping-item'>
-  <view class="order-item-content">
-    <image class="order-item-img" src='{{"https://www.topasst.com/images/" + item.indexImage}}'></image>
-    <view class="order-item-desc">
-      <view class="order-shopping-name clamp3">{{item.goodsName}}</view>
-      <view class="order-shopping-price">
-        <text class="order-price">￥{{item.salePrice}}</text>
-        <text class='order-item-count'>x{{item.count}}</text>
-      </view>
-    </view>
-  </view>
+<view class='add-address-item'>
+  <input class='address-input-item' value='{{mobile}}' type='text' placeholder='手机号码' bindinput='phoneChange'></input>
 </view>
-</block>
-<view class='order-count'>
-  共计 <text class='order-count-number'>{{orderDetail.totalGoods}}</text> 件商品
+<view class='add-address-item'>
+ <picker mode="multiSelector" range="{{cityArray}}" bindcolumnchange="columnchange" value="{{cityIndex}}" bindchange='pickchange'>
+    <input class='address-input-item' value='{{provinceName + cityName + districtName}}' type='text' placeholder='省份、城市、区县'></input> 
+  </picker>
 </view>
-<view class='price-detail'>
-  <view class='goods-count-price'>
-    <text class='price-type-name'>商品总价：</text>
-    <text class='price-detail-number'>￥{{orderDetail.totalMoney}}</text>
-  </view>
-  <view class='other-price'>
-    <text class='price-type-name'>运费及其他：</text>
-    <text class='price-detail-number'>+￥0.00</text>
-  </view>
+<view class='add-address-item'>
+  <input class='address-input-item' value='{{addressDetail}}' type='number' placeholder='详细地址，如街道、楼牌号等' bindinput='addressDetailChange'></input>
 </view>
-<view class='pay-type'>
-<text class='pay-type-text'>支付方式</text>
-<view class='wx-sign'>
-<image class='wx-icon' src='../img/weixin.png'></image>
-<text class='wx-pay-text'>微信支付</text>
+<view class='add-address-item'>
+  <input class='address-input-item' value='{{postCode}}' type='number' placeholder='邮编' bindinput='postcodeChange'></input>
 </view>
+<view class='add-address-item'>
+  <checkbox-group bindchange='defaultChange'>
+    <checkbox id='setDefault' class='set-checked' value='isChecked' color='#f79d1d' checked="{{isDefault}}"/>
+    <label for='setDefault' class='set-default'>
+      是否设为默认地址
+    </label>
+  </checkbox-group>
 </view>
-<view class='order-detail-footer'>
-  <text>￥{{orderDetail.totalMoney}}</text>
-  <button class='confirm-pay-btn' bindtap='confirmPay' disabled='{{isPay}}'>确认支付</button>
-</view>
+<button class='save-address' bindtap='saveAddress'>保存</button>

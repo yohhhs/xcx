@@ -1,12 +1,26 @@
 <view class='add-address-item'>
-  <input class='address-input-item' focus type='text' placeholder='姓名'></input>
+  <input class='address-input-item' focus type='text' placeholder='姓名' bindinput='nameChange'></input>
 </view>
 <view class='add-address-item'>
-  <input class='address-input-item' type='text' placeholder='手机号码'></input>
+  <input class='address-input-item' type='text' placeholder='手机号码' bindinput='phoneChange'></input>
 </view>
 <view class='add-address-item'>
-  <input class='address-input-item' type='number' maxlength='11' placeholder='请输入手机号码'></input>
+ <picker mode="multiSelector" range="{{cityArray}}" bindcolumnchange="columnchange" value="{{cityIndex}}" bindchange='pickchange'>
+    <input class='address-input-item' value='{{provinceName + cityName + districtName}}' type='text' placeholder='省份、城市、区县'></input> 
+  </picker>
 </view>
 <view class='add-address-item'>
-  <input class='address-input-item' type='text' placeholder='详细地址，如街道、楼牌号等'></input>
+  <input class='address-input-item' type='number' placeholder='详细地址，如街道、楼牌号等' bindinput='addressDetailChange'></input>
 </view>
+<view class='add-address-item'>
+  <input class='address-input-item' type='number' placeholder='邮编' bindinput='postcodeChange'></input>
+</view>
+<view class='add-address-item'>
+  <checkbox-group bindchange='defaultChange'>
+    <checkbox id='setDefault' class='set-checked' value='isChecked' color='#f79d1d' checked="{{isDefault}}"/>
+    <label for='setDefault' class='set-default'>
+      是否设为默认地址
+    </label>
+  </checkbox-group>
+</view>
+<button class='save-address' bindtap='saveAddress'>保存</button>

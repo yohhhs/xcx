@@ -2,9 +2,13 @@
 .detail-container {
   padding-bottom: 110rpx;
 }
+swiper {
+  height: 375rpx;
+  background-color: #fff;
+}
 .shopping-img {
   width: 100%;
-  height: 600rpx;
+  height: 375rpx;
 }
 .down-time {
   position: absolute;
@@ -102,9 +106,7 @@
   text-align: center;
   font-size: 32rpx;
   color: #fff;
-	background-image: linear-gradient(0deg, 
-		#edae27 0%, 
-		#ec8541 100%);
+	background-color: #edae27;
 }
 .number-handle {
   position: relative;

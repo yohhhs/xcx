@@ -1,7 +1,7 @@
-<view class='address-item' wx:for='{{addressList}}' wx:key='{{item.memberAddressId}}'>
-  <view class='address-info'>{{item.name}}<text class='phone'>{{itme.mobile}}</text><view class='default-flag' wx:if='{{isDefault === 1}}'>默认</view></view>
+<view class='address-item' wx:for='{{addressList}}' wx:key='{{item.memberAddressId}}' data-index='{{index}}' bindtap='chooseAddress'>
+  <view class='address-info'>{{item.name}}<text class='phone'>{{item.mobile}}</text><view class='default-flag' wx:if='{{item.isDefault === 1}}'>默认</view></view>
   <view class='address-desc'>{{item.provinceName + item.cityName + item.districtName + item.addressDetail}}</view>
-  <image class='edit-address' src='../img/address-edit.png' data-index='{{index}}' bindtap='goEditAddress'></image>
+  <image class='edit-address' src='../img/address-edit.png' data-index='{{index}}' catchtap='goEditAddress'></image>
 </view>
 <view class='footer-wrapper'>
   <view class='add-address-btn' bindtap='goAddAddress'>+ 新建地址</view>

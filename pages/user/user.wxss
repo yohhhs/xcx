@@ -64,16 +64,25 @@ page {
   color: #999;
 }
 .my-order {
-  padding: 39rpx 0 19rpx;
-  text-align: center;
-  font-size: 25rpx;
-  color: #999;
+  position: relative;
+  padding: 30rpx 0 30rpx 30rpx;
+  font-size: 28rpx;
+  color: #555;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.my-order-icon {
+  position: absolute;
+  top: 35rpx;
+  right: 31rpx;
+  width: 15rpx;
+  height: 26rpx;
 }
 .order-menu {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 15rpx 0 35rpx;
+  padding: 25rpx 0 35rpx;
+  border-bottom: 20rpx solid #f0f0f0;
 }
 .order-menu-item {
   position: relative;
@@ -108,8 +117,9 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 94rpx 0 113rpx;
+  padding: 0 94rpx 0 80rpx;
   height: 110rpx;
+  border-bottom: 1rpx solid #f0f0f0;
 }
 .change-type {
  font-size: 28rpx;
@@ -122,12 +132,12 @@ page {
 .change-icon1, .change-icon2 {
   position: absolute;
   top: 40rpx;
-  border: 1rpx solid #f0f0f0;
 }
 .change-icon1 {
-  left: 38rpx;
-  width: 42rpx;
-  height: 31rpx;
+  top: 35rpx;
+  left: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 .change-icon2 {
   left: 42rpx;
@@ -140,4 +150,12 @@ page {
   right: 31rpx;
   width: 15rpx;
   height: 26rpx;
+}
+.feedback-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
 }

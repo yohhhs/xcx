@@ -1,7 +1,10 @@
 <!--index.wxml-->
 <!-- <open-data type="userAvatarUrl"></open-data> -->
 <block wx:if='{{item.goodsList.length !== 0}}' wx:for='{{specialList}}' wx:key='{{item.goodsSpecialId}}'>
-  <view class='type-title'>{{item.goodsSpecialName}}</view>
+  <view class='type-title'>
+    <image class='type-title-icon' src='../img/active-icon.png'></image>
+    {{item.goodsSpecialName}}
+  </view>
   <scroll-view class="type-list" scroll-x='true'>
     <block wx:for='{{item.goodsList}}' wx:key='{{goodsItem.goodsId}}' wx:for-item="goodsItem">
       <view class="type-list-item" data-id='{{goodsItem.goodsId}}' bindtap='goShopDetail'>

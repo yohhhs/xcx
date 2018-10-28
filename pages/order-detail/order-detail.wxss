@@ -1,10 +1,8 @@
-
-
 .pay-type {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 29rpx 24rpx; 
+  padding: 0 24rpx 29rpx; 
   font-size: 28rpx;
   background-color: #fff;
 }

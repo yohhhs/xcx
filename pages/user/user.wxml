@@ -11,17 +11,17 @@
 </view>
 <view class='order-menu'>
   <view class='order-menu-item' data-type='1' bindtap='goOrderList'>
-    <view wx:if='{{userDetail.notPayOrder > 0}}' class='order-number'>{{userDetail.notPayOrder}}</view>
+    <view wx:if='{{notPayOrder > 0}}' class='order-number'>{{notPayOrder}}</view>
     <image class='order-icon' src='../img/waitpay.png'></image>
     <view class='order-type'>待付款</view>
   </view>
   <view class='order-menu-item' data-type='2' bindtap='goOrderList'>
-    <view wx:if='{{userDetail.notSendOrder > 0}}' class='order-number'>{{userDetail.notSendOrder}}</view>
+    <view wx:if='{{notSendOrder > 0}}' class='order-number'>{{notSendOrder}}</view>
     <image class='order-icon' src='../img/wait.png'></image>
     <view class='order-type'>待发货</view>
   </view>
   <view class='order-menu-item' data-type='3' bindtap='goOrderList'>
-    <view wx:if='{{userDetail.notReceiveOrder > 0}}' class='order-number'>{{userDetail.notReceiveOrder}}</view>
+    <view wx:if='{{notReceiveOrder > 0}}' class='order-number'>{{notReceiveOrder}}</view>
     <image class='order-icon' src='../img/waitre.png'></image>
     <view class='order-type'>待收货</view>
   </view>

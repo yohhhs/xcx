@@ -3,6 +3,9 @@ Page({
   data: {
     userDetail: null,
     userAvatar: '',
+    notPayOrder: 0,
+    notSendOrder: 0,
+    notReceiveOrder: 0
   },
   onLoad () {
     this.setData({
@@ -22,6 +25,17 @@ Page({
       this.setData({
           userDetail: res.data
       })
+    })
+    network.POST('/purchaseOrder/getOrderCount', {
+      memberId: wx.getStorageSync('token')
+    }).then(res => {
+      if (res.statusCode === 200) {
+        this.setData({
+          notPayOrder: res.data.countState1,
+          notSendOrder: res.data.countState2,
+          notReceiveOrder: res.data.countState3 + res.data.countState5 
+        })
+      }
     })
   },
   changeTel () {

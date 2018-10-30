@@ -18,7 +18,7 @@
     </block>
   </scroll-view>
 </block>
-<view class='goods-title'><image class='title-icon' src='../img/goods-title-icon.png'></image>热卖商品</view>
+<view class='goods-title'><image class='title-icon' src='../img/goods-title-icon.png'></image>臻选系列</view>
 <block wx:for='{{giftList}}' wx:key='{{item.goodsId}}'>
   <view class='product-item' data-id='{{item.goodsId}}' bindtap='goShopDetail'>
     <view class='img-wrapper'>

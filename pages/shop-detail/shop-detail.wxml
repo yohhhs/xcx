@@ -30,4 +30,14 @@
   <view class='shopping-info'>商品详细信息</view>
   <image class='shopping-detail-img' src='{{detail.description}}' mode="widthFix"></image>
 </view>
-<view class='join-cart' bindtap='joinCart'>加入购物车</view>
+<view class='detail-footer'>
+  <view class='footer-btn' bindtap='goIndex'>
+    <image class='footer-icon' src='../img/home-icon1.png'></image>
+    首页
+  </view>
+  <view class='footer-btn' bindtap='goCart'>
+    <image class='footer-icon' src='../img/cart-icon1.png'></image>
+    购物车
+  </view>
+  <view class='join-cart' bindtap='joinCart'>加入购物车</view>
+</view>

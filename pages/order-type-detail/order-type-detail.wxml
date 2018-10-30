@@ -43,6 +43,8 @@
 <view class='order-info' style='margin-bottom: 20rpx;'>
   <view class='order-info-item'>支付方式：微信支付</view>
   <view class='order-info-item'>配送方式：物流运输</view>
+  <view wx:if='{{orderDetail.orderState == 3 || orderDetail.orderState == 4}}' class='order-info-item'>物流类型：{{orderDetail.expressType ? orderDetail.expressType : '暂无相关信息'}}</view>
+  <view wx:if='{{orderDetail.orderState == 3 || orderDetail.orderState == 4}}' class='order-info-item'>物流单号：{{orderDetail.expressNumber ? orderDetail.expressNumber : '暂无相关信息'}}</view>
   <view wx:if='{{orderDetail.orderState == 3 || orderDetail.orderState == 4}}' class='order-info-item'>发货时间：{{orderDetail.sendTime}}</view>
 </view>
 <view class='price-detail'>

@@ -21,7 +21,6 @@ Page({
     })
   },
   onShow () {
-    let token = wx.getStorageSync('token')
     wx.getSetting({
       success: (res) => {
         if (!res.authSetting['scope.userInfo']) {
@@ -31,24 +30,22 @@ Page({
         }
       }
     })
-    if (!token) {
-      wx.login({
-        success: (res) => {
-          if (res.code) {
-            network.POST('/wechat/registerByCode', {
-              loginCode: res.code
-            }).then(data => {
-              wx.setStorageSync('token', data.data.memberId)
-            })
-          } else {
-            wx.showToast({
-              title: '登录失败！' + res.errMsg,
-              icon: 'none'
-            })
-          }
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          network.POST('/wechat/registerByCode', {
+            loginCode: res.code
+          }).then(data => {
+            wx.setStorageSync('token', data.data.memberId)
+          })
+        } else {
+          wx.showToast({
+            title: '登录失败！' + res.errMsg,
+            icon: 'none'
+          })
         }
-      })
-    }
+      }
+    })
   },
   numberDel () {
     if (this.data.giftNumber > this.data.minNumber) {
@@ -102,9 +99,6 @@ Page({
             icon: 'success',
             duration: 200
           })
-          wx.switchTab({
-            url: '/pages/shoppingcart/shoppingcart',
-          })
         })
       } else {
         wx.redirectTo({
@@ -113,19 +107,20 @@ Page({
       }
     })
   },
+  goIndex() {
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
+  goCart() {
+    wx.switchTab({
+      url: '/pages/shoppingcart/shoppingcart',
+    })
+  },
   onShareAppMessage (res) {
     return {
       title: this.data.detail.goodsName,
-      path: '/pages/shop-detail/shop-detail?purchaseGoodsId=' + this.data.purchaseGoodsId,
-      success: function (res) {
-        wx.showToast({
-          title: '分享成功',
-          icon: 'success'
-        })
-      },
-      fail: function (res) {
-        console.log("分享失败")
-      }
+      imageUrl: 'https://www.topasst.com/images/' + this.data.detail.indexImage
     }
   }
 })

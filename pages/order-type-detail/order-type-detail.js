@@ -131,32 +131,40 @@ Page({
     })
   },
   confirmReceive () {
-    wx.showLoading({
-      title: 'loading',
-      mask: true
-    })
-    network.POST('/purchaseOrder/receivePurchaseOrder', {
-      memberId: wx.getStorageSync('token'),
-      purchaseOrderId: this.data.orderDetail.purchaseOrderId
-    }).then(res => {
-      wx.hideLoading()
-      if (res.statusCode === 200) {
-        wx.showToast({
-          title: '确认收货成功'
-        })
-        wx.navigateBack()
-      } else {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
-        })
+    wx.showModal({
+      title: '确认收货',
+      content: '确定收货吗？',
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            title: 'loading',
+            mask: true
+          })
+          network.POST('/purchaseOrder/receivePurchaseOrder', {
+            memberId: wx.getStorageSync('token'),
+            purchaseOrderId: this.data.orderDetail.purchaseOrderId
+          }).then(res => {
+            wx.hideLoading()
+            if (res.statusCode === 200) {
+              wx.showToast({
+                title: '确认收货成功'
+              })
+              wx.navigateBack()
+            } else {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none'
+              })
+            }
+          }).catch(err => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '请求失败',
+              icon: 'none'
+            })
+          })
+        }
       }
-    }).catch(err => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '请求失败',
-        icon: 'none'
-      })
     })
   }
 })

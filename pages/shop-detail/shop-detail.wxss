@@ -3,12 +3,12 @@
   padding-bottom: 110rpx;
 }
 swiper {
-  height: 375rpx;
+  height: 750rpx;
   background-color: #fff;
 }
 .shopping-img {
   width: 100%;
-  height: 375rpx;
+  height: 750rpx;
 }
 .down-time {
   position: absolute;
@@ -95,13 +95,10 @@ swiper {
 }
 .shopping-detail-img {
   width: 100%;
+  height: auto;
 }
 .join-cart {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-	height: 100rpx;
+  width: 60%;
   line-height: 100rpx;
   text-align: center;
   font-size: 32rpx;
@@ -135,4 +132,26 @@ swiper {
   text-align: center;  
   width: 92rpx;
   height: 56rpx;
+}
+.detail-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+	height: 100rpx;
+  display: flex;
+}
+.footer-btn {
+  width: 20%;
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+  background-color: #fff;
+}
+.footer-icon {
+  width: 40rpx;
+  height: 40rpx;
 }

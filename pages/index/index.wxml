@@ -2,7 +2,7 @@
 <!-- <open-data type="userAvatarUrl"></open-data> -->
 <block wx:if='{{item.goodsList.length !== 0}}' wx:for='{{specialList}}' wx:key='{{item.goodsSpecialId}}'>
   <view class='type-title'>
-    <image class='type-title-icon' src='../img/active-icon.png'></image>
+    <!-- <image class='type-title-icon' src='../img/active-icon.png'></image> -->
     {{item.goodsSpecialName}}
   </view>
   <scroll-view class="type-list" scroll-x='true'>
@@ -18,7 +18,10 @@
     </block>
   </scroll-view>
 </block>
-<view class='goods-title'><image class='title-icon' src='../img/goods-title-icon.png'></image>臻选系列</view>
+<view class='goods-title'>
+  <!-- <image class='title-icon' src='../img/goods-title-icon.png'></image> -->
+  臻选系列
+</view>
 <block wx:for='{{giftList}}' wx:key='{{item.goodsId}}'>
   <view class='product-item' data-id='{{item.goodsId}}' bindtap='goShopDetail'>
     <view class='img-wrapper'>

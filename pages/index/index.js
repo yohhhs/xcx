@@ -128,7 +128,7 @@ Page({
           }
         })
       } else {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../bind-phone/bind-phone',
         })
       }

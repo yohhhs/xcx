@@ -28,7 +28,9 @@
   </view>
   <view class='active'>商品规格：<text class='active-name'>{{detail.standard}}</text></view>
   <view class='shopping-info'>商品详细信息</view>
-  <image class='shopping-detail-img' src='{{detail.description}}' mode="widthFix"></image>
+  <block wx:for="{{detailList}}" wx:key="index">
+    <image class='shopping-detail-img' src='{{item}}' mode="widthFix"></image>
+  </block>
 </view>
 <view class='detail-footer'>
   <view class='footer-btn' bindtap='goIndex'>

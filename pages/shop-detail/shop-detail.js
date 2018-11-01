@@ -4,7 +4,8 @@ Page({
     giftNumber: 1,
     detail: null,
     purchaseGoodsId: '',
-    minNumber: 1
+    minNumber: 1,
+    detailList: []
   },
   onLoad: function (options) {
     this.setData({
@@ -16,7 +17,8 @@ Page({
       this.setData({
         detail: res.data,
         minNumber: res.data.minQuantity,
-        giftNumber: res.data.minQuantity
+        giftNumber: res.data.minQuantity,
+        detailList: res.data.description.split(',')
       })
     })
   },

@@ -18,7 +18,7 @@ Page({
       memberId: wx.getStorageSync('token')
     }).then(res => {
       if (!res.data.mobile) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../bind-phone/bind-phone',
         })
       }

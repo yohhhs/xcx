@@ -1,6 +1,6 @@
-<view class='address-wrapper'>
+<view class='address-wrapper' bindtap='goAddressList'>
   <image class='address-icon' src='../img/address.png'></image>
-  <image class='arrow-icon' src='../img/arrow-right.png' mode='aspectFit' bindtap='goAddressList'></image>
+  <image class='arrow-icon' src='../img/arrow-right.png' mode='aspectFit'></image>
   <view wx:if="{{addressDetail}}" class='receive-info'>
   <text>收货人：{{addressDetail.name}} ({{addressDetail.mobile}})</text>
   </view>

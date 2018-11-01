@@ -61,7 +61,8 @@
   align-items: center;
   background-color: #fff;
   font-size: 36rpx;
-  color: #e84646;
+  font-weight: bold;
+  color: #333;
 }
 .title-icon {
   margin-right: 8rpx;
@@ -69,13 +70,13 @@
   height: 40rpx;
 }
 .type-title {
-  padding-left: 20rpx;
+  padding-left: 25rpx;
   height: 80rpx;
   display: flex;
   align-items: center;
-  font-size: 36rpx;
-  color: #e84646;
-  background-color: rgba(237, 154, 52, 0.096);
+  font-size: 32rpx;
+  color: #333;
+  background-color: #fff;
 }
 .type-title-icon {
   margin-right: 10rpx;
@@ -88,7 +89,7 @@
   width: 100%;
   height: 350rpx;
   white-space: nowrap;
-  background-color: rgba(237, 154, 52, 0.096);
+  background-color:#fff;
 }
 .type-list-item {
   margin-left: 15rpx;

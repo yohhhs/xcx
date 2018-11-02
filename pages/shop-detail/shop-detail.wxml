@@ -26,7 +26,10 @@
       <text class='add-btn' bindtap='numberAdd'>+</text>
     </view>
   </view>
-  <view class='active'>商品规格：<text class='active-name'>{{detail.standard}}</text></view>
+  <view class='active'>
+  <text class='active-name'>商品规格：</text>
+  <text class='active-content'>{{detail.standard}}</text>
+  </view>
   <view class='shopping-info'>商品详细信息</view>
   <block wx:for="{{detailList}}" wx:key="index">
     <image class='shopping-detail-img' src='{{item}}' mode="widthFix"></image>

@@ -10,7 +10,7 @@
   </picker>
 </view>
 <view class='add-address-item'>
-  <input class='address-input-item' type='number' placeholder='详细地址，如街道、楼牌号等' bindinput='addressDetailChange'></input>
+  <input class='address-input-item' type='text' placeholder='详细地址，如街道、楼牌号等' bindinput='addressDetailChange'></input>
 </view>
 <view class='add-address-item'>
   <input class='address-input-item' type='number' placeholder='邮编' bindinput='postcodeChange'></input>

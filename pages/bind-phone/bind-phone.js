@@ -37,7 +37,7 @@ Page({
     if (this.data.buttonDisable) return false;
     let mobile = this.data.mobile;
     let that = this;
-    let c = 10;
+    let c = 30;
     let regMobile = /^1\d{10}$/
     if (!regMobile.test(mobile)) {
       this.setData({

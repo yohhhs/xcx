@@ -2,15 +2,15 @@
   <input class='address-input-item' focus value='{{name}}' type='text' placeholder='姓名' bindinput='nameChange'></input>
 </view>
 <view class='add-address-item'>
-  <input class='address-input-item' value='{{mobile}}' type='text' placeholder='手机号码' bindinput='phoneChange'></input>
+  <input class='address-input-item' value='{{mobile}}' type='number' placeholder='手机号码' bindinput='phoneChange'></input>
 </view>
 <view class='add-address-item'>
  <picker mode="multiSelector" range="{{cityArray}}" bindcolumnchange="columnchange" value="{{cityIndex}}" bindchange='pickchange'>
-    <input class='address-input-item' value='{{provinceName + cityName + districtName}}' type='text' placeholder='省份、城市、区县'></input> 
+    <input class='address-input-item' value='{{provinceName + cityName + districtName}}' type='text' disabled placeholder='省份、城市、区县'></input> 
   </picker>
 </view>
 <view class='add-address-item'>
-  <input class='address-input-item' value='{{addressDetail}}' type='number' placeholder='详细地址，如街道、楼牌号等' bindinput='addressDetailChange'></input>
+  <input class='address-input-item' value='{{addressDetail}}' type='text' placeholder='详细地址，如街道、楼牌号等' bindinput='addressDetailChange'></input>
 </view>
 <view class='add-address-item'>
   <input class='address-input-item' value='{{postCode}}' type='number' placeholder='邮编' bindinput='postcodeChange'></input>

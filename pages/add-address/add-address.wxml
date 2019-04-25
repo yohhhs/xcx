@@ -6,7 +6,7 @@
 </view>
 <view class='add-address-item'>
  <picker mode="multiSelector" range="{{cityArray}}" bindcolumnchange="columnchange" value="{{cityIndex}}" bindchange='pickchange'>
-    <input class='address-input-item' value='{{provinceName + cityName + districtName}}' type='text' placeholder='省份、城市、区县'></input> 
+    <input class='address-input-item' value='{{provinceName + cityName + districtName}}' disabled type='text' placeholder='省份、城市、区县'></input> 
   </picker>
 </view>
 <view class='add-address-item'>
